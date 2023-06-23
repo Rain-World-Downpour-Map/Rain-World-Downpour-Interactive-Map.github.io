@@ -125,6 +125,7 @@ const icon_by_name = {
     "rivulet": "69_rivulet",
     "spear": "70_spear",
     "saint": "71_saint",
+    "inv": "86_inv",
     //## Missing stuff
     //"Garbage Worm": "00_clear",
 }

@@ -546,12 +546,6 @@
         var connectionsLayer;
         var geometryLayer;
         var densLayer;
-        var shortcutsLayer;
-        var shelterLayer;
-        var collectiblesLayer;
-        var placedObjectsLayer;
-        var tokenLayer;
-        var ScavengerLayer;
         var loadedDifficulty = null;
         var loadedRegion = null;
         var loadedModded = {};
@@ -580,7 +574,7 @@
             modded = pmodded;
             console.log("Loading: region {" + region + "} on slugcat {" + pdifficulty + "}, modded {" + modded + "}");
             var slugcat_url = {
-                "artificer": "https://raw.githubusercontent.com/rain-world-map/msc/main/artificer",
+                "artificer": "https://raw.githubusercontent.com/rain-world-map/msc/main/artificerzz",
                 "gourmand": "https://raw.githubusercontent.com/rain-world-map/msc/main/gourmand",
                 "rivulet": "https://raw.githubusercontent.com/rain-world-map/msc/main/rivulet",
                 "saint": "https://raw.githubusercontent.com/rain-world-map/msc/main/saint",
@@ -684,25 +678,6 @@
                 });
                 if (hadGeometry) geometryLayer.addTo(map);
                 overlays.addOverlay(geometryLayer, "Geometry");
-
-                // Shortcuts
-                if (hadShortcuts) shortcutsLayer.addTo(map);
-                overlays.addOverlay(shortcutsLayer, "Shortcuts");
-                // Shelters 
-                if (hadShelters) sheltersLayer.addTo(map);
-                overlays.addOverlay(sheltersLayer, "Shelters");
-                // Collectibles (Pearls & Broadcasts)
-                if (hadCollectibles) collectiblesLayer.addTo(map);
-                overlays.addOverlay(collectiblesLayer, "Collectibles");
-                // Placed Objects
-                if (hadPlaceObjects) placedObjectsLayer.addTo(map);
-                overlays.addOverlay(placedObjectsLayer, "Objects");
-                // Arena Tokens
-                if (hadTokens) tokensLayer.addTo(map);
-                overlays.addOverlay(tokensLayer, "Arena");
-                // Scavenger POI
-                if (hadScavengers) scavengersLayer.addTo(map);
-                overlays.addOverlay(scavengersLayer, "Scavengers");
 
                 // Spawns
                 let hadSpawns = map.hasLayer(densLayer) || loadedRegion == null;
