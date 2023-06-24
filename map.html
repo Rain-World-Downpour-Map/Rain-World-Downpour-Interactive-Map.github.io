@@ -11,10 +11,13 @@
     <meta property="og:title" content="Rain World Map" />
     <meta property="og:url" content="https://rain-world-map.github.io" />
     <meta property="og:description"
-        content="An online interactive map that includes every region and every slugcat in Rain World: Downpour. - github.com/rain-world-map" />
+          content="An online interactive map that includes every region and every slugcat in Rain World: Downpour. - github.com/rain-world-map" />
     <link rel="stylesheet" href="./rw.css" />
     <link rel="stylesheet" href="./leaflet/leaflet.css" />
-
+    <!-- Always up to date Lealet build:
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    -->
     <script src="./global.js"></script>
     <script src="./leaflet/leaflet.js"></script>
     <script src="./beziero.js"></script>
@@ -105,7 +108,6 @@
             max-height: calc(100vh - 54px);
             display: flex;
             flex-direction: column;
-
             padding: 8px;
             background: #0c0c0c;
             z-index: 1000;
@@ -157,14 +159,14 @@
             height: 24px;
         }
 
-        #modded-ckb~label {
-            left: 4px;
-            top: -6px;
-        }
+            #modded-ckb ~ label {
+                left: 4px;
+                top: -6px;
+            }
 
-        #modded-ckb::before {
-            font-size: 1rem;
-        }
+            #modded-ckb::before {
+                font-size: 1rem;
+            }
 
         .region-btn {
             font-size: 0.8rem;
@@ -175,7 +177,7 @@
             margin-bottom: 8px;
         }
 
-        input[type='radio'].rw-ui+span {
+        input[type='radio'].rw-ui + span {
             top: calc(50% - 10px);
             /* proof that CSS is stupid, cant fucking vertical center text */
         }
@@ -191,7 +193,6 @@
             padding-right: 24px !important;
             margin-right: -16px !important;
         }
-
     </style>
 
 
@@ -199,14 +200,12 @@
         .spawn-filter {
             display: initial
         }
-
     </style>
 
     <style id="hoverlabels">
         .hover-label {
             display: none;
         }
-
     </style>
 
 </head>
@@ -580,14 +579,14 @@
             modded = pmodded;
             console.log("Loading: region {" + region + "} on slugcat {" + pdifficulty + "}, modded {" + modded + "}");
             var slugcat_url = {
-                "artificer": "https://raw.githubusercontent.com/rain-world-map/msc/main/artificer",
-                "gourmand": "https://raw.githubusercontent.com/rain-world-map/msc/main/gourmand",
-                "rivulet": "https://raw.githubusercontent.com/rain-world-map/msc/main/rivulet",
-                "saint": "https://raw.githubusercontent.com/rain-world-map/msc/main/saint",
-                "spear": "https://raw.githubusercontent.com/rain-world-map/msc/main/spear",
-                "white": "https://raw.githubusercontent.com/rain-world-map/vanilla/main/white",
-                "yellow": "https://raw.githubusercontent.com/rain-world-map/vanilla/main/yellow",
-                "red": "https://raw.githubusercontent.com/rain-world-map/vanilla/main/red",
+                "artificer": "https://github.com/NobleCat57/msc-1.9.07b/1.9.07b/artificer",
+                "gourmand": "https://github.com/NobleCat57/msc-1.9.07b/1.9.07b/gourmand",
+                "rivulet": "https://github.com/NobleCat57/msc-1.9.07b/1.9.07b/rivulet",
+                "saint": "https://github.com/NobleCat57/msc-1.9.07b/1.9.07b/saint",
+                "spear": "https://github.com/NobleCat57/msc-1.9.07b/1.9.07b/spear",
+                "white": "https://github.com/NobleCat57/vanilla-1.9.07b/1.9.07b/white",
+                "yellow": "https://github.com/NobleCat57/vanilla-1.9.07b/1.9.07b/yellow",
+                "red": "https://github.com/NobleCat57/vanilla-1.9.07b/1.9.07b/red",
             };
             var region_url = region.toLowerCase();
             var roompath = `${slugcat_url[pdifficulty]}/${region_url}`;

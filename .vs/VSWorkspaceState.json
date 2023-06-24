@@ -3,9 +3,8 @@
     "",
     "\\leaflet",
     "\\leaflet\\images",
-    "\\resources",
-    "\\resources\\icons"
+    "\\resources"
   ],
-  "SelectedNode": "\\resources\\icons\\00_clear.png",
+  "SelectedNode": "\\global.js",
   "PreviewInSolutionExplorer": false
 }
