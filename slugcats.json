@@ -4,10 +4,11 @@
         "startingRoom": "SU_C04",
         "regions": {
             "SU": "Outskirts",
-            "DS": "Drainage System",
             "HI": "Industrial Complex",
+            "DS": "Drainage System",
             "GW": "Garbage Wastes",
             "SL": "Shoreline",
+            "VS": "Pipeyard",
             "SH": "Shaded Citadel",
             "UW": "The Exterior",
             "SS": "Five Pebbles",
@@ -15,7 +16,6 @@
             "SI": "Sky Islands",
             "LF": "Farm Arrays",
             "SB": "Subterranean",
-            "VS": "Pipeyard",
             "MS": "Submerged Superstructure",
             "OE": "Outer Expanse"
         }
@@ -25,10 +25,11 @@
         "startingRoom": "SU_C04",
         "regions": {
             "SU": "Outskirts",
-            "DS": "Drainage System",
             "HI": "Industrial Complex",
+            "DS": "Drainage System",
             "GW": "Garbage Wastes",
             "SL": "Shoreline",
+            "VS": "Pipeyard",
             "SH": "Shaded Citadel",
             "UW": "The Exterior",
             "SS": "Five Pebbles",
@@ -36,7 +37,6 @@
             "SI": "Sky Islands",
             "LF": "Farm Arrays",
             "SB": "Subterranean",
-            "VS": "Pipeyard",
             "MS": "Submerged Superstructure",
             "OE": "Outer Expanse"
 
@@ -47,10 +47,11 @@
         "startingRoom": "LF_H01",
         "regions": {
             "SU": "Outskirts",
-            "DS": "Drainage System",
             "HI": "Industrial Complex",
+            "DS": "Drainage System",
             "GW": "Garbage Wastes",
             "SL": "Shoreline",
+            "VS": "Pipeyard",
             "SH": "Shaded Citadel",
             "UW": "The Exterior",
             "SS": "Five Pebbles",
@@ -58,7 +59,6 @@
             "SI": "Sky Islands",
             "LF": "Farm Arrays",
             "SB": "Subterranean",
-            "VS": "Pipeyard",
             "MS": "Submerged Superstructure"
         }
     },
@@ -67,10 +67,11 @@
         "startingRoom": "SH_GOR02",
         "regions": {
             "SU": "Outskirts",
-            "DS": "Drainage System",
             "HI": "Industrial Complex",
+            "DS": "Drainage System",
             "GW": "Garbage Wastes",
             "SL": "Shoreline",
+            "VS": "Pipeyard",
             "SH": "Shaded Citadel",
             "UW": "The Exterior",
             "SS": "Five Pebbles",
@@ -78,7 +79,6 @@
             "SI": "Sky Islands",
             "LF": "Farm Arrays",
             "SB": "Subterranean",
-            "VS": "Pipeyard",
             "MS": "Submerged Superstructure",
             "OE": "Outer Expanse"
         }
@@ -88,10 +88,11 @@
         "startingRoom": "GW_A24",
         "regions": {
             "SU": "Outskirts",
-            "DS": "Drainage System",
             "HI": "Industrial Complex",
+            "DS": "Drainage System",
             "GW": "Garbage Wastes",
             "LM": "Waterfront Facility",
+            "VS": "Pipeyard",
             "SH": "Shaded Citadel",
             "UW": "The Exterior",
             "SS": "Five Pebbles",
@@ -99,7 +100,6 @@
             "SI": "Sky Islands",
             "LF": "Farm Arrays",
             "SB": "Subterranean",
-            "VS": "Pipeyard",
             "LC": "Metropolis"
         }
     },
@@ -108,10 +108,11 @@
         "startingRoom": "DS_RIVSTART",
         "regions": {
             "SU": "Outskirts",
-            "DS": "Drainage System",
             "HI": "Industrial Complex",
+            "DS": "Drainage System",
             "GW": "Garbage Wastes",
             "SL": "Shoreline",
+            "VS": "Pipeyard",
             "SH": "Shaded Citadel",
             "UW": "The Exterior",
             "RM": "The Rot",
@@ -119,7 +120,6 @@
             "SI": "Sky Islands",
             "LF": "Farm Arrays",
             "SB": "Subterranean",
-            "VS": "Pipeyard",
             "MS": "Submerged Superstructure"
         }
     },
@@ -128,10 +128,11 @@
         "startingRoom": "GATE_OE_SU",
         "regions": {
             "SU": "Outskirts",
-            "DS": "Drainage System",
             "HI": "Industrial Complex",
+            "DS": "Drainage System",
             "GW": "Garbage Wastes",
             "LM": "Waterfront Facility",
+            "VS": "Pipeyard",
             "SH": "Shaded Citadel",
             "UW": "The Exterior",
             "SS": "Five Pebbles",
@@ -139,7 +140,6 @@
             "SI": "Sky Islands",
             "LF": "Farm Arrays",
             "SB": "Subterranean",
-            "VS": "Pipeyard",
             "DM": "Looks to the Moon"
         }
     },
@@ -148,17 +148,17 @@
         "startingRoom": "SI_SAINTINTRO",
         "regions": {
             "SU": "Suburban Drifts",
-            "UG": "Undergrowth",
             "HI": "Icy Monument",
+            "UG": "Undergrowth",
             "GW": "Glacial Wasteland",
             "SL": "Frigid Coast",
+            "VS": "Barren Conduits",
             "CL": "Silent Construct",
             "CC": "Solitary Towers",
             "SI": "Windswept Spires",
             "LF": "Desolate Fields",
             "SB": "Primordial Underground",
             "HR": "Rubicon",
-            "VS": "Barren Conduits",
             "MS": "Submerged Superstructure"
         }
     },
@@ -167,18 +167,18 @@
         "startingRoom": "SH_E01",
         "regions": {
             "SU": "we forgot to render this one sorry",
-            "DS": "Painage System",
             "HI": "Industrial Complex",
+            "DS": "Painage System",
             "GW": "Nachos Will Never Be The Same",
             "SL": "Shoreline",
+            "VS": "TOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOBS",
             "SH": "Shaded Citadel",
             "UW": "The Exterior",
             "SS": "Five Pebbles",
             "CC": "Chimney Canopy",
             "SI": "Sky Islands",
             "LF": "Farm Arrays",
-            "SB": "Subterranean",
-            "VS": "TOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOBS"
+            "SB": "Subterranean"
         }
     }
 }
