@@ -16,7 +16,7 @@
             "SI": "Sky Islands",
             "LF": "Farm Arrays",
             "SB": "Subterranean",
-            "MS": "Submerged Superstructure",
+            "MS": "Submerged<br>Superstructure",
             "OE": "Outer Expanse"
         }
     },
@@ -37,7 +37,7 @@
             "SI": "Sky Islands",
             "LF": "Farm Arrays",
             "SB": "Subterranean",
-            "MS": "Submerged Superstructure",
+            "MS": "Submerged<br>Superstructure",
             "OE": "Outer Expanse"
 
         }
@@ -59,7 +59,7 @@
             "SI": "Sky Islands",
             "LF": "Farm Arrays",
             "SB": "Subterranean",
-            "MS": "Submerged Superstructure"
+            "MS": "Submerged<br>Superstructure"
         }
     },
     "gourmand": {
@@ -79,7 +79,7 @@
             "SI": "Sky Islands",
             "LF": "Farm Arrays",
             "SB": "Subterranean",
-            "MS": "Submerged Superstructure",
+            "MS": "Submerged<br>Superstructure",
             "OE": "Outer Expanse"
         }
     },
@@ -120,7 +120,7 @@
             "SI": "Sky Islands",
             "LF": "Farm Arrays",
             "SB": "Subterranean",
-            "MS": "Submerged Superstructure"
+            "MS": "Submerged<br>Superstructure"
         }
     },
     "spear": {
@@ -157,21 +157,21 @@
             "CC": "Solitary Towers",
             "SI": "Windswept Spires",
             "LF": "Desolate Fields",
-            "SB": "Primordial Underground",
+            "SB": "Primordial<br>Underground",
             "HR": "Rubicon",
-            "MS": "Submerged Superstructure"
+            "MS": "Submerged<br>Superstructure"
         }
     },
     "inv": {
         "startingRegion": "SH",
         "startingRoom": "SH_E01",
         "regions": {
-            "SU": "we forgot to render this one sorry",
+            "SU": "we forgot to render<br>this one sorry",
             "HI": "Industrial Complex",
             "DS": "Painage System",
-            "GW": "Nachos Will Never Be The Same",
+            "GW": "Nachos Will Never<br>Be The Same",
             "SL": "Shoreline",
-            "VS": "TOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOBS",
+            "VS": "TOOOOOOOOOOOOO<br>OOOOOOOOOOOOOOO<br>OOOOOOOOOOOOBS",
             "SH": "Shaded Citadel",
             "UW": "The Exterior",
             "SS": "Five Pebbles",
