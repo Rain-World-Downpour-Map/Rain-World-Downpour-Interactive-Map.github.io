@@ -105,7 +105,7 @@
         .side-panel {
             position: absolute;
             top: 24px;
-            max-height: calc(100vh);
+            max-height: auto;
             display: flex;
             flex-direction: column;
             padding: 8px;
@@ -545,12 +545,14 @@
         var connectionsLayer;
         var geometryLayer;
         var densLayer;
+        /*
         var shortcutsLayer;
-        var shelterLayer;
+        var sheltersLayer;
         var collectiblesLayer;
         var placedObjectsLayer;
-        var tokenLayer;
-        var ScavengerLayer;
+        var tokensLayer;
+        var ScavengersLayer;
+        */
         var loadedDifficulty = null;
         var loadedRegion = null;
         var loadedModded = {};
@@ -684,7 +686,7 @@
                 });
                 if (hadGeometry) geometryLayer.addTo(map);
                 overlays.addOverlay(geometryLayer, "Geometry");
-
+        /*
                 // Shortcuts
                 if (hadShortcuts) shortcutsLayer.addTo(map);
                 overlays.addOverlay(shortcutsLayer, "Shortcuts");
@@ -703,7 +705,7 @@
                 // Scavenger POI
                 if (hadScavengers) scavengersLayer.addTo(map);
                 overlays.addOverlay(scavengersLayer, "Scavengers");
-                
+                */
                 // Spawns
                 let hadSpawns = map.hasLayer(densLayer) || loadedRegion == null;
                 if (densLayer != null) {
