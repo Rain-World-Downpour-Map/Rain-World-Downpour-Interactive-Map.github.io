@@ -172,7 +172,7 @@
         .region-btn {
             font-size: 0.8rem;
             width: 230px;
-            height: 24px;
+            height: fit-content;
             position: relative;
             word-wrap: break-word;
             margin-top: 8px;
@@ -181,6 +181,8 @@
 
         input[type='radio'].rw-ui+span {
             top: calc(50% - 10px);
+            word-wrap: anywhere;
+            height: auto;
             /* proof that CSS is stupid, cant fucking vertical center text */
         }
 
@@ -226,6 +228,10 @@
     <div class="side-panel right-panel rw-text">
         <div>Slugcat</div>
         <form name="difficulty" class="difficulty-select" id="scug-selector">
+        </form>
+
+        <div>Settings</div>
+        <form name="settings" class="region-select">
         </form>
 
         <div>Layers</div>
@@ -289,7 +295,7 @@
                 pushState();
             }
         }
-
+        
         function selectDifficulty(n) {
             for (var i = 0; i < document.difficulty.difficulties.length; i++) {
                 if (document.difficulty.difficulties[i].value == n) {
@@ -298,9 +304,11 @@
             }
             if (difficulty != n) {
                 difficulty = n;
-                region = slugcats[difficulty].startingRegion;
-                room = slugcats[difficulty].startingRoom;
-                pushState();
+                if () {
+                    region = slugcats[difficulty].startingRegion;
+                    room = slugcats[difficulty].startingRoom;
+                    pushState();
+                }
             }
         }
 
