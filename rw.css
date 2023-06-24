@@ -7,10 +7,9 @@
 .rw-title {
     font-family: "Rodondo";
     font-size: 6rem;
-    word-wrap: break-word;
     text-align: center;
     line-height: 75%;
-    width: 30%;
+    width: 100%;
 }
 
 .rw-bigtext {
