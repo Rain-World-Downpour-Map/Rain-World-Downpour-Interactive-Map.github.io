@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\leaflet",
-    "\\leaflet\\images",
-    "\\resources"
+    ""
   ],
-  "SelectedNode": "\\slugcats.json",
+  "SelectedNode": "\\global.js",
   "PreviewInSolutionExplorer": false
 }

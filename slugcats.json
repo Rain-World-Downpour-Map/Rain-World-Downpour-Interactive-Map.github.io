@@ -1,4 +1,25 @@
 {
+    "yellow": {
+        "startingRegion": "SU",
+        "startingRoom": "SU_C04",
+        "regions": {
+            "SU": "Outskirts",
+            "DS": "Drainage System",
+            "HI": "Industrial Complex",
+            "GW": "Garbage Wastes",
+            "SL": "Shoreline",
+            "SH": "Shaded Citadel",
+            "UW": "The Exterior",
+            "SS": "Five Pebbles",
+            "CC": "Chimney Canopy",
+            "SI": "Sky Islands",
+            "LF": "Farm Arrays",
+            "SB": "Subterranean",
+            "VS": "Pipeyard",
+            "MS": "Submerged Superstructure",
+            "OE": "Outer Expanse"
+        }
+    },
     "white": {
         "startingRegion": "SU",
         "startingRoom": "SU_C04",
@@ -19,27 +40,6 @@
             "MS": "Submerged Superstructure",
             "OE": "Outer Expanse"
 
-        }
-    },
-    "yellow": {
-        "startingRegion": "SU",
-        "startingRoom": "SU_C04",
-        "regions": {
-            "SU": "Outskirts",
-            "DS": "Drainage System",
-            "HI": "Industrial Complex",
-            "GW": "Garbage Wastes",
-            "SL": "Shoreline",
-            "SH": "Shaded Citadel",
-            "UW": "The Exterior",
-            "SS": "Five Pebbles",
-            "CC": "Chimney Canopy",
-            "SI": "Sky Islands",
-            "LF": "Farm Arrays",
-            "SB": "Subterranean",
-            "VS": "Pipeyard",
-            "MS": "Submerged Superstructure",
-            "OE": "Outer Expanse"
         }
     },
     "red": {
