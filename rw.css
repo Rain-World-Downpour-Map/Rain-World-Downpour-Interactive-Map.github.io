@@ -52,7 +52,7 @@ button.rw-ui {
     box-sizing: border-box;
     /* correctness */
     width: 100%;
-    height: 100%;
+    height: fit-content;
     margin: 0px;
     color: #A9A4B2;
     /* menu lightgray */
@@ -71,7 +71,7 @@ button.rw-ui::before {
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     margin: -2px;
     /* undo parent border */
     border-radius: 8px;
@@ -106,7 +106,7 @@ input[type='radio'].rw-ui {
     box-sizing: border-box;
     /* correctness */
     width: 100%;
-    height: 100%;
+    height: fit-content;
     margin: 0px;
 }
 
@@ -118,7 +118,7 @@ input[type='radio'].rw-ui::before {
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     margin: -2px;
     /* undo parent border */
     border-radius: 8px;
@@ -136,6 +136,7 @@ input[type='radio'].rw-ui+span {
     top: calc(50% - 12px);
     /* proof that CSS is stupid, cant fucking vertical center text */
     width: 100%;
+    height: fit-content;
     text-align: center;
     color: #4B4653;
     /* darkgray */
