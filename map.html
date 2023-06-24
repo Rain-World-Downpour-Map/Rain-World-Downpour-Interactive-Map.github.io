@@ -181,8 +181,6 @@
 
         input[type='radio'].rw-ui+span {
             top: calc(50% - 10px);
-            word-wrap: anywhere;
-            height: auto;
             /* proof that CSS is stupid, cant fucking vertical center text */
         }
 
@@ -231,8 +229,7 @@
         </form>
 
         <div>Settings</div>
-        <form name="settings" class="region-select">
-        </form>
+        <div id="settings-content" class="scroll-ish"></div>
 
         <div>Layers</div>
         <div id="layer-content" class="scroll-ish"></div>
@@ -304,7 +301,7 @@
             }
             if (difficulty != n) {
                 difficulty = n;
-                if () {
+                if (1 == 1) {
                     region = slugcats[difficulty].startingRegion;
                     room = slugcats[difficulty].startingRoom;
                     pushState();
