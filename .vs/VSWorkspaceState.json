@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\leaflet",
+    "\\resources"
   ],
-  "SelectedNode": "\\rw.css",
+  "SelectedNode": "\\beziero.js",
   "PreviewInSolutionExplorer": false
 }
