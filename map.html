@@ -177,10 +177,9 @@
             word-wrap: anywhere;
             margin-top: 8px;
             margin-bottom: 8px;
-            padding: 4px;
         }
 
-        input[type='radio'].rw-ui+span {
+        input[type='radio'].rw-ui+div {
             top: calc(50% - 10px);
             /* proof that CSS is stupid, cant fucking vertical center text */
         }
@@ -275,7 +274,7 @@
 <label>
     <div class="region-btn">
         <input type="radio" class="rw-ui" name="regions" onclick="selectRegion(this.value);" value="${r}"${r == region ? ' checked="checked"' : ''} autocomplete = "off">
-        <span>${regions[r].toUpperCase()} (${r})</span>
+        <div>${regions[r].toUpperCase()} (${r})</div>
     </div>
 </label>`
             }
