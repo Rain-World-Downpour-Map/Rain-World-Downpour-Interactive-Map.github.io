@@ -301,17 +301,10 @@
                     document.difficulty.difficulties[i].checked = true;
                 }
             }
-
             if (difficulty != n) {
                 difficulty = n;
-                if (1 == 2) {
-                    region = slugcats[difficulty].r;
-                    room = focusedRoom;
-                }           
-                else {
-                    region = slugcats[difficulty].startingRegion;
-                    room = slugcats[difficulty].startingRoom;
-                }
+                region = slugcats[difficulty].startingRegion;
+                room = slugcats[difficulty].startingRoom;
                 pushState();
             }
         }
