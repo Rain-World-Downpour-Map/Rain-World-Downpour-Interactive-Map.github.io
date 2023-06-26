@@ -108,7 +108,6 @@
             max-height: calc(100vh - 54px);
             display: flex;
             flex-direction: column;
-
             padding: 8px;
             background: #0c0c0c;
             z-index: 1000;
@@ -160,7 +159,7 @@
             height: 24px;
         }
 
-            #modded-ckb~label {
+            #modded-ckb ~ label {
                 left: 4px;
                 top: -6px;
             }
@@ -179,7 +178,7 @@
             margin-bottom: 8px;
         }
 
-        input[type='radio'].rw-ui+span {
+        input[type='radio'].rw-ui + span {
             top: calc(50% - 10px);
             /* proof that CSS is stupid, cant fucking vertical center text */
         }
@@ -230,7 +229,7 @@
 
         <div>Settings</div>
         <div id="settings-content" class="scroll-ish">
-            <input type="checkbox" id="persistentSelection" onclick="regionFocus">
+            <input type="checkbox" class="rw-ui" id="persistentSelection" onclick="regionFocus">
             <label for="persistentSelection">Persistent Selection</label>
         </div>
 
@@ -245,7 +244,6 @@
         var slugcats = {};
         var region_order = [];
         var regions = {};
-        var setttings = {};
 
         getJsonObject("slugcats.json", function (json) { slugcats = json; }, false);
 
@@ -259,8 +257,8 @@
             }
             html += `
 <label class="difficulty-btn">
-    <input type="radio" class="rw-ui" name="difficulties" onclick="selectDifficulty('${slugcatName}');" value="${slugcatName}" autocomplete="off">
-    <img src="./resources/icons/${icon}.png">
+        <input type="radio" class="rw-ui" name="difficulties" onclick="selectDifficulty('${slugcatName}');" value="${slugcatName}" autocomplete="off">
+        <img src="./resources/icons/${icon}.png">
 </label>`;
             document.getElementById('scug-selector').innerHTML = html;
         }
@@ -276,10 +274,10 @@
             for (var r of region_order) {
                 html = `
 <label>
-    <div class="region-btn">
-        <input type="radio" class="rw-ui" name="regions" onclick="selectRegion(this.value);" value="${r}"${r == region ? ' checked="checked"' : ''} autocomplete = "off">
-        <span>${regions[r].toUpperCase()} (${r})</span>
-    </div>
+        <div class="region-btn">
+            <input type="radio" class="rw-ui" name="regions" onclick="selectRegion(this.value);" value="${r}"${r == region ? ' checked="checked"' : ''} autocomplete = "off">
+            <span>${regions[r].toUpperCase()} (${r})</span>
+        </div>
 </label>`
             }
             document.getElementById('region-select').innerHTML = html;
@@ -296,17 +294,21 @@
                 pushState();
             }
         }
-        
+
         function selectDifficulty(n) {
             for (var i = 0; i < document.difficulty.difficulties.length; i++) {
                 if (document.difficulty.difficulties[i].value == n) {
                     document.difficulty.difficulties[i].checked = true;
                 }
             }
+
             if (difficulty != n) {
                 difficulty = n;
-                var regionFocus;
-                if (regionFocus == false) {
+                if (regionFocus) {
+                    region = slugcats[difficulty].r;
+                    room = focusedRoom;
+                }           
+                else {
                     region = slugcats[difficulty].startingRegion;
                     room = slugcats[difficulty].startingRoom;
                 }
@@ -698,11 +700,11 @@
                 });
                 if (hadGeometry) geometryLayer.addTo(map);
                 overlays.addOverlay(geometryLayer, "Geometry");
-                
+
                 /* Shortcuts
                 if (hadShortcuts) shortcutsLayer.addTo(map);
                 overlays.addOverlay(shortcutsLayer, "Shortcuts");
-                // Shelters 
+                // Shelters
                 if (hadShelters) sheltersLayer.addTo(map);
                 overlays.addOverlay(sheltersLayer, "Shelters");
                 // Collectibles (Pearls & Broadcasts)
@@ -748,10 +750,10 @@
                                         console.log("missing icon for " + spawn.lineage[i]);
                                     }
                                     divhtml += `<div class="lineage-entry">
-                                        <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                        <div class="icon-label">${Math.trunc(Number.parseFloat(spawn.lineage_probs[i]) * 100)}</div>
-                                        <div class="icon-tooltip">${tooltip}</div>
-                                        </div>`;
+                                            <img class="icon-image" src="./resources/icons/${icon}.png"/>
+                                            <div class="icon-label">${Math.trunc(Number.parseFloat(spawn.lineage_probs[i]) * 100)}</div>
+                                            <div class="icon-tooltip">${tooltip}</div>
+                                            </div>`;
                                 }
                                 divhtml += '</div>';
                             } else {
@@ -769,10 +771,10 @@
                                     console.log("missing icon for " + spawn.creature);
                                 }
                                 divhtml += `<div class="spawn-entry${spawn_filter}">
-                                    <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                    <div class="icon-label">x${spawn.amount}</div>
-                                    <div class="icon-tooltip">${tooltip}</div>
-                                    </div>`;
+                                        <img class="icon-image" src="./resources/icons/${icon}.png"/>
+                                        <div class="icon-label">x${spawn.amount}</div>
+                                        <div class="icon-tooltip">${tooltip}</div>
+                                        </div>`;
                             }
                         }
                         return L.marker(latlng, {
