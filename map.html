@@ -229,7 +229,7 @@
 
         <div>Settings</div>
         <div id="settings-content" class="scroll-ish">
-            <input type="checkbox" class="region-btn" id="persistentSelection" onclick="selectDifficulty('${slugcatName}');" value="regionFocus = true;">
+            <input type="checkbox" class="region-btn" id="persistentSelection" onclick="" value="">
             <label for="persistentSelection">Persistent Selection</label>
         </div>
 
@@ -242,6 +242,7 @@
         // misc iconography but mostly Spawns
 
         var regionFocus = Boolean;
+        regionToggle = false;
         var slugcats = {};
         var region_order = [];
         var regions = {};
@@ -304,14 +305,8 @@
             }
             if (difficulty != n) {
                 difficulty = n;
-                if (regionFocus) {
-                    region = r;
-                    room = focusedRoom;
-                }
-                else {
-                    region = slugcats[difficulty].startingRegion;
-                    room = slugcats[difficulty].startingRoom;
-                }
+                region = slugcats[difficulty].startingRegion;
+                room = slugcats[difficulty].startingRoom;
                 pushState();
             }
         }
