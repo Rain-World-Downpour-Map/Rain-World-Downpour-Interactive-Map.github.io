@@ -538,6 +538,12 @@
         overlays.addTo(map);
         document.getElementById('layer-content').appendChild(overlays.getContainer());
 
+
+        // new additions
+        var roomTags;
+        var batMigrationBlockages;
+        var placedObjects;
+        var shortcuts;
         // Region stuff
         var tileLayer;
         var roomsLayer;
@@ -646,6 +652,35 @@
                 overlays.addOverlay(roomsLayer, "Rooms");
                 if (hadNames) roomNames.addTo(map);
                 overlays.addOverlay(roomNames, "Room Names");
+
+                // Placed Objects
+                // Shortcuts
+                // Bat Migration Blockages
+
+
+
+
+
+                // Room Tags
+                let hadRoomTags =
+map.haslayer(roomTagsLayer) || loadedRegion ==
+null;
+                if (roomTagsLayer != null) {
+
+overlays.removeLayer(roomTagsLayer);
+               }
+map.removeLayer(roomTagsLayer);
+               roomTagsLayer = new
+
+
+
+
+
+               if (hadRoomTags) 
+roomTagsLayer.addto(map);
+
+overlays.addOverlay(roomTagsLayer,
+"Room Tags");
 
                 // Connections
                 let hadConnections = map.hasLayer(connectionsLayer) || loadedRegion == null;
