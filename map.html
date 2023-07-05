@@ -552,11 +552,14 @@
         var connectionsLayer;
         var geometryLayer;
         var densLayer;
-        /*
+        // New additions
         var shortcutsLayer;
+        var placedObjectsLayer;
+        var batMigrationBlockagesLayer;
+        var roomTagsLayer;
+        /*
         var sheltersLayer;
         var collectiblesLayer;
-        var placedObjectsLayer;
         var tokensLayer;
         var ScavengersLayer;
         */
@@ -694,25 +697,6 @@
                 if (hadGeometry) geometryLayer.addTo(map);
                 overlays.addOverlay(geometryLayer, "Geometry");
 
-                /* Shortcuts
-                if (hadShortcuts) shortcutsLayer.addTo(map);
-                overlays.addOverlay(shortcutsLayer, "Shortcuts");
-                // Shelters
-                if (hadShelters) sheltersLayer.addTo(map);
-                overlays.addOverlay(sheltersLayer, "Shelters");
-                // Collectibles (Pearls & Broadcasts)
-                if (hadCollectibles) collectiblesLayer.addTo(map);
-                overlays.addOverlay(collectiblesLayer, "Collectibles");
-                // Placed Objects
-                if (hadPlaceObjects) placedObjectsLayer.addTo(map);
-                overlays.addOverlay(placedObjectsLayer, "Objects");
-                // Arena Tokens
-                if (hadTokens) tokensLayer.addTo(map);
-                overlays.addOverlay(tokensLayer, "Arena");
-                // Scavenger POI
-                if (hadScavengers) scavengersLayer.addTo(map);
-                overlays.addOverlay(scavengersLayer, "Scavengers");
-                */
                 // Spawns
                 let hadSpawns = map.hasLayer(densLayer) || loadedRegion == null;
                 if (densLayer != null) {
@@ -780,7 +764,85 @@
                     },
                 });
                 if (hadSpawns) densLayer.addTo(map);
-                overlays.addOverlay(densLayer, "Spawns");
+                overlays.addOverlay(densLayer, "Creatures");
+
+                // Bat Migration Blockages
+                let hadBatMigrationBlockages = map.hasLayer(batMigrationBlockagesLayer) || loadedRegion == null;
+                if (batMigrationBlockagesLayer != null) {
+                    overlays.removeLayer(batMigrationBlockagesLayer);
+                    map.removeLayer(batMigrationBlockagesLayer);
+                }
+                batMigrationBlockagesLayer = new L.BezierGeoJSON(roomjson["batMigrationBlockages_features"], {
+                    color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
+                    weight: 2,
+                    lineCap: "butt", // hehe
+                    dashArray: "5 8",
+                    interactive: false,
+                });
+                if (hadBatMigrationBlockages) batMigrationBlockagesLayer.addTo(map);
+                overlays.addOverlay(batMigrationBlockagesLayer, "Bat Migration Blockages");
+
+                // Room Tags
+                let hadRoomTags = map.hasLayer(roomTagsLayer) || loadedRegion == null;
+                if (roomTagsLayer != null) {
+                    overlays.removeLayer(roomTagsLayer);
+                    map.removeLayer(roomTagsLayer);
+                }
+                roomTagsLayer = new L.BezierGeoJSON(roomjson["roomTags_features"], {
+                    color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
+                    weight: 2,
+                    lineCap: "butt", // hehe
+                    dashArray: "5 8",
+                    interactive: false,
+                });
+                if (hadRoomTags) roomTagsLayer.addTo(map);
+                overlays.addOverlay(roomTagsLayer, "Room Tags");
+
+                // Shortcuts
+                let hadShortcuts = map.hasLayer(shortcutsLayer) || loadedRegion == null;
+                if (shortcutsLayer != null) {
+                    overlays.removeLayer(shortcutsLayer);
+                    map.removeLayer(shortcutsLayer);
+                }
+                shortcutsLayer = L.geoJSON(roomjson["geo_features"], {
+                    interactive: false,
+                    color: 'rgb(' + json["geocolor"].join(',') + ')',
+                    weight: 2,
+                    lineCap: "butt", // im easily entertained
+                    lineJoin: "miter",
+                });
+                if (hadShortcuts) shortcutsLayer.addTo(map);
+                overlays.addOverlay(shortcutsLayer, "Shortcuts");
+
+                // Placed Objects
+                let hadPlacedObjects = map.hasLayer(placedObjectsLayer) || loadedRegion == null;
+                if (placedObjectsLayer != null) {
+                    overlays.removeLayer(placedObjectsLayer);
+                    map.removeLayer(placedObjectsLayer);
+                }
+                placedObjectsLayer = new L.BezierGeoJSON(roomjson["placedObjects_features"], {
+                    color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
+                    weight: 2,
+                    lineCap: "butt", // hehe
+                    dashArray: "5 8",
+                    interactive: false,
+                });
+                if (hadPlacedObjects) placedObjectsLayer.addTo(map);
+                overlays.addOverlay(placedObjectsLayer, "Placed Objects");
+
+                // Scavenger POI
+                if (hadScavengers) scavengersLayer.addTo(map);
+                overlays.addOverlay(scavengersLayer, "Scavengers");
+                // Shelters
+                if (hadShelters) sheltersLayer.addTo(map);
+                overlays.addOverlay(sheltersLayer, "Shelters");
+                // Collectibles (Pearls & Broadcasts)
+                if (hadCollectibles) collectiblesLayer.addTo(map);
+                overlays.addOverlay(collectiblesLayer, "Collectibles");
+                // Arena Tokens
+                if (hadTokens) tokensLayer.addTo(map);
+                overlays.addOverlay(tokensLayer, "Arena");
+                
 
                 // Zoom to room on rooms loaded
                 let foundRoom = false;
