@@ -557,12 +557,6 @@
         var placedObjectsLayer;
         var batMigrationBlockagesLayer;
         var roomTagsLayer;
-        /*
-        var sheltersLayer;
-        var collectiblesLayer;
-        var tokensLayer;
-        var ScavengersLayer;
-        */
         var loadedDifficulty = null;
         var loadedRegion = null;
         var loadedModded = {};
@@ -703,7 +697,7 @@
                     overlays.removeLayer(densLayer);
                     map.removeLayer(densLayer);
                 }
-                densLayer = L.geoJSON(json["spawn_features"], {
+                densLayer = L.geoJSON(json["creatures_features"], {
                     pointToLayer: function (feature, latlng) {
                         // Spawns are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         let divhtml = "";
@@ -772,7 +766,7 @@
                     overlays.removeLayer(batMigrationBlockagesLayer);
                     map.removeLayer(batMigrationBlockagesLayer);
                 }
-                batMigrationBlockagesLayer = new L.BezierGeoJSON(roomjson["batMigrationBlockages_features"], {
+                batMigrationBlockagesLayer = new L.BezierGeoJSON(roomjson["batmigrationblockages_features"], {
                     color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
                     weight: 2,
                     lineCap: "butt", // hehe
@@ -788,13 +782,16 @@
                     overlays.removeLayer(roomTagsLayer);
                     map.removeLayer(roomTagsLayer);
                 }
-                roomTagsLayer = new L.BezierGeoJSON(roomjson["roomTags_features"], {
+                roomTagsLayer = new L.BezierGeoJSON(roomjson["roomtag_features"], {
                     color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
                     weight: 2,
                     lineCap: "butt", // hehe
                     dashArray: "5 8",
                     interactive: false,
                 });
+                L.tooltip({ direction: "center", offset: [0, 0], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.name).setLatLng(L.latLng([].concat(feature.properties.popupcoords).reverse())).addTo(roomTagsLayer);
+
+                layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, 0], interactive: true, className: "rw-text room-labels hover-label" });
                 if (hadRoomTags) roomTagsLayer.addTo(map);
                 overlays.addOverlay(roomTagsLayer, "Room Tags");
 
@@ -804,7 +801,7 @@
                     overlays.removeLayer(shortcutsLayer);
                     map.removeLayer(shortcutsLayer);
                 }
-                shortcutsLayer = L.geoJSON(roomjson["geo_features"], {
+                shortcutsLayer = L.geoJSON(roomjson["shortcut_features"], {
                     interactive: false,
                     color: 'rgb(' + json["geocolor"].join(',') + ')',
                     weight: 2,
@@ -820,7 +817,7 @@
                     overlays.removeLayer(placedObjectsLayer);
                     map.removeLayer(placedObjectsLayer);
                 }
-                placedObjectsLayer = new L.BezierGeoJSON(roomjson["placedObjects_features"], {
+                placedObjectsLayer = new L.BezierGeoJSON(roomjson["placedobjects_features"], {
                     color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
                     weight: 2,
                     lineCap: "butt", // hehe
@@ -829,19 +826,6 @@
                 });
                 if (hadPlacedObjects) placedObjectsLayer.addTo(map);
                 overlays.addOverlay(placedObjectsLayer, "Placed Objects");
-                
-                // Scavenger POI
-                if (hadScavengers) scavengersLayer.addTo(map);
-                overlays.addOverlay(scavengersLayer, "Scavengers");
-                // Shelters
-                if (hadShelters) sheltersLayer.addTo(map);
-                overlays.addOverlay(sheltersLayer, "Shelters");
-                // Collectibles (Pearls & Broadcasts)
-                if (hadCollectibles) collectiblesLayer.addTo(map);
-                overlays.addOverlay(collectiblesLayer, "Collectibles");
-                // Arena Tokens
-                if (hadTokens) tokensLayer.addTo(map);
-                overlays.addOverlay(tokensLayer, "Arena");
 
                 // Zoom to room on rooms loaded
                 let foundRoom = false;
