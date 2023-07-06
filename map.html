@@ -729,7 +729,7 @@
                     pointToLayer: function (feature, latlng) {
                         // Spawns are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         let divhtml = "";
-                        for (let spawn of feature.properties.spawns) {
+                        for (let spawn of feature.properties.creatures) {
                             let spawn_filter = " spawn-filter";
                             if (spawn.is_lineage) {
                                 // lineages are vertical stacks
