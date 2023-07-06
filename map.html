@@ -703,7 +703,7 @@
                     overlays.removeLayer(densLayer);
                     map.removeLayer(densLayer);
                 }
-                densLayer = L.geoJSON(json["creatures_features"], {
+                densLayer = L.geoJSON(json["spawn_features"], {
                     pointToLayer: function (feature, latlng) {
                         // Spawns are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         let divhtml = "";
@@ -765,7 +765,7 @@
                 });
                 if (hadSpawns) densLayer.addTo(map);
                 overlays.addOverlay(densLayer, "Creatures");
-                /*
+
                 // Bat Migration Blockages
                 let hadBatMigrationBlockages = map.hasLayer(batMigrationBlockagesLayer) || loadedRegion == null;
                 if (batMigrationBlockagesLayer != null) {
@@ -842,7 +842,6 @@
                 // Arena Tokens
                 if (hadTokens) tokensLayer.addTo(map);
                 overlays.addOverlay(tokensLayer, "Arena");
-                */
 
                 // Zoom to room on rooms loaded
                 let foundRoom = false;
