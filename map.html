@@ -703,7 +703,7 @@
                     overlays.removeLayer(densLayer);
                     map.removeLayer(densLayer);
                 }
-                densLayer = L.geoJSON(json["spawn_features"], {
+                densLayer = L.geoJSON(json["creatures_features"], {
                     pointToLayer: function (feature, latlng) {
                         // Spawns are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         let divhtml = "";
