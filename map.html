@@ -302,7 +302,7 @@
                 difficulty = n;
                 region = slugcats[difficulty].startingRegion;
                 room = slugcats[difficulty].startingRoom;
-                if (persistentselection) {
+                if (persistentselection == true) {
                     region = slugcats[difficulty].startingRegion;
                     if (focusedRoom != null) {
                         room = focusedRoom;
@@ -700,7 +700,7 @@
                     overlays.removeLayer(geometryLayer);
                     map.removeLayer(geometryLayer);
                 }
-                if (brightoutlines) { 
+                if (brightoutlines == true) { 
                     geometryLayer = L.geoJSON(roomjson["geo_features"], {
                         interactive: false,
                         color: 'rgb(0,0,255)',
@@ -757,12 +757,40 @@
                                 divhtml += '</div>';
                             } else {
                                 var tooltip = "";
-                                if (spawn.night) {
-                                    tooltip += "🌙";
-                                }
                                 if (spawn.pre_cycle) {
                                     tooltip += "🚿";
                                 }
+                                if (spawn.ignore_cycle) {
+                                    tooltip += "ignore cycle";
+                                }
+                                if (spawn.night) {
+                                    tooltip += "🌙";
+                                }
+                                if (spawn.tentacle_immune) {
+                                    tooltip += "tentacle immune";
+                                }
+                                if (spawn.lava_safe) {
+                                    tooltip += "lava safe";
+                                }
+                                if (spawn.void_sea) {
+                                    tooltip += "void sea";
+                                }
+                                if (spawn.winter) {
+                                    tooltip += "winter";
+                                }
+                                if (spawn.alternate_form) {
+                                    tooltip += "alternate form";
+                                }
+                                if (spawn.mean != null) {
+                                    tooltip += "mean:" + spawn.mean;
+                                }
+                                if (spawn.number != null) {
+                                    tooltip += "number:" + number.seed;
+                                }
+                                if (spawn.seed != null) {
+                                    tooltip += "seed:" + spawn.seed;
+                                }
+
                                 var icon = "72_unknown";
                                 if (spawn.creature in icon_by_name) {
                                     icon = icon_by_name[spawn.creature];
