@@ -228,10 +228,7 @@
         </form>
 
         <div>Settings</div>
-        <div id="settings-content" class="scroll-ish">
-            <input type="checkbox" id="persistentSelection" onclick="" value="">
-            <label for="persistentSelection">Persistent Selection</label>
-        </div>
+        <form name="configuration" id="settings-select" class="scroll-ish"></form>
 
         <div>Layers</div>
         <div id="layer-content" class="scroll-ish"></div>
@@ -305,8 +302,29 @@
                 difficulty = n;
                 region = slugcats[difficulty].startingRegion;
                 room = slugcats[difficulty].startingRoom;
+                if (persistentselection) {
+                    region = slugcats[difficulty].startingRegion;
+                    if (focusedRoom != null) {
+                        room = focusedRoom;
+                    }
+                }
                 pushState();
             }
+        }
+
+        function updateSettings(setting, toggle) {
+            var persistentselection;
+            var brightoutlines;
+`
+<div class="region-btn">
+    <input type="checkbox" class="rw-ui" name="persistentselection" onclick="persistentselection.toggle;" toggle=" if (brightoutlines ? brightoutlines = false : brightoutlines = true)">
+    <span>Persistent Selection</span>
+</div>
+<div class="region-btn">
+    <input type="checkbox" class="rw-ui" name="brightoutlines" onclick="brightoutlines.toggle;" toggle=" if (brightoutlines ? brightoutlines = false : brightoutlines = true)">
+    <span>Bright Outlines</span>
+</div>`
+            document.getElementById('settings-select').innerHTML = html;
         }
 
         // Control with poor control options, whodvathot
@@ -427,6 +445,7 @@
             updateRegionList(difficulty, modded);
             loadRegion(difficulty, region, modded);
             selectDifficulty(difficulty);
+            updateSettings(setting, toggle);
         }
 
         window.onpopstate = newState;
@@ -681,7 +700,16 @@
                     overlays.removeLayer(geometryLayer);
                     map.removeLayer(geometryLayer);
                 }
-                geometryLayer = L.geoJSON(roomjson["geo_features"], {
+                if (brightoutlines) { 
+                    geometryLayer = L.geoJSON(roomjson["geo_features"], {
+                        interactive: false,
+                        color: 'rgb(0,0,255)',
+                        weight: 2,
+                        lineCap: "butt", // im easily entertained
+                        lineJoin: "miter",
+                    });
+                }
+                else geometryLayer = L.geoJSON(roomjson["geo_features"], {
                     interactive: false,
                     color: 'rgb(' + json["geocolor"].join(',') + ')',
                     weight: 2,
@@ -773,6 +801,9 @@
                     dashArray: "5 8",
                     interactive: false,
                 });
+                L.tooltip({ direction: "center", offset: [0, 0], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.name).setLatLng(L.latLng([].concat(feature.properties.popupcoords).reverse())).addTo(batMigrationBlockagesLayer);
+
+                layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, 0], interactive: true, className: "rw-text room-labels hover-label" });
                 if (hadBatMigrationBlockages) batMigrationBlockagesLayer.addTo(map);
                 overlays.addOverlay(batMigrationBlockagesLayer, "Bat Migration Blockages");
 
