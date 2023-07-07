@@ -934,21 +934,20 @@
                 overlays.addOverlay(batMigrationLayer, "Bat Migration Blockages");
 
                 // Room Tags
-                let hadRoomTags = map.hasLayer(roomTagsLayer) || loadedRegion == null;
-                if (roomTagsLayer != null) {
-                    overlays.removeLayer(roomTagsLayer);
-                    map.removeLayer(roomTagsLayer);
-                }
                 let hadRoomTagNames = map.hasLayer(roomTagNames) || loadedRegion == null;
                 if (roomTagNames != null) {
                     overlays.removeLayer(roomTagNames);
                     map.removeLayer(roomTagNames);
                 }
+                let hadRoomTags = map.hasLayer(roomsTagsLayer) || loadedRegion == null;
+                if (roomsTagsLayer != null) {
+                    overlays.removeLayer(roomsTagsLayer);
+                    map.removeLayer(roomsTagsLayer);
+                }
                 roomTagNames = L.layerGroup();
-                roomTagsLayer = L.geoJSON(roomjson["roomtag_features"], {
+                roomsTagsLayer = L.geoJSON(roomjson["roomtag_features"], {
                     style: {
                         weight: 0,
-                        color: 'rgb(' + json["highlightcolor"].join(',') + ')',
                         fillOpacity: 0
                     },
                     onEachFeature: function (feature, layer) {
@@ -962,15 +961,16 @@
                                 e.tooltip.getElement().style.removeProperty('opacity'); // 'defaults' amirite
                             },
                         });
-                        L.tooltip({ direction: "center", offset: [0, 14], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.name).setLatLng(L.latLng([].concat(feature.properties.popupcoords).reverse())).addTo(roomTagNames);
 
-                        layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, 14], interactive: true, className: "rw-text room-labels hover-label" });
+                        L.tooltip({ direction: "center", offset: [0, -14], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.name).setLatLng(L.latLng([].concat(feature.properties.popupcoords).reverse())).addTo(roomTagNames);
+
+                        layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, -14], interactive: true, className: "rw-text room-labels hover-label" });
                     }
                 });
-                if (hadRoomTags) roomTagsLayer.addTo(map);
-                overlays.addOverlay(roomTagsLayer, "Room Tags");
+                if (hadRoomTags) roomsTagsLayer.addTo(map);
+                overlays.addOverlay(roomsTagsLayer, "Room Tags");
                 if (hadRoomTagNames) roomTagNames.addTo(map);
-                overlays.addOverlay(roomTagNames, "Room Tags Names");
+                overlays.addOverlay(roomTagNames, "Room Tag Names");
 
                 // Zoom to room on rooms loaded
                 let foundRoom = false;
