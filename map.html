@@ -825,9 +825,6 @@
                                 } else {
                                     console.log("missing icon for " + creature.creature);
                                 }
-                                if (creature.amount == "undefined" || creature.amount == "" || creature.amount == null) {
-                                    creatuture.amount = 1;
-                                }
                                 divhtml += `<div class="creature-entry${creature_filter}">
                                         <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                         <div class="icon-label">x${creature.amount}</div>
