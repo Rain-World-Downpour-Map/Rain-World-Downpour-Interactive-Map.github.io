@@ -688,6 +688,22 @@
                 if (hadConnections) connectionsLayer.addTo(map);
                 overlays.addOverlay(connectionsLayer, "Connections");
 
+                // Shortcuts
+                let hadShortcuts = map.hasLayer(shortcutsLayer) || loadedRegion == null;
+                if (shortcutsLayer != null) {
+                    overlays.removeLayer(shortcutsLayer);
+                    map.removeLayer(shortcutsLayer);
+                }
+                shortcutsLayer = new L.BezierGeoJSON(roomjson["shortcut_features"], {
+                    color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
+                    weight: 2,
+                    lineCap: "butt", // hehe
+                    dashArray: "5 8",
+                    interactive: false,
+                });
+                if (hadShortcuts) shortcutsLayer.addTo(map);
+                overlays.addOverlay(shortcutsLayer, "Shortcuts");
+
                 // Geometry
                 let hadGeometry = map.hasLayer(geometryLayer) || loadedRegion == null;
                 if (geometryLayer != null) {
@@ -721,11 +737,38 @@
                                 divhtml += '<div class="creature-entry ' + creature_filter + '">';
                                 for (let i = 0; i < creature.lineage.length; i++) {
                                     var tooltip = "";
+                                    if (creature.pre_cycle) {
+                                        tooltip += "🚿";
+                                    }
+                                    if (creature.ignore_cycle) {
+                                        tooltip += "ignore cycle";
+                                    }
                                     if (creature.night) {
                                         tooltip += "🌙";
                                     }
-                                    if (creature.pre_cycle) {
-                                        tooltip += "🚿";
+                                    if (creature.tentacle_immune) {
+                                        tooltip += "tentacle immune";
+                                    }
+                                    if (creature.lava_safe) {
+                                        tooltip += "lava safe";
+                                    }
+                                    if (creature.void_sea) {
+                                        tooltip += "void sea";
+                                    }
+                                    if (creature.winter) {
+                                        tooltip += "winter";
+                                    }
+                                    if (creature.alternate_form) {
+                                        tooltip += "alternate form";
+                                    }
+                                    if (creature.mean) {
+                                        tooltip += "mean:" + creature.mean;
+                                    }
+                                    if (creature.number) {
+                                        tooltip += "number:" + creature.number;
+                                    }
+                                    if (creature.seed) {
+                                        tooltip += "seed:" + creature.seed;
                                     }
                                     var icon = "72_unknown";
                                     if (creature.lineage[i] in icon_by_name) {
@@ -800,6 +843,108 @@
                 });
                 if (hadCreatures) densLayer.addTo(map);
                 overlays.addOverlay(densLayer, "Creatures");
+
+                // Placed Objects
+                let hadPlacedObjects = map.hasLayer(placedObjectsLayer) || loadedRegion == null;
+                if (placedObjectsLayer != null) {
+                    overlays.removeLayer(placedObjectsLayer);
+                    map.removeLayer(placedObjectsLayer);
+                }
+                placedObjectsLayer = L.geoJSON(json["placedobject_features"], {
+                    pointToLayer: function (feature, latlng) {
+                        // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
+                        let divhtml = "";
+                        for (let object of feature.properties.placedobjects) {
+                            let object_filter = " object-filter";
+                            if (object.is_lineage) {
+                                // lineages are vertical stacks
+                                divhtml += '<div class="object-entry ' + object_filter + '">';
+                                for (let i = 0; i < object.lineage.length; i++) {
+                                    var tooltip = "";
+                                    if (object.pre_cycle) {
+                                        tooltip += "🚿";
+                                    }
+                                    if (object.seed) {
+                                        tooltip += "seed:" + object.seed;
+                                    }
+                                    var icon = "72_unknown";
+                                    if (object.lineage[i] in icon_by_name) {
+                                        icon = icon_by_name[object.lineage[i]];
+                                    } else {
+                                        console.log("missing icon for " + object.lineage[i]);
+                                    }
+                                    divhtml += `<div class="lineage-entry">
+                                            <img class="icon-image" src="./resources/icons/${icon}.png"/>
+                                            <div class="icon-label">${Math.trunc(Number.parseFloat(object.lineage_probs[i]) * 100)}</div>
+                                            <div class="icon-tooltip">${tooltip}</div>
+                                            </div>`;
+                                }
+                                divhtml += '</div>';
+                            } else {
+                                var tooltip = "";
+                                if (object.pre_cycle) {
+                                    tooltip += "🚿";
+                                }
+                                if (object.seed) {
+                                    tooltip += "seed:" + creature.seed;
+                                }
+
+                                var icon = "72_unknown";
+                                if (object.object in icon_by_name) {
+                                    icon = icon_by_name[object.object];
+                                } else {
+                                    console.log("missing icon for " + object.object);
+                                }
+                                divhtml += `<div class="object-entry${object_filter}">
+                                        <img class="icon-image" src="./resources/icons/${icon}.png"/>
+                                        <div class="icon-label">x${creature.amount}</div>
+                                        <div class="icon-tooltip">${tooltip}</div>
+                                        </div>`;
+                            }
+                        }
+                        return L.marker(latlng, {
+                            icon: L.divIcon({
+                                className: 'object-divs',
+                                html: divhtml,
+                            }),
+                            interactive: false,
+                        });
+                    },
+                });
+                if (hadPlacedObjects) placedOjectsLayer.addTo(map);
+                overlays.addOverlay(placedOjectsLayer, "Placed Objects");
+
+                // Bat Migration Blockages
+                let hadBatMigration = map.hasLayer(batMigrationLayer) || loadedRegion == null;
+                if (batMigrationLayer != null) {
+                    overlays.removeLayer(batMigrationLayer);
+                    map.removeLayer(batMigrationLayer);
+                }
+                batMigrationLayer = new L.BezierGeoJSON(roomjson["batmigrationblockages_features"], {
+                    color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
+                    weight: 2,
+                    lineCap: "butt", // hehe
+                    dashArray: "5 8",
+                    interactive: false,
+                });
+                if (hadBatMigration) batMigrationLayer.addTo(map);
+                overlays.addOverlay(batMigrationLayer, "Bat Migration Blockages");
+
+                // Room Tags
+                let hadRoomTags = map.hasLayer(roomTagsLayer) || loadedRegion == null;
+                if (roomTagsLayer != null) {
+                    overlays.removeLayer(roomTagsLayer);
+                    map.removeLayer(roomTagsLayer);
+                }
+                roomTagsLayer = new L.BezierGeoJSON(roomjson["roomtags_features"], {
+                    color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
+                    weight: 2,
+                    lineCap: "butt", // hehe
+                    dashArray: "5 8",
+                    interactive: false,
+                });
+                if (hadRoomTags) roomTagsLayer.addTo(map);
+                overlays.addOverlay(roomTagsLayer, "Room Tags");
 
                 // Zoom to room on rooms loaded
                 let foundRoom = false;
