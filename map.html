@@ -302,12 +302,6 @@
                 difficulty = n;
                 region = slugcats[difficulty].startingRegion;
                 room = slugcats[difficulty].startingRoom;
-                if (persistentselection == true) {
-                    region = slugcats[difficulty].startingRegion;
-                    if (focusedRoom != null) {
-                        room = focusedRoom;
-                    }
-                }
                 pushState();
             }
         }
@@ -563,6 +557,11 @@
         overlays.addTo(map);
         document.getElementById('layer-content').appendChild(overlays.getContainer());
 
+        // New additions
+        var shortcutsLayer;
+        var roomTagsLayer;
+        var batMigrationBlockagesLayer;
+        var placedObjectsLayer;
         // Region stuff
         var tileLayer;
         var roomsLayer;
@@ -571,11 +570,6 @@
         var connectionsLayer;
         var geometryLayer;
         var densLayer;
-        // New additions
-        var shortcutsLayer;
-        var placedObjectsLayer;
-        var batMigrationBlockagesLayer;
-        var roomTagsLayer;
         var loadedDifficulty = null;
         var loadedRegion = null;
         var loadedModded = {};
@@ -700,21 +694,12 @@
                     overlays.removeLayer(geometryLayer);
                     map.removeLayer(geometryLayer);
                 }
-                if (brightoutlines == true) { 
-                    geometryLayer = L.geoJSON(roomjson["geo_features"], {
-                        interactive: false,
-                        color: 'rgb(0,0,255)',
-                        weight: 2,
-                        lineCap: "butt", // im easily entertained
-                        lineJoin: "miter",
-                    });
-                }
-                else geometryLayer = L.geoJSON(roomjson["geo_features"], {
-                    interactive: false,
-                    color: 'rgb(' + json["geocolor"].join(',') + ')',
-                    weight: 2,
-                    lineCap: "butt", // im easily entertained
-                    lineJoin: "miter",
+                geometryLayer = L.geoJSON(roomjson["geo_features"], {
+                interactive: false,
+                color: 'rgb(' + json["geocolor"].join(',') + ')',
+                weight: 2,
+                lineCap: "butt", // im easily entertained
+                lineJoin: "miter",
                 });
                 if (hadGeometry) geometryLayer.addTo(map);
                 overlays.addOverlay(geometryLayer, "Geometry");
@@ -815,76 +800,6 @@
                 });
                 if (hadSpawns) densLayer.addTo(map);
                 overlays.addOverlay(densLayer, "Creatures");
-
-                // Bat Migration Blockages
-                let hadBatMigrationBlockages = map.hasLayer(batMigrationBlockagesLayer) || loadedRegion == null;
-                if (batMigrationBlockagesLayer != null) {
-                    overlays.removeLayer(batMigrationBlockagesLayer);
-                    map.removeLayer(batMigrationBlockagesLayer);
-                }
-                batMigrationBlockagesLayer = new L.BezierGeoJSON(roomjson["batmigrationblockages_features"], {
-                    color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
-                    weight: 2,
-                    lineCap: "butt", // hehe
-                    dashArray: "5 8",
-                    interactive: false,
-                });
-                L.tooltip({ direction: "center", offset: [0, 0], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.name).setLatLng(L.latLng([].concat(feature.properties.popupcoords).reverse())).addTo(batMigrationBlockagesLayer);
-
-                layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, 0], interactive: true, className: "rw-text room-labels hover-label" });
-                if (hadBatMigrationBlockages) batMigrationBlockagesLayer.addTo(map);
-                overlays.addOverlay(batMigrationBlockagesLayer, "Bat Migration Blockages");
-
-                // Room Tags
-                let hadRoomTags = map.hasLayer(roomTagsLayer) || loadedRegion == null;
-                if (roomTagsLayer != null) {
-                    overlays.removeLayer(roomTagsLayer);
-                    map.removeLayer(roomTagsLayer);
-                }
-                roomTagsLayer = new L.BezierGeoJSON(roomjson["roomtag_features"], {
-                    color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
-                    weight: 2,
-                    lineCap: "butt", // hehe
-                    dashArray: "5 8",
-                    interactive: false,
-                });
-                L.tooltip({ direction: "center", offset: [0, 0], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.name).setLatLng(L.latLng([].concat(feature.properties.popupcoords).reverse())).addTo(roomTagsLayer);
-
-                layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, 0], interactive: true, className: "rw-text room-labels hover-label" });
-                if (hadRoomTags) roomTagsLayer.addTo(map);
-                overlays.addOverlay(roomTagsLayer, "Room Tags");
-
-                // Shortcuts
-                let hadShortcuts = map.hasLayer(shortcutsLayer) || loadedRegion == null;
-                if (shortcutsLayer != null) {
-                    overlays.removeLayer(shortcutsLayer);
-                    map.removeLayer(shortcutsLayer);
-                }
-                shortcutsLayer = L.geoJSON(roomjson["shortcut_features"], {
-                    interactive: false,
-                    color: 'rgb(' + json["geocolor"].join(',') + ')',
-                    weight: 2,
-                    lineCap: "butt", // im easily entertained
-                    lineJoin: "miter",
-                });
-                if (hadShortcuts) shortcutsLayer.addTo(map);
-                overlays.addOverlay(shortcutsLayer, "Shortcuts");
-
-                // Placed Objects
-                let hadPlacedObjects = map.hasLayer(placedObjectsLayer) || loadedRegion == null;
-                if (placedObjectsLayer != null) {
-                    overlays.removeLayer(placedObjectsLayer);
-                    map.removeLayer(placedObjectsLayer);
-                }
-                placedObjectsLayer = new L.BezierGeoJSON(roomjson["placedobjects_features"], {
-                    color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
-                    weight: 2,
-                    lineCap: "butt", // hehe
-                    dashArray: "5 8",
-                    interactive: false,
-                });
-                if (hadPlacedObjects) placedObjectsLayer.addTo(map);
-                overlays.addOverlay(placedObjectsLayer, "Placed Objects");
 
                 // Zoom to room on rooms loaded
                 let foundRoom = false;
