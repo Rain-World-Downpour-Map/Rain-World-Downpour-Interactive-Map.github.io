@@ -810,13 +810,13 @@
                                     tooltip += "alternate form";
                                 }
                                 if (creature.mean) {
-                                    tooltip += "mean:" + creature.mean;
+                                    tooltip += "mean: " + creature.mean;
                                 }
                                 if (creature.number) {
-                                    tooltip += "number:" + creature.number;
+                                    tooltip += "number: " + creature.number;
                                 }
                                 if (creature.seed) {
-                                    tooltip += "seed:" + creature.seed;
+                                    tooltip += "seed: " + creature.seed;
                                 }
 
                                 var icon = "72_unknown";
@@ -824,6 +824,9 @@
                                     icon = icon_by_name[creature.creature];
                                 } else {
                                     console.log("missing icon for " + creature.creature);
+                                }
+                                if (creature.amount == "undefined" || creature.amount == "" || creature.amount == null) {
+                                    creatuture.amount = 1;
                                 }
                                 divhtml += `<div class="creature-entry${creature_filter}">
                                         <img class="icon-image" src="./resources/icons/${icon}.png"/>
