@@ -559,7 +559,7 @@
 
         // New additions
         var shortcutsLayer;
-        var roomTagsLayer;
+        var roomTags;
         var batMigrationBlockagesLayer;
         var placedObjectsLayer;
         // Region stuff
@@ -643,7 +643,13 @@
                     overlays.removeLayer(roomsLayer);
                     map.removeLayer(roomsLayer);
                 }
+                let hadRoomTags = map.hasLayer(roomTags) || loadedRegion == null;
+                if (roomTags != null) {
+                    overlays.removeLayer(roomTags);
+                    map.removeLayer(roomTags);
+                }
                 roomNames = L.layerGroup();
+                roomTags = L.layerGroup(roomjson["roomtag_features"]);
                 roomsLayer = L.geoJSON(roomjson["room_features"], {
                     style: {
                         weight: 0,
@@ -663,6 +669,7 @@
                         });
 
                         L.tooltip({ direction: "center", offset: [0, -14], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.name).setLatLng(L.latLng([].concat(feature.properties.popupcoords).reverse())).addTo(roomNames);
+                        L.tooltip({ direction: "center", offset: [0, -14], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.name).setLatLng(L.latLng([].concat(feature.properties.popupcoords).reverse())).addTo(roomTags);
 
                         layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, -14], interactive: true, className: "rw-text room-labels hover-label" });
                     }
@@ -671,6 +678,8 @@
                 overlays.addOverlay(roomsLayer, "Rooms");
                 if (hadNames) roomNames.addTo(map);
                 overlays.addOverlay(roomNames, "Room Names");
+                if (hadroomTags) roomTags.addTo(map);
+                overlays.addOverlay(roomTags, "Room Tags");
 
                 // Connections
                 let hadConnections = map.hasLayer(connectionsLayer) || loadedRegion == null;
@@ -855,52 +864,25 @@
                         // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         let divhtml = "";
                         for (let object of feature.properties.placedobjects) {
-                            let object_filter = " object-filter";
-                            if (object.is_lineage) {
-                                // lineages are vertical stacks
-                                divhtml += '<div class="object-entry ' + object_filter + '">';
-                                for (let i = 0; i < object.lineage.length; i++) {
-                                    var tooltip = "";
-                                    if (object.pre_cycle) {
-                                        tooltip += "🚿";
-                                    }
-                                    if (object.seed) {
-                                        tooltip += "seed:" + object.seed;
-                                    }
-                                    var icon = "72_unknown";
-                                    if (object.lineage[i] in icon_by_name) {
-                                        icon = icon_by_name[object.lineage[i]];
-                                    } else {
-                                        console.log("missing icon for " + object.lineage[i]);
-                                    }
-                                    divhtml += `<div class="lineage-entry">
-                                            <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                            <div class="icon-label">${Math.trunc(Number.parseFloat(object.lineage_probs[i]) * 100)}</div>
-                                            <div class="icon-tooltip">${tooltip}</div>
-                                            </div>`;
-                                }
-                                divhtml += '</div>';
-                            } else {
-                                var tooltip = "";
-                                if (object.pre_cycle) {
-                                    tooltip += "🚿";
-                                }
-                                if (object.seed) {
-                                    tooltip += "seed:" + creature.seed;
-                                }
-
-                                var icon = "72_unknown";
-                                if (object.object in icon_by_name) {
-                                    icon = icon_by_name[object.object];
-                                } else {
-                                    console.log("missing icon for " + object.object);
-                                }
-                                divhtml += `<div class="object-entry${object_filter}">
-                                        <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                        <div class="icon-label">x${creature.amount}</div>
-                                        <div class="icon-tooltip">${tooltip}</div>
-                                        </div>`;
+                            var tooltip = "";
+                            if (object.pre_cycle) {
+                                tooltip += "🚿";
                             }
+                            if (object.seed) {
+                                tooltip += "seed:" + creature.seed;
+                            }
+
+                            var icon = "72_unknown";
+                            if (object.object in icon_by_name) {
+                                icon = icon_by_name[object.object];
+                            } else {
+                                console.log("missing icon for " + object.object);
+                            }
+                            divhtml += `<div class="object-entry${object_filter}">
+                                    <img class="icon-image" src="./resources/icons/${icon}.png"/>
+                                    <div class="icon-label">x${creature.amount}</div>
+                                    <div class="icon-tooltip">${tooltip}</div>
+                                    </div>`;
                         }
                         return L.marker(latlng, {
                             icon: L.divIcon({
@@ -929,46 +911,6 @@
                 });
                 if (hadBatMigration) batMigrationLayer.addTo(map);
                 overlays.addOverlay(batMigrationLayer, "Bat Migration Blockages");
-                /*
-                // Room Tags
-                let hadRoomTagNames = map.hasLayer(roomTagNames) || loadedRegion == null;
-                if (roomTagNames != null) {
-                    overlays.removeLayer(roomTagNames);
-                    map.removeLayer(roomTagNames);
-                }
-                let hadRoomTags = map.hasLayer(roomsTagsLayer) || loadedRegion == null;
-                if (roomsTagsLayer != null) {
-                    overlays.removeLayer(roomsTagsLayer);
-                    map.removeLayer(roomsTagsLayer);
-                }
-                roomTagNames = L.layerGroup();
-                roomsTagsLayer = L.geoJSON(roomjson["roomtag_features"], {
-                    style: {
-                        weight: 0,
-                        fillOpacity: 0
-                    },
-                    onEachFeature: function (feature, layer) {
-                        // Room focus stuff
-                        layer.on({
-                            mouseover: hilightRoom,
-                            mouseout: resetHilight,
-                            click: focusRoom,
-                            tooltipopen: function (e) {
-                                e.tooltip.setLatLng(L.latLng([].concat(e.target.feature.properties.popupcoords).reverse()));
-                                e.tooltip.getElement().style.removeProperty('opacity'); // 'defaults' amirite
-                            },
-                        });
-
-                        L.tooltip({ direction: "center", offset: [0, -14], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.name).setLatLng(L.latLng([].concat(feature.properties.popupcoords).reverse())).addTo(roomTagNames);
-
-                        layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, -14], interactive: true, className: "rw-text room-labels hover-label" });
-                    }
-                });
-                if (hadRoomTags) roomsTagsLayer.addTo(map);
-                overlays.addOverlay(roomsTagsLayer, "Room Tags");
-                if (hadRoomTagNames) roomTagNames.addTo(map);
-                overlays.addOverlay(roomTagNames, "Room Tag Names");
-                */
 
                 // Zoom to room on rooms loaded
                 let foundRoom = false;
