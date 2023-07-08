@@ -649,7 +649,7 @@
                     map.removeLayer(roomTags);
                 }
                 roomNames = L.layerGroup();
-                roomTags = L.layerGroup(roomjson["roomtag_features"]);
+                roomTags = L.layerGroup();
                 roomsLayer = L.geoJSON(roomjson["room_features"], {
                     style: {
                         weight: 0,
@@ -787,7 +787,7 @@
                                     }
                                     divhtml += `<div class="lineage-entry">
                                             <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                            <div class="icon-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}</div>
+                                            <div class="icon-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
                                             <div class="icon-tooltip">${tooltip}</div>
                                             </div>`;
                                 }
