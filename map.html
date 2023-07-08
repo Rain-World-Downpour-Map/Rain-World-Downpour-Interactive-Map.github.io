@@ -231,7 +231,7 @@
         <form name="configuration" id="settings-select" class="scroll-ish"></form>
         <input type="checkbox" id="selection-ckb" name="persistentselection" class="rw-ui rw-ui-ckb" autocomplete="off" onclick="selectDifficulty(this.checked);" />
         <label for="selection-ckb" class="rw-text">Persistent Selection</label>
-        <input type="checkbox" id="outlines-ckb" name="brightoutlines" class="rw-ui rw-ui-ckb" autocomplete="off" onclick="updateRegionList(this.checked);" />
+        <input type="checkbox" id="outlines-ckb" name="brightoutlines" class="rw-ui rw-ui-ckb" autocomplete="off" onclick="GeoOutlines(this.checked);" />
         <label for="outlines-ckb" class="rw-text">Bright Outlines</label>
 
         <div>Layers</div>
@@ -239,6 +239,13 @@
     </div>
 
     <script>
+        function GeoOutlines() {
+            document.getElementById('outlines-ckb').checked = checked;
+            if (checked) {
+            var geocolor = 'rgb(' + json["geocolor"].join(',') + ')';
+            } else var geocolor = 'rgb(0,0,255)';
+            return geocolor;
+        };
         'use strict';
         // misc iconography but mostly Creatures
 
@@ -709,7 +716,7 @@
                 }
                 geometryLayer = L.geoJSON(roomjson["geo_features"], {
                 interactive: false,
-                color: 'rgb(' + json["geocolor"].join(',') + ')',
+                color: GeoOutlines(),
                 weight: 2,
                 lineCap: "butt", // im easily entertained
                 lineJoin: "miter",
@@ -890,13 +897,13 @@
                     overlays.removeLayer(batMigrationLayer);
                     map.removeLayer(batMigrationLayer);
                 }
-                batMigrationLayer = new L.BezierGeoJSON(roomjson["batmigrationblockages_features"], {
+                batMigrationLayer = new roomjson["batmigrationblockages_features"], {
                     color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
                     weight: 2,
                     lineCap: "butt", // hehe
                     dashArray: "5 8",
                     interactive: false,
-                });
+                };
                 if (hadBatMigration) batMigrationLayer.addTo(map);
                 overlays.addOverlay(batMigrationLayer, "Bat Migration Blockages");
 
@@ -907,7 +914,7 @@
                     map.removeLayer(roomsTagsLayer);
                 }
 
-                roomsTagsLayer = L.geoJSON(roomjson["roomtag_features"], {
+                roomsTagsLayer = roomjson["roomtag_features"], {
                     style: {
                         weight: 0,
                         fillOpacity: 0
@@ -967,7 +974,7 @@
 
                         layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, -14], interactive: true, className: "rw-text room-labels hover-label" });
                     }
-                });
+                };
                 if (hadRoomTags) roomsTagsLayer.addTo(map);
                 overlays.addOverlay(roomsTagsLayer, "Room Tags");
 
