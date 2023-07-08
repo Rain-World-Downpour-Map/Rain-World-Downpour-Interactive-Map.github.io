@@ -643,13 +643,7 @@
                     overlays.removeLayer(roomsLayer);
                     map.removeLayer(roomsLayer);
                 }
-                let hadRoomTags = map.hasLayer(roomTags) || loadedRegion == null;
-                if (roomTags != null) {
-                    overlays.removeLayer(roomTags);
-                    map.removeLayer(roomTags);
-                }
                 roomNames = L.layerGroup();
-                roomTags = L.layerGroup();
                 roomsLayer = L.geoJSON(roomjson["room_features"], {
                     style: {
                         weight: 0,
@@ -676,9 +670,7 @@
                 if (hadRooms) roomsLayer.addTo(map);
                 overlays.addOverlay(roomsLayer, "Rooms");
                 if (hadNames) roomNames.addTo(map);
-                overlays.addOverlay(roomNames, "Room Names");
-                if (hadroomTags) roomTags.addTo(map);
-                overlays.addOverlay(roomTags, "Room Tags");
+                overlays.addOverlay(roomNames, "Room Names");;
 
                 // Connections
                 let hadConnections = map.hasLayer(connectionsLayer) || loadedRegion == null;
@@ -910,6 +902,77 @@
                 });
                 if (hadBatMigration) batMigrationLayer.addTo(map);
                 overlays.addOverlay(batMigrationLayer, "Bat Migration Blockages");
+
+                // Room Tags
+                let hadRoomTags = map.hasLayer(roomsTagsLayer) || loadedRegion == null;
+                if (roomsTagsLayer != null) {
+                    overlays.removeLayer(roomsTagsLayer);
+                    map.removeLayer(roomsTagsLayer);
+                }
+
+                roomsTagsLayer = L.geoJSON(roomjson["roomtag_features"], {
+                    style: {
+                        weight: 0,
+                        fillOpacity: 0
+                    },
+                    onEachFeature: function (feature, layer) {
+                        // Room focus stuff
+                        layer.on({
+                            mouseover: hilightRoom,
+                            mouseout: resetHilight,
+                            click: focusRoom,
+                            tooltipopen: function (e) {
+                                e.tooltip.setLatLng(L.latLng([].concat(e.target.feature.properties.popupcoords).reverse()));
+                                e.tooltip.getElement().style.removeProperty('opacity'); // 'defaults' amirite
+                            },
+                        });
+                        var tooltip = "";
+                        if (roomtag.SHELTER) {
+                            tooltip += "Shelter";
+                        }
+                        if (roomtag.ANCIENTSHELTER) {
+                            tooltip += "Ancient Shelter";
+                        }
+                        if (roomtag.GATE) {
+                            tooltip += "Gate";
+                        }
+                        if (roomtag.SWARMROOM) {
+                            tooltip += "Swarm Room";
+                        }
+                        if (roomtag.PERF_HEAVY) {
+                            tooltip += "Performance Heavy";
+                        }
+                        if (roomtag.SCAVOUTPOST) {
+                            tooltip += "Scavenger Toll";
+                        }
+                        if (roomtag.SCAVTRADER) {
+                            tooltip += "Scavenger Merchant";
+                        }
+                        if (roomtag.NOTRACKERS) {
+                            tooltip += "No Trackers";
+                        }
+                        if (roomtag.ARENA) {
+                            tooltip += "Arena";
+                        }
+                        var icon = "72_unknown";
+                        if (roomtag.roomtag in icon_by_name) {
+                            icon = icon_by_name[roomtag.roomtag];
+                        } else {
+                            console.log("missing icon for " + roomtag.roomtag);
+                        }
+                        divhtml += `<div class="roomtag-entry${roomtag_filter}">
+                                    <img class="icon-image" src="./resources/icons/${icon}.png"/>
+                                    <div class="icon-label">x${roomtag}</div>
+                                    <div class="icon-tooltip">${tooltip}</div>
+                                    </div>`;
+
+                        L.tooltip({ direction: "center", offset: [0, -14], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.name).setLatLng(L.latLng([].concat(feature.properties.popupcoords).reverse())).addTo(roomTagsLayer);
+
+                        layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, -14], interactive: true, className: "rw-text room-labels hover-label" });
+                    }
+                });
+                if (hadRoomTags) roomsTagsLayer.addTo(map);
+                overlays.addOverlay(roomsTagsLayer, "Room Tags");
 
                 // Zoom to room on rooms loaded
                 let foundRoom = false;
