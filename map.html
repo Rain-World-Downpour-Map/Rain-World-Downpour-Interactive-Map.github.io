@@ -669,7 +669,6 @@
                         });
 
                         L.tooltip({ direction: "center", offset: [0, -14], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.name).setLatLng(L.latLng([].concat(feature.properties.popupcoords).reverse())).addTo(roomNames);
-                        L.tooltip({ direction: "center", offset: [0, -14], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.name).setLatLng(L.latLng([].concat(feature.properties.popupcoords).reverse())).addTo(roomTags);
 
                         layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, -14], interactive: true, className: "rw-text room-labels hover-label" });
                     }
