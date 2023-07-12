@@ -239,13 +239,13 @@
     </div>
 
     <script>
-        function GeoOutlines() {
-            document.getElementById('outlines-ckb').checked = checked;
-            if (checked) {
-            var geocolor = 'rgb(' + json["geocolor"].join(',') + ')';
-            } else var geocolor = 'rgb(0,0,255)';
-            return geocolor;
-        };
+        //function GeoOutlines() {
+         //   document.getElementById('outlines-ckb').checked = checked;
+        //    if (checked) {
+         //   var geocolor = 'rgb(' + json["geocolor"].join(',') + ')';
+          //  } else var geocolor = 'rgb(0,0,255)';
+          //  return geocolor;
+      //  };
         'use strict';
         // misc iconography but mostly Creatures
 
@@ -304,21 +304,13 @@
         }
 
         function selectDifficulty(n) {
-            document.getElementById('selection-ckb').checked = checked;
+            // document.getElementById('selection-ckb').checked = checked;
             for (var i = 0; i < document.difficulty.difficulties.length; i++) {
                 if (document.difficulty.difficulties[i].value == n) {
                     document.difficulty.difficulties[i].checked = true;
                 }
             }
-            if (checked) {
-                if (difficulty != n) {
-                    difficulty = n;
-                    region = LoadedRegion;
-                    room = LastRoomFocused;
-                    pushState();
-                }
-            }
-            else if (difficulty != n) {
+            if (difficulty != n) {
                 difficulty = n;
                 region = slugcats[difficulty].startingRegion;
                 room = slugcats[difficulty].startingRoom;
