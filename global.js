@@ -1,21 +1,70 @@
 const icon_by_name = {
+    //##Placed Objects
+    "CustomDecal": "00_clear",
+    "LightSource": "00_clear",
+    "LightBeam": "00_clear",
+    "LightFixture": "00_clear",
+    "ExitSymbolHidden": "00_clear",
+    "PlayerPushback": "00_clear",
+    "InsectGroup": "00_clear",
+    "SeedCob": "00_clear",
+    "Rainbow": "00_clear",
+    "GhostSpot": "00_clear",
+    "LanternOnStick": "00_clear",
+    "ExitSymbolShelter": "00_clear",
+    "DeadSeedCob": "00_clear",
+    "DataPearl": "00_clear",
+    "GoldToken": "00_clear",
+    "DeadTokenStalk": "00_clear",
+    "BlueToken": "00_clear",
+    "DevToken": "00_clear",
+    "RedToken": "00_clear",
+    "CentipedeAttractor": "00_clear",
+    "SteamPipe": "00_clear",
+    "CosmeticSlimeMold": "00_clear",
+    "CosmeticSlimeMold2": "00_clear",
+    "BrokenShelterWaterLevel": "00_clear",
+    "KarmaFlower": "00_clear",
+    "VoidSpawnEgg": "00_clear",
+    "Filter": "00_clear",
+    "LillyPuck": "00_clear",
+    "WhiteToken": "00_clear",
+    "TradeOutpost": "00_clear",
+    "ScavengerTreasury": "00_clear",
+    "SnowSource": "00_clear",
+    "NoLeviathanStrandingZone": "00_clear",
+    "GlowWeed": "00_clear",
+    "ProjectedImagePosition": "00_clear",
+    "SSLightRod": "00_clear",
+    "UniqueDataPearl": "00_clear",
+    "SuperStructureFuses": "00_clear",
+    "DayNightSettings": "00_clear",
+    //##End PlacedObjects
     "clear": "00_clear",
     "rock": "01_rock",
     "spear": "02_spear",
     "boomstick": "03_explosivespear",
+    "ReliableSpear": "03_explosivespear",//## PlacedObject
     "bomb": "04_explosivebomb",
     "hive": "05_hive",
     "lantern": "06_lantern",
     "lure": "07_lureplant",
     "mushroom": "08_mushroom",
+    "Mushroom": "08_mushroom",//## PlacedObject
     "flashbang": "09_flashbomb",
+    "FlareBomb": "09_flashbomb",//## PlacedObject
     "puffball": "10_puffball",
     "waternut": "11_bubblefruit",
+    "WaterNut": "11_bubblefruit",//## PlacedObject
     "firecrackerplant": "12_firecrackerplant",
     "bluefruit": "13_bluefruit",
+    "DangleFruit": "13_bluefruit",//## PlacedObject
     "jellyfish": "14_jellyfish",
+    "JellyFish": "14_jellyfish",//## PlacedObject
     "bubbleweed": "15_bubbleweed",
+    "BubbleGrass": "15_bubbleweed",//## PlacedObject
     "slimemold": "16_slimemold",
+    "SlimeMold": "16_slimemold",//## PlacedObject
     "slugcat": "17_slugcat",
     //## Creatures from the World File
     "Green": "18_greenlizard",
@@ -41,6 +90,7 @@ const icon_by_name = {
     "Tentacle": "34_monsterkelp",
     "Scavenger": "35_scavenger",
     "vulturegrub": "36_vulturegrub",
+    "VultureGrub": "36_vulturegrub",//## PlacedObject
     "Vulture": "37_vulture",
     "KingVulture": "38_kingvulture",
     "King Vulture": "38_kingvulture",
@@ -109,6 +159,7 @@ const icon_by_name = {
     "Inspector": "81_inspector",
     "Yeek": "82_yeek",
     "BigJelly": "83_bigjelly",
+    "BigJellyFish": "83_bigjelly",//## PlacedObject
     "AquaCentipede": "84_aquacenti",
     "Aquacenti": "84_aquacenti",
     "AquaCenti": "84_aquacenti",
