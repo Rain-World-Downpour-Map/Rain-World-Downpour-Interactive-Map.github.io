@@ -858,30 +858,27 @@
                     pointToLayer: function (feature, latlng) {
                         // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         let divhtml = "";
-                        for (let object of feature.properties.placedobjects) {
+                        for (let placedobject of feature.properties.placedobjects) {
                             var tooltip = "";
-                            if (object.pre_cycle) {
-                                tooltip += "🚿";
-                            }
-                            if (object.seed) {
-                                tooltip += "seed:" + creature.seed;
+                            if (placedobject.data != "") {
+                                tooltip += placedobject.data;
                             }
 
                             var icon = "72_unknown";
-                            if (object.object in icon_by_name) {
-                                icon = icon_by_name[object.object];
+                            if (placedobject.object in icon_by_name) {
+                                icon = icon_by_name[placedobject.object];
                             } else {
-                                console.log("missing icon for " + object.object);
+                                console.log("missing icon for " + placedobject.name);
                             }
-                            divhtml += `<div class="object-entry${object_filter}">
+                            divhtml += `<div class="creature-entry">
                                     <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                    <div class="icon-label">x${object.amount}</div>
+                                    <div class="icon-label">x${placedobject.name}</div>
                                     <div class="icon-tooltip">${tooltip}</div>
                                     </div>`;
                         }
                         return L.marker(latlng, {
                             icon: L.divIcon({
-                                className: 'object-divs',
+                                className: 'creature-divs',
                                 html: divhtml,
                             }),
                             interactive: false,
