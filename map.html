@@ -59,6 +59,18 @@
             margin-right: 16px;
         }
 
+        .object-divs {
+            display: flex;
+            justify-content: center;
+        }
+
+        .object-entry {
+            display: none;
+            /* to be overwritten */
+            margin-left: 16px;
+            margin-right: 16px;
+        }
+
         .lineage-entry {
             height: 24px;
         }
@@ -196,9 +208,14 @@
         }
     </style>
 
-
     <style id="creaturefilters">
         .creature-filter {
+            display: initial
+        }
+    </style>
+
+    <style id="objectfilters">
+        .object-filter {
             display: initial
         }
     </style>
@@ -854,7 +871,7 @@
                             let object_filter = " object-filter";
                             if (object.data == "") {
                                 // lineages are vertical stacks
-                                divhtml += '<div class="creature-entry ' + object_filter + '">';
+                                divhtml += '<div class="object-entry ' + object_filter + '">';
                                 for (let i = 0; i < placedobject.data.length; i++) {
                                     var tooltip = "";
                                     if (placedobject.object) {
@@ -885,7 +902,7 @@
                                 } else {
                                     console.log("missing icon for " + placedobject.name);
                                 }
-                                divhtml += `<div class="creature-entry${object_filter}">
+                                divhtml += `<div class="object-entry${object_filter}">
                                         <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                         <div class="icon-label">x${placedobject.name}</div>
                                         <div class="icon-tooltip">${tooltip}</div>
@@ -894,7 +911,7 @@
                         }
                         return L.marker(latlng, {
                             icon: L.divIcon({
-                                className: 'creature-divs',
+                                className: 'object-divs',
                                 html: divhtml,
                             }),
                             interactive: false,
