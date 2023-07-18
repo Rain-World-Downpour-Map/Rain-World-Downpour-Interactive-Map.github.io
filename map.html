@@ -867,7 +867,8 @@
                     pointToLayer: function (feature, latlng) {
                         // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         let divhtml = "";
-                        for (let placedobject of feature.properties.placedobjects) {
+                        // cycles through placed objects per room?, or at least the grouped up creatures, creature in creatures
+                        for (let placedobject of feature.properties.object) {
                             let object_filter = " object-filter";
                             if (object.data == "") {
                                 // lineages are vertical stacks
