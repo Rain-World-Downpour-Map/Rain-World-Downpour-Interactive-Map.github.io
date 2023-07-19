@@ -182,7 +182,7 @@ const icon_by_name = {
     "Miros Bird": "Miros_Bird_icon",
     "Miros": "Miros_Bird_icon",
     "Bro": "Brother_Long_Legs_icon",
-    "Daddy": "Daddy_Long_legs_icon",
+    "Daddy": "Daddy_Long_Legs_icon",
     "Deer": "Rain_Deer_icon",
     "EggBug": "Eggbug_icon",
     "Eggbug": "Eggbug_icon",
@@ -238,7 +238,7 @@ const icon_by_name = {
     //## Slugcats
     "SlugNPC": "Slugpup_icon",
     "slugcat": "Slugcat_icon",
-    "white": "Survivior_icon",
+    "white": "Survivor_icon",
     "red": "Hunter_icon",
     "yellow": "Monk_icon",
     "gourmand": "Gourmand_icon",
