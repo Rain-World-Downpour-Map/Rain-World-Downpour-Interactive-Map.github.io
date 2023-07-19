@@ -750,38 +750,38 @@
                                 divhtml += '<div class="creature-entry ' + creature_filter + '">';
                                 for (let i = 0; i < creature.lineage.length; i++) {
                                     var tooltip = "";
-                                    if (creature.pre_cycle) {
+                                    if (creature.PreCycle) {
                                         tooltip += "🚿";
                                     }
-                                    if (creature.ignore_cycle) {
-                                        tooltip += "ignore cycle";
-                                    }
-                                    if (creature.night) {
+                                    if (creature.IgnoreCycle) {
+                                        tooltip += "Ignore Cycle";
+                                    
+                                    if (creature.Night) {
                                         tooltip += "🌙";
                                     }
-                                    if (creature.tentacle_immune) {
-                                        tooltip += "tentacle immune";
+                                    if (creature.TentacleImmune) {
+                                        tooltip += "Tentacle Immune";
                                     }
-                                    if (creature.lava_safe) {
-                                        tooltip += "lava safe";
+                                    if (creature.LavaSafe) {
+                                        tooltip += "Lava Safe";
                                     }
-                                    if (creature.void_sea) {
-                                        tooltip += "void sea";
+                                    if (creature.VoidSea) {
+                                        tooltip += "Void Sea";
                                     }
-                                    if (creature.winter) {
-                                        tooltip += "winter";
+                                    if (creature.Winter) {
+                                        tooltip += "Winter";
                                     }
-                                    if (creature.alternate_form) {
-                                        tooltip += "alternate form";
+                                    if (creature.AlternateForm) {
+                                        tooltip += "Alternate Form";
                                     }
                                     if (creature.mean) {
-                                        tooltip += "mean: " + creature.mean;
+                                        tooltip += "Mean: " + creature.mean;
                                     }
                                     if (creature.number) {
-                                        tooltip += "number: " + creature.number;
+                                        tooltip += "Number: " + creature.number;
                                     }
                                     if (creature.seed) {
-                                        tooltip += "seed: " + creature.seed;
+                                        tooltip += "Seed: " + creature.seed;
                                     }
                                     var icon = "72_unknown";
                                     if (creature.lineage[i] in icon_by_name) {
@@ -798,29 +798,29 @@
                                 divhtml += '</div>';
                             } else {
                                 var tooltip = "";
-                                if (creature.pre_cycle) {
+                                if (creature.PreCycle) {
                                     tooltip += "🚿";
                                 }
-                                if (creature.ignore_cycle) {
-                                    tooltip += "ignore cycle";
+                                if (creature.IgnoreCycle) {
+                                    tooltip += "Ignore Cycle";
                                 }
-                                if (creature.night) {
+                                if (creature.Night) {
                                     tooltip += "🌙";
                                 }
-                                if (creature.tentacle_immune) {
-                                    tooltip += "tentacle immune";
+                                if (creature.TentacleImmune) {
+                                    tooltip += "Tentacle Immune";
                                 }
-                                if (creature.lava_safe) {
-                                    tooltip += "lava safe";
+                                if (creature.LavaSafe) {
+                                    tooltip += "Lava Safe";
                                 }
-                                if (creature.void_sea) {
-                                    tooltip += "void sea";
+                                if (creature.VoidSea) {
+                                    tooltip += "Void Sea";
                                 }
-                                if (creature.winter) {
-                                    tooltip += "winter";
+                                if (creature.Winter) {
+                                    tooltip += "Winter";
                                 }
-                                if (creature.alternate_form) {
-                                    tooltip += "alternate form";
+                                if (creature.AlternateForm) {
+                                    tooltip += "Alternate Form";
                                 }
                                 if (creature.mean) {
                                     tooltip += "mean: " + creature.mean;
