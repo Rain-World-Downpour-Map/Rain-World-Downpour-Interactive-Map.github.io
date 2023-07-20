@@ -868,7 +868,7 @@
                         // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         let divhtml = "";
                         // cycles through placed objects per room?, or at least the grouped up creatures, creature in creatures
-                        for (let object in feature.properties.placedobjects) {
+                        for (let object of feature.properties.room) {
                             let object_filter = " object-filter";
                             if (object.data == "") {
                                 // lineages are vertical stacks
