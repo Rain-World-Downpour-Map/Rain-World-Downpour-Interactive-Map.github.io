@@ -868,46 +868,44 @@
                         // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         let divhtml = "";
                         // cycles through placed objects per room?, or at least the grouped up creatures, creature in creatures
-                        var object = feature.properties.object
-                        var objectdata = feature.properties.data
-                        for (let object of feature) {
+                        for (let object of feature.properties.placedobjects) {
                             let object_filter = " object-filter";
-                            if (objectdata == "") {
+                            if (object.data == "") {
                                 // lineages are vertical stacks
                                 divhtml += '<div class="object-entry ' + object_filter + '">';
-                                for (let i = 0; i < objectdata.length; i++) {
+                                for (let i = 0; i < object.data.length; i++) {
                                     var tooltip = "";
-                                    if (object) {
-                                        tooltip += object;
+                                    if (object.object) {
+                                        tooltip += object.object;
                                     }
                                     var icon = "72_unknown";
                                     if (object.object in icon_by_name) {
-                                        icon = icon_by_name[object];
+                                        icon = icon_by_name[object.object];
                                     } else {
-                                        console.log("missing icon for " + object);
+                                        console.log("missing icon for " + object.object);
                                     }
                                     divhtml += `<div class="lineage-entry">
                                             <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                            <div class="icon-label">${objectdata}</div>
+                                            <div class="icon-label">${object.data}</div>
                                             <div class="icon-tooltip">${tooltip}</div>
                                             </div>`;
                                 }
                                 divhtml += '</div>';
                             } else {
                                 var tooltip = "";
-                                if (objectdata != "") {
-                                    tooltip += objectdata;
+                                if (object.data != "") {
+                                    tooltip += object.data;
                                 }
 
                                 var icon = "72_unknown";
-                                if (object in icon_by_name) {
-                                    icon = icon_by_name[object];
+                                if (object.object in icon_by_name) {
+                                    icon = icon_by_name[object.object];
                                 } else {
-                                    console.log("missing icon for " + object);
+                                    console.log("missing icon for " + object.object);
                                 }
                                 divhtml += `<div class="object-entry${object_filter}">
                                         <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                        <div class="icon-label">x${object}</div>
+                                        <div class="icon-label">x${object.object}</div>
                                         <div class="icon-tooltip">${tooltip}</div>
                                         </div>`;
                             }
