@@ -877,7 +877,7 @@
                         // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         let divhtml = "";
                         // cycles through placed objects per room?, or at least the grouped up creatures, creature in creatures
-                        let object = feature.properties.placedobjects.object
+                        let object = feature.properties.object
                         let object_filter = " object-filter";
                         var tooltip = "";
                         if (object.data != "") {
@@ -889,7 +889,7 @@
                         } else {
                             console.log("missing icon for " + object.object);
                         }
-                        divhtml += `<div class="object-entry${object_filter}">
+                        divhtml = `<div class="object-entry${object_filter}">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">x${object.object}</div>
                                 <div class="icon-tooltip">${tooltip}</div>
