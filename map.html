@@ -906,29 +906,29 @@
                 overlays.addOverlay(placedObjectsLayer, "Placed Objects");
 
                 // Bat Migration Blockages
-                let hadBatMigration = map.hasLayer(batMigrationLayer) || loadedRegion == null;
-                if (batMigrationLayer != null) {
-                    overlays.removeLayer(batMigrationLayer);
-                    map.removeLayer(batMigrationLayer);
+                let hadBatMigration = map.hasLayer(batMigrationBlockagesLayer) || loadedRegion == null;
+                if (batMigrationBlockagesLayer != null) {
+                    overlays.removeLayer(batMigrationBlockagesLayer);
+                    map.removeLayer(batMigrationBlockagesLayer);
                 }
-                batMigrationLayer = new roomjson["batmigrationblockages_features"], {
+                batMigrationBlockagesLayer = new roomjson["batmigrationblockages_features"], {
                     color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
                     weight: 2,
                     lineCap: "butt", // hehe
                     dashArray: "5 8",
                     interactive: false,
                 };
-                if (hadBatMigration) batMigrationLayer.addTo(map);
-                overlays.addOverlay(batMigrationLayer, "Bat Migration Blockages");
+                if (hadBatMigration) batMigrationBlockagesLayer.addTo(map);
+                overlays.addOverlay(batMigrationBlockagesLayer, "Bat Migration Blockages");
 
                 // Room Tags
-                let hadRoomTags = map.hasLayer(roomsTagsLayer) || loadedRegion == null;
-                if (roomsTagsLayer != null) {
-                    overlays.removeLayer(roomsTagsLayer);
-                    map.removeLayer(roomsTagsLayer);
+                let hadRoomTags = map.hasLayer(roomTagsLayer) || loadedRegion == null;
+                if (roomTagsLayer != null) {
+                    overlays.removeLayer(roomTagsLayer);
+                    map.removeLayer(roomTagsLayer);
                 }
 
-                roomsTagsLayer = roomjson["roomtag_features"], {
+                roomTagsLayer = roomjson["roomtag_features"], {
                     style: {
                         weight: 0,
                         fillOpacity: 0
@@ -989,8 +989,8 @@
                         layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, -14], interactive: true, className: "rw-text room-labels hover-label" });
                     }
                 };
-                if (hadRoomTags) roomsTagsLayer.addTo(map);
-                overlays.addOverlay(roomsTagsLayer, "Room Tags");
+                if (hadRoomTags) roomTagsLayer.addTo(map);
+                overlays.addOverlay(roomTagsLayer, "Room Tags");
 
                 // Zoom to room on rooms loaded
                 let foundRoom = false;
