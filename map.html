@@ -749,6 +749,12 @@
                                 // lineages are vertical stacks
                                 divhtml += '<div class="creature-entry ' + creature_filter + '">';
                                 for (let i = 0; i < creature.lineage.length; i++) {
+                                    var icon = "72_unknown";
+                                    if (creature.lineage[i] in icon_by_name) {
+                                        icon = icon_by_name[creature.lineage[i]];
+                                    } else {
+                                        console.log("missing icon for " + creature.lineage[i]);
+                                    }
                                     var tooltip = "";
                                     if (creature.precycle) {
                                         tooltip += "🚿";
@@ -772,7 +778,12 @@
                                         tooltip += "Winter";
                                     }
                                     if (creature.alternateform) {
-                                        tooltip += "Alternate Form";
+                                        if (creature.creature == "Small Centipede" || creature.creature == "SmallCentipede" || creature.creature == "Centipede Small") {
+                                            icon = icon_by_name[InfantCentipedeAlternateForm];
+                                        }
+                                        else {
+                                            tooltip += "Alternate Form";
+                                        }
                                     }
                                     if (creature.mean) {
                                         tooltip += "Mean: " + creature.mean;
@@ -783,12 +794,6 @@
                                     if (creature.seed) {
                                         tooltip += "Seed: " + creature.seed;
                                     }
-                                    var icon = "72_unknown";
-                                    if (creature.lineage[i] in icon_by_name) {
-                                        icon = icon_by_name[creature.lineage[i]];
-                                    } else {
-                                        console.log("missing icon for " + creature.lineage[i]);
-                                    }
                                     divhtml += `<div class="lineage-entry">
                                             <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                             <div class="icon-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
@@ -797,6 +802,12 @@
                                 }
                                 divhtml += '</div>';
                             } else {
+                                var icon = "72_unknown";
+                                if (creature.creature in icon_by_name) {
+                                    icon = icon_by_name[creature.creature];
+                                } else {
+                                    console.log("missing icon for " + creature.creature);
+                                }
                                 var tooltip = "";
                                 if (creature.precycle) {
                                     tooltip += "🚿";
@@ -820,7 +831,12 @@
                                     tooltip += "Winter";
                                 }
                                 if (creature.alternateform) {
+                                    if (creature.creature == "Small Centipede" || creature.creature == "SmallCentipede" || creature.creature == "Centipede Small") {
+                                        icon = icon_by_name[InfantCentipedeAlternateForm];
+                                    }
+                                    else {
                                     tooltip += "Alternate Form";
+                                    }
                                 }
                                 if (creature.mean) {
                                     tooltip += "mean: " + creature.mean;
@@ -830,13 +846,6 @@
                                 }
                                 if (creature.seed) {
                                     tooltip += "seed: " + creature.seed;
-                                }
-
-                                var icon = "72_unknown";
-                                if (creature.creature in icon_by_name) {
-                                    icon = icon_by_name[creature.creature];
-                                } else {
-                                    console.log("missing icon for " + creature.creature);
                                 }
                                 divhtml += `<div class="creature-entry${creature_filter}">
                                         <img class="icon-image" src="./resources/icons/${icon}.png"/>
@@ -868,7 +877,7 @@
                         // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         let divhtml = "";
                         // cycles through placed objects per room?, or at least the grouped up creatures, creature in creatures
-                        for (let object of feature.properties.room) {
+                        for (object in feature.properties) {
                             let object_filter = " object-filter";
                             var tooltip = "";
                             if (object.data != "") {
