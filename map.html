@@ -888,7 +888,11 @@
                         } else {
                             console.log("missing icon for " + object.object);
                         }
-                        divhtml = "<div class="object-entry"><img class="icon-image" src="./resources/icons/${icon}.png"/><div class="icon-label">x${object.object}</div><div class="icon-tooltip">${tooltip}</div></div>";
+                        divhtml = `<div class="object-entry">
+                                <img class="icon-image" src="./resources/icons/${icon}.png"/>
+                                <div class="icon-label">x${object.object}</div>
+                                <div class="icon-tooltip">${tooltip}</div>
+                                </div>`;
                         return L.marker(latlng, {
                             icon: L.divIcon({
                                 className: 'object-divs',
