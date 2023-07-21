@@ -877,25 +877,23 @@
                         // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         let divhtml = "";
                         // cycles through placed objects per room?, or at least the grouped up creatures, creature in creatures
-                        for (let object of feature.properties.placedobjects) {
-                            let object_filter = " object-filter";
-                            var tooltip = "";
-                            if (object.data != "") {
-                                tooltip += object.data;
-                            }
-
-                            var icon = "72_unknown";
-                            if (object.object in icon_by_name) {
-                                icon = icon_by_name[object.object];
-                            } else {
-                                console.log("missing icon for " + object.object);
-                            }
-                            divhtml += `<div class="object-entry${object_filter}">
-                                    <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                    <div class="icon-label">x${object.object}</div>
-                                    <div class="icon-tooltip">${tooltip}</div>
-                                    </div>`;
+                        let object = feature.properties.placedobjects.object
+                        let object_filter = " object-filter";
+                        var tooltip = "";
+                        if (object.data != "") {
+                            tooltip += object.data;
                         }
+                        var icon = "72_unknown";
+                        if (object.object in icon_by_name) {
+                            icon = icon_by_name[object.object];
+                        } else {
+                            console.log("missing icon for " + object.object);
+                        }
+                        divhtml += `<div class="object-entry${object_filter}">
+                                <img class="icon-image" src="./resources/icons/${icon}.png"/>
+                                <div class="icon-label">x${object.object}</div>
+                                <div class="icon-tooltip">${tooltip}</div>
+                                </div>`;
                         return L.marker(latlng, {
                             icon: L.divIcon({
                                 className: 'object-divs',
