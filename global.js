@@ -298,6 +298,16 @@ const icon_by_name = {
     "su": "Pearl_su_icon",
     "uw": "Pearl_uw_icon",
     "vs": "Pearl_vs_icon",
+    //## Room Tags
+    "SHELTER": "Shelter_icon",
+    "ANCIENTSHELTER": "AncientShelter_icon",
+    "GATE": "Gate_icon",
+    "SWARMROOM": "SwarmRoom_icon",
+    "PERF_HEAVY": "Perf_Heavy_icon",
+    "SCAVOUTPOST": "ScavOutpost_icon",
+    "SCAVTRADER": "ScavTrader_icon",
+    "NOTRACKERS": "NoTrackers_icon",
+    "ARENA": "Arena_icon",
 }
 
 var requestLock = {};

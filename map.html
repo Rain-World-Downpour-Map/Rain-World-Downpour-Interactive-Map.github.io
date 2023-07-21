@@ -911,13 +911,13 @@
                     overlays.removeLayer(batMigrationBlockagesLayer);
                     map.removeLayer(batMigrationBlockagesLayer);
                 }
-                batMigrationBlockagesLayer = new roomjson["batmigrationblockages_features"], {
+                batMigrationBlockagesLayer = L.geoJSON(json["batmigrationblockages_features"], {
                     color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
                     weight: 2,
                     lineCap: "butt", // hehe
                     dashArray: "5 8",
                     interactive: false,
-                };
+                });
                 if (hadBatMigration) batMigrationBlockagesLayer.addTo(map);
                 overlays.addOverlay(batMigrationBlockagesLayer, "Bat Migration Blockages");
 
@@ -928,7 +928,7 @@
                     map.removeLayer(roomTagsLayer);
                 }
 
-                roomTagsLayer = roomjson["roomtag_features"], {
+                roomTagsLayer = L.geoJSON(json["roomtag_features"], {
                     style: {
                         weight: 0,
                         fillOpacity: 0
@@ -984,11 +984,11 @@
                                     <div class="icon-tooltip">${tooltip}</div>
                                     </div>`;
 
-                        L.tooltip({ direction: "center", offset: [0, -14], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.name).setLatLng(L.latLng([].concat(feature.properties.popupcoords).reverse())).addTo(roomTagsLayer);
+                        L.tooltip({ direction: "center", offset: [0, 0], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.tag).setLatLng(L.latLng([].concat(feature.properties.coordinates).reverse())).addTo(roomTagsLayer);
 
-                        layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, -14], interactive: true, className: "rw-text room-labels hover-label" });
+                        layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, 0], interactive: true, className: "rw-text room-labels hover-label" });
                     }
-                };
+                });
                 if (hadRoomTags) roomTagsLayer.addTo(map);
                 overlays.addOverlay(roomTagsLayer, "Room Tags");
 
