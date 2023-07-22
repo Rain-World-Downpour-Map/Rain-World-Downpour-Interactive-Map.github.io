@@ -756,7 +756,7 @@
                                         console.log("missing icon for " + creature.lineage[i]);
                                     }
                                     var tooltip = "";
-                                    var attribute = "null";
+                                    var attribute = "";
                                     if (creature.precycle) {
                                         attribute += "PreCycle";
                                         //tooltip += "Pre-Cycle";
@@ -801,7 +801,7 @@
                                     if (creature.seed) {
                                         tooltip += "Seed: " + creature.seed;
                                     }
-                                    if (attribute == "null") {
+                                    if (attribute == "") {
                                         divhtml += `<div class="lineage-entry">
                                             <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                             <div class="icon-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
@@ -826,7 +826,7 @@
                                     console.log("missing icon for " + creature.creature);
                                 }
                                 var tooltip = "";
-                                var attribute = "null";
+                                var attribute = "";
                                 if (creature.precycle) {
                                     attribute += "PreCycle";
                                     //tooltip += "Pre-Cycle";
@@ -873,7 +873,7 @@
                                 if (creature.seed) {
                                     tooltip += "seed: " + creature.seed;
                                 }
-                                if (attribute == "null") {
+                                if (attribute == "") {
                                     divhtml += `<div class="creature-entry${creature_filter}">
                                         <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                         <div class="icon-label">x${creature.amount}</div>
@@ -883,8 +883,7 @@
                                 divhtml += `<div class="creature-entry${creature_filter}">
                                         <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                         <div class="icon-label">x${creature.amount}</div>
-                                        <img class="icon-tooltip" src="./resources/icons/${attribute}_icon.png"/>
-                                        <div class="icon-tooltip">${tooltip}</div>
+                                        <div class="icon-tooltip"><img class="icon-image" src="./resources/icons/${attribute}_icon.png"/></div>
                                         </div>`;
                                 }
                             }
