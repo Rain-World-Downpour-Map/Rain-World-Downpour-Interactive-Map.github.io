@@ -282,7 +282,7 @@
 
         <div>Settings</div>
         <form name="configuration" id="settings-select" class="scroll-ish"></form>
-        <input type="checkbox" id="selection-ckb" name="persistentselection" class="rw-ui rw-ui-ckb" autocomplete="off" onclick="selectDifficulty(difficulty,this.checked);" />
+        <input type="checkbox" id="selection-ckb" name="persistentselection" class="rw-ui rw-ui-ckb" autocomplete="off" onclick="selectDifficulty(difficulty, this.checked);" />
         <label for="selection-ckb" class="rw-text">Persistent Selection</label>
         <input type="checkbox" id="outlines-ckb" name="brightoutlines" class="rw-ui rw-ui-ckb" autocomplete="off" onclick="" />
         <label for="outlines-ckb" class="rw-text">Bright Outlines</label>
@@ -356,7 +356,7 @@
             }
         }
 
-        function selectDifficulty(n) {
+        function selectDifficulty(n, checked) {
             document.getElementById('selection-ckb').checked = checked;
             for (var i = 0; i < document.difficulty.difficulties.length; i++) {
                 if (document.difficulty.difficulties[i].value == n) {
@@ -448,17 +448,20 @@
         var modded;
         var difficulty;
         var room;
+        var persel;
         function pushState(noNavigation) {
             let changes = false;
             let modded_param = params.get("modded") == 'on';
             let difficulty_param = params.get("slugcat");
             let region_param = params.get("region");
             let room_param = params.get("room");
+            let persel_param = params.get("persel");
 
             params.delete("modded");
             params.delete("slugcat");
             params.delete("region");
             params.delete("room");
+            params.delete("persel");
 
             if (modded)
                 params.set("modded", "on");
@@ -466,6 +469,9 @@
             params.set("region", region);
             if (room)
                 params.set("room", room);
+
+            if (persel)
+                params.set("persel", "on");
 
             if (modded != modded_param || difficulty != difficulty_param || region != region_param || room != room_param) {
                 // actually changed anything
@@ -485,11 +491,12 @@
                 window.location.href = "index.html";
                 return;
             }
+            persel = params.get("persel") == 'on';
             modded = params.get("modded") == 'on';
             room = params.get("room");
             updateRegionList(difficulty, modded);
             loadRegion(difficulty, region, modded);
-            selectDifficulty(difficulty);
+            selectDifficulty(difficulty, persel);
         }
 
         window.onpopstate = newState;
@@ -921,7 +928,7 @@
                                 divhtml += `<div class="creature-entry${creature_filter}">
                                         <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                         <div class="icon-label">x${creature.amount}</div>
-                                        <div class="icon-tooltip"><img class="icon-image" src="./resources/icons/${attribute}_icon.png"/></div>
+                                        <img class="icon-tooltip" src="./resources/icons/${attribute}_icon.png"/>
                                         </div>`;
                                 }
                             }
