@@ -929,7 +929,6 @@
                                 </div>`;
                         return L.marker(latlng, {
                             icon: L.divIcon({
-                                className: 'object-divs',
                                 html: divhtml,
                             }),
                             interactive: false,
@@ -958,7 +957,6 @@
 
                         return L.marker(latlng, {
                             icon: L.divIcon({
-                                className: 'object-divs',
                                 html: divhtml,
                             }),
                             interactive: false,
@@ -982,7 +980,7 @@
                         if (roomtag.tag in icon_by_name) {
                             icon = icon_by_name[roomtag.tag];
                         } else {
-                            console.log("missing icon for " + roomtag.tag);
+                            console.log("missing room tag icon for " + roomtag.tag);
                         }
                         var tooltip = "";
                         if (roomtag.SHELTER) {
@@ -1020,7 +1018,6 @@
 
                         return L.marker(latlng, {
                             icon: L.divIcon({
-                                className: 'object-divs',
                                 html: divhtml,
                             }),
                             interactive: false,
