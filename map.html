@@ -864,7 +864,6 @@
                             icon: L.divIcon({
                                 className: 'creature-divs',
                                 html: divhtml,
-                                BgPos: [5, 5],
                             }),
                             interactive: false,
                         });
@@ -895,7 +894,7 @@
                         } else {
                             console.log("missing icon for " + object.object);
                         }
-                        divhtml += `<div class="object-entry">
+                        divhtml = `<div class="object-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">x${object.object}</div>
                                 <div class="icon-tooltip">${tooltip}</div>
