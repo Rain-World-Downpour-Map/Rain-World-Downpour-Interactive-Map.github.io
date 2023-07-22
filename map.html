@@ -59,6 +59,10 @@
             margin-right: 16px;
         }
 
+        .lineage-entry {
+            height: 24px;
+        }
+
         .object-divs {
             display: flex;
             justify-content: center;
@@ -71,8 +75,28 @@
             margin-right: 16px;
         }
 
-        .lineage-entry {
-            height: 24px;
+        .roomtag-divs {
+            display: flex;
+            justify-content: center;
+        }
+
+        .roomtag-entry {
+            display: none;
+            /* to be overwritten */
+            margin-left: 16px;
+            margin-right: 16px;
+        }
+
+        .batblockage-divs {
+            display: flex;
+            justify-content: center;
+        }
+
+        .batblockage-entry {
+            display: none;
+            /* to be overwritten */
+            margin-left: 16px;
+            margin-right: 16px;
         }
 
         .icon-image {
@@ -220,6 +244,18 @@
         }
     </style>
 
+    <style id="roomtagfilters">
+        .roomtag-filter {
+            display: initial
+        }
+    </style>
+
+    <style id="batblockagefilters">
+        .batbloackage-filter {
+            display: initial
+        }
+    </style>
+
     <style id="hoverlabels">
         .hover-label {
             display: none;
@@ -246,7 +282,7 @@
 
         <div>Settings</div>
         <form name="configuration" id="settings-select" class="scroll-ish"></form>
-        <input type="checkbox" id="selection-ckb" name="persistentselection" class="rw-ui rw-ui-ckb" autocomplete="off" onclick="" />
+        <input type="checkbox" id="selection-ckb" name="persistentselection" class="rw-ui rw-ui-ckb" autocomplete="off" onclick="persistentSelection(this.checked);" />
         <label for="selection-ckb" class="rw-text">Persistent Selection</label>
         <input type="checkbox" id="outlines-ckb" name="brightoutlines" class="rw-ui rw-ui-ckb" autocomplete="off" onclick="" />
         <label for="outlines-ckb" class="rw-text">Bright Outlines</label>
@@ -453,6 +489,7 @@
             updateRegionList(difficulty, modded);
             loadRegion(difficulty, region, modded);
             selectDifficulty(difficulty);
+            persistentSelection(checked);
         }
 
         window.onpopstate = newState;
@@ -609,6 +646,37 @@
             }
             region = pregion; // chaos
             modded = pmodded;
+
+            function persistentSelection(checked) {
+                document.getElementById('selection-ckb').checked = checked;
+                if (checked) {
+                    equivalentregions = [
+                        ["UG", "DS"], ["DS", "UG"],
+                        ["CL", "SH"], ["SH", "CL"],
+                        ["SS", "RM"], ["RM", "SS"],
+                        ["DM", "MS"], ["MS", "DM"],
+                        ["SL", "LM"], ["LM", "SL"]];
+                    pregions = slugcats[pdifficulty].regions;
+
+                    for (const acronym in pregions) {
+                        if (pregion == acronym) {
+                            region = pregion;
+                            break;
+                        } else {
+                            for (pairs in equivalentregions) {
+                                if (pairs[0] == loadedRegion) {
+                                    pregion = pairs[1];
+                                    break;
+                                } else {
+                                    region = slugcats[pdifficulty].startingRegion;
+                                    room = slugcats[pdifficulty].startingRoom;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
             console.log("Loading: region {" + region + "} on slugcat {" + pdifficulty + "}, modded {" + modded + "}");
             var slugcat_url = {
                 "artificer": "https://raw.githubusercontent.com/NobleCat57/msc-1.9.07b/v1.9.07b/artificer",
@@ -922,7 +990,7 @@
                         } else {
                             console.log("missing icon for " + object.object);
                         }
-                        divhtml = `<div class="object-entry">
+                        divhtml += `<div class="object-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">x${object.object}</div>
                                 <div class="icon-tooltip">${tooltip}</div>
@@ -948,9 +1016,10 @@
                 batMigrationBlockagesLayer = L.geoJSON(json["batmigrationblockages_features"], {
                     pointToLayer: function (feature, latlng) {
                         var icon = "";
+                        let batentry = feature.properties.blockageentry;
                         let divhtml = "";
                         icon = "Batfly_icon";
-                        divhtml = `<div class="">
+                        divhtml += `<div class="batblockage-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">Bat Migration Blockage</div>
                                 <div class="icon-tooltip"></div>
@@ -958,7 +1027,7 @@
 
                         return L.marker(latlng, {
                             icon: L.divIcon({
-                                className: 'object-divs',
+                                className: 'batblockage-divs',
                                 html: divhtml,
                             }),
                             interactive: false,
@@ -977,7 +1046,8 @@
 
                 roomTagsLayer = L.geoJSON(json["roomtag_features"], {
                     pointToLayer: function (feature, latlng) {
-                        let roomtag = feature.properties.tag
+                        let divhtml = "";
+                        let roomtag = feature.properties.tag;
                         var icon = "72_unknown";
                         if (roomtag.tag in icon_by_name) {
                             icon = icon_by_name[roomtag.tag];
@@ -1012,7 +1082,7 @@
                         if (roomtag.ARENA) {
                             tooltip += "Arena";
                         }
-                        divhtml += `<div class="roomtag-entry${roomtag_filter}">
+                        divhtml += `<div class="roomtag-entry">
                                     <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                     <div class="icon-label">x${roomtag}</div>
                                     <div class="icon-tooltip">${tooltip}</div>
@@ -1020,7 +1090,7 @@
 
                         return L.marker(latlng, {
                             icon: L.divIcon({
-                                className: 'object-divs',
+                                className: 'roomtag-divs',
                                 html: divhtml,
                             }),
                             interactive: false,
