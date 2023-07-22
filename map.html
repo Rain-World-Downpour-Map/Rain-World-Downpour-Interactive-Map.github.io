@@ -756,26 +756,27 @@
                                         console.log("missing icon for " + creature.lineage[i]);
                                     }
                                     var tooltip = "";
+                                    var attribute = "";
                                     if (creature.precycle) {
-                                        tooltip += "🚿";
+                                        attribute += "PreCycle";
                                     }
                                     if (creature.ignorecycle) {
-                                        tooltip += "Ignore Cycle";
+                                        attribute += "IgnoreCycle";
                                     }
                                     if (creature.night) {
-                                        tooltip += "🌙";
+                                        attribute += "Night";
                                     }
                                     if (creature.tentacleimmune) {
-                                        tooltip += "Tentacle Immune";
+                                        attribute += "TentacleImmune";
                                     }
                                     if (creature.lavasafe) {
-                                        tooltip += "Lava Safe";
+                                        attribute += "LavaSafe";
                                     }
                                     if (creature.voidsea) {
-                                        tooltip += "Void Sea";
+                                        attribute += "VoidSea";
                                     }
                                     if (creature.winter) {
-                                        tooltip += "Winter";
+                                        attribute += "Winter";
                                     }
                                     if (creature.alternateform) {
                                         if (creature.creature == "Small Centipede" || creature.creature == "SmallCentipede" || creature.creature == "Centipede Small") {
@@ -784,6 +785,7 @@
                                         else {
                                             tooltip += "Alternate Form";
                                         }
+                                        attribute += "AlternateForm";
                                     }
                                     if (creature.mean) {
                                         tooltip += "Mean: " + creature.mean;
@@ -797,6 +799,7 @@
                                     divhtml += `<div class="lineage-entry">
                                             <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                             <div class="icon-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
+                                            <img class="icon-tooltip" src="./resources/icons/${attribute}_icon.png"/>
                                             <div class="icon-tooltip">${tooltip}</div>
                                             </div>`;
                                 }
@@ -809,26 +812,27 @@
                                     console.log("missing icon for " + creature.creature);
                                 }
                                 var tooltip = "";
+                                var attribute = "";
                                 if (creature.precycle) {
-                                    tooltip += "PreCycle_icon.png";
+                                    attribute += "PreCycle";
                                 }
                                 if (creature.ignorecycle) {
-                                    tooltip += "Ignore Cycle_icon.png";
+                                    attribute += "IgnoreCycle";
                                 }
                                 if (creature.night) {
-                                    tooltip += "Night_icon.png";
+                                    attribute += "Night_icon.png";
                                 }
                                 if (creature.tentacleimmune) {
-                                    tooltip += "TentacleImmune_icon.png";
+                                    attribute += "TentacleImmune";
                                 }
                                 if (creature.lavasafe) {
-                                    tooltip += "LavaSafe_icon.png";
+                                    attribute += "LavaSafe";
                                 }
                                 if (creature.voidsea) {
-                                    tooltip += "VoidSea_icon.png";
+                                    attribute += "VoidSea";
                                 }
                                 if (creature.winter) {
-                                    tooltip += "Winter_icon.png";
+                                    attribute += "Winter";
                                 }
                                 if (creature.alternateform) {
                                     if (creature.creature == "Small Centipede" || creature.creature == "SmallCentipede" || creature.creature == "Centipede Small") {
@@ -837,6 +841,7 @@
                                     else {
                                     tooltip += "Alternate Form";
                                     }
+                                    attribute += "AlternateForm";
                                 }
                                 if (creature.mean) {
                                     tooltip += "mean: " + creature.mean;
@@ -850,6 +855,7 @@
                                 divhtml += `<div class="creature-entry${creature_filter}">
                                         <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                         <div class="icon-label">x${creature.amount}</div>
+                                        <img class="icon-tooltip" src="./resources/icons/${attribute}_icon.png"/>
                                         <div class="icon-tooltip">${tooltip}</div>
                                         </div>`;
                             }
@@ -962,6 +968,12 @@
                                 e.tooltip.getElement().style.removeProperty('opacity'); // 'defaults' amirite
                             },
                         });
+                        var icon = "72_unknown";
+                        if (roomtag.roomtag in icon_by_name) {
+                            icon = icon_by_name[roomtag.roomtag];
+                        } else {
+                            console.log("missing icon for " + roomtag.roomtag);
+                        }
                         var tooltip = "";
                         if (roomtag.SHELTER) {
                             tooltip += "Shelter";
@@ -989,12 +1001,6 @@
                         }
                         if (roomtag.ARENA) {
                             tooltip += "Arena";
-                        }
-                        var icon = "72_unknown";
-                        if (roomtag.roomtag in icon_by_name) {
-                            icon = icon_by_name[roomtag.roomtag];
-                        } else {
-                            console.log("missing icon for " + roomtag.roomtag);
                         }
                         divhtml += `<div class="roomtag-entry${roomtag_filter}">
                                     <img class="icon-image" src="./resources/icons/${icon}.png"/>
