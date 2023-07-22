@@ -257,7 +257,7 @@
     </style>
 
     <style id="batblockagefilters">
-        .batbloackage-filter {
+        .batblockage-filter {
             display: initial
         }
     </style>
@@ -371,8 +371,8 @@
             }
             if (difficulty != n) {
                 difficulty = n;
-                region = slugcats[difficulty].loadedregion;
-                room = slugcats[difficulty].loadedroom;
+                region = slugcats[difficulty].loadedRegion;
+                room = slugcats[difficulty].lastRoomFocused;
                 pushState();
             }
         }
@@ -934,7 +934,7 @@
                                 divhtml += `<div class="creature-entry${creature_filter}">
                                         <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                         <div class="icon-label">x${creature.amount}</div>
-                                        <img class="icon-tooltip" src="./resources/icons/${attribute}_icon.png"/>
+                                        <img class="icon-attribute" src="./resources/icons/${attribute}_icon.png"/>
                                         </div>`;
                                 }
                             }
@@ -973,7 +973,7 @@
                         } else {
                             console.log("missing icon for " + object.object);
                         }
-                        divhtml = `<div class="object-entry">
+                        divhtml += `<div class="object-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">x${object.object}</div>
                                 <div class="icon-tooltip">${tooltip}</div>
