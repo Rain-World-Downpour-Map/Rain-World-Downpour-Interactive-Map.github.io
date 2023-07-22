@@ -756,41 +756,41 @@
                                         console.log("missing icon for " + creature.lineage[i]);
                                     }
                                     var tooltip = "";
-                                    var attribute = "";
+                                    var attribute = "null";
                                     if (creature.precycle) {
                                         attribute += "PreCycle";
-                                        tooltip += "Pre-Cycle";
+                                        //tooltip += "Pre-Cycle";
                                     }
                                     if (creature.ignorecycle) {
                                         attribute += "IgnoreCycle";
-                                        tooltip += "Ignore Cycle";
+                                        //tooltip += "Ignore Cycle";
                                     }
                                     if (creature.night) {
                                         attribute += "Night";
-                                        tooltip += "Night";
+                                        //tooltip += "Night";
                                     }
                                     if (creature.tentacleimmune) {
                                         attribute += "TentacleImmune";
-                                        tooltip += "Tentacle Immune";
+                                        //tooltip += "Tentacle Immune";
                                     }
                                     if (creature.lavasafe) {
                                         attribute += "LavaSafe";
-                                        tooltip += "Lava Safe";
+                                        //tooltip += "Lava Safe";
                                     }
                                     if (creature.voidsea) {
                                         attribute += "VoidSea";
-                                        tooltip += "Void Sea";
+                                        //tooltip += "Void Sea";
                                     }
                                     if (creature.winter) {
                                         attribute += "Winter";
-                                        tooltip += "Winter";
+                                        //tooltip += "Winter";
                                     }
                                     if (creature.alternateform) {
                                         if (creature.creature == "Small Centipede" || creature.creature == "SmallCentipede" || creature.creature == "Centipede Small") {
                                             icon = "Infant_Centipede_AlternateForm_icon";
                                         }
                                         tooltip += "Alternate Form";
-                                        attribute += "AlternateForm";
+                                        //attribute += "AlternateForm";
                                     }
                                     if (creature.mean) {
                                         tooltip += "Mean: " + creature.mean;
@@ -801,7 +801,7 @@
                                     if (creature.seed) {
                                         tooltip += "Seed: " + creature.seed;
                                     }
-                                    if (attribute == "") {
+                                    if (attribute == "null") {
                                         divhtml += `<div class="lineage-entry">
                                             <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                             <div class="icon-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
@@ -829,31 +829,31 @@
                                 var attribute = "null";
                                 if (creature.precycle) {
                                     attribute += "PreCycle";
-                                    tooltip += "Pre-Cycle";
+                                    //tooltip += "Pre-Cycle";
                                 }
                                 if (creature.ignorecycle) {
                                     attribute += "IgnoreCycle";
-                                    tooltip += "Ignore Cycle";
+                                    //tooltip += "Ignore Cycle";
                                 }
                                 if (creature.night) {
                                     attribute += "Night";
-                                    tooltip += "Night";
+                                    //tooltip += "Night";
                                 }
                                 if (creature.tentacleimmune) {
                                     attribute += "TentacleImmune";
-                                    tooltip += "Tentacle Immune";
+                                    //tooltip += "Tentacle Immune";
                                 }
                                 if (creature.lavasafe) {
                                     attribute += "LavaSafe";
-                                    tooltip += "Lava Safe";
+                                    //tooltip += "Lava Safe";
                                 }
                                 if (creature.voidsea) {
                                     attribute += "VoidSea";
-                                    tooltip += "Void Sea";
+                                    //tooltip += "Void Sea";
                                 }
                                 if (creature.winter) {
                                     attribute += "Winter";
-                                    tooltip += "Winter";
+                                    //tooltip += "Winter";
                                 }
                                 if (creature.alternateform) {
                                     if (creature.creature == "Small Centipede" || creature.creature == "SmallCentipede" || creature.creature == "Centipede Small") {
@@ -873,7 +873,7 @@
                                 if (creature.seed) {
                                     tooltip += "seed: " + creature.seed;
                                 }
-                                if (attribute == "") {
+                                if (attribute == "null") {
                                     divhtml += `<div class="creature-entry${creature_filter}">
                                         <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                         <div class="icon-label">x${creature.amount}</div>
@@ -911,7 +911,8 @@
                     pointToLayer: function (feature, latlng) {
                         // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         // cycles through placed objects per room?, or at least the grouped up creatures, creature in creatures
-                        let object = feature.properties.object
+                        let divhtml = "";
+                        let object = feature.properties.object;
                         var tooltip = "";
                         if (object.data != "") {
                             tooltip += object.data;
@@ -922,7 +923,7 @@
                         } else {
                             console.log("missing icon for " + object.object);
                         }
-                        var divhtml = `<div class="object-entry">
+                        divhtml = `<div class="object-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">x${object.object}</div>
                                 <div class="icon-tooltip">${tooltip}</div>
