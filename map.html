@@ -356,57 +356,18 @@
             }
         }
 
-        function selectDifficulty(n,checked) {
+        function selectDifficulty(n) {
             document.getElementById('selection-ckb').checked = checked;
             for (var i = 0; i < document.difficulty.difficulties.length; i++) {
                 if (document.difficulty.difficulties[i].value == n) {
                     document.difficulty.difficulties[i].checked = true;
                 }
             }
-            if (checked) {
-                equivalentregions = [
-                    ["UG", "DS"], ["DS", "UG"],
-                    ["CL", "SH"], ["SH", "CL"],
-                    ["SS", "RM"], ["RM", "SS"],
-                    ["DM", "MS"], ["MS", "DM"],
-                    ["SL", "LM"], ["LM", "SL"]];
-                pregions = slugcats[difficulty].regions;
-
-                for (const acronym in pregions) {
-                    if (pregion == acronym) {
-                        if (difficulty != n) {
-                            difficulty = n;
-                            region = pregion;
-                            room = slugcats[difficulty].startingRoom;
-                            pushState();
-                        }
-                    } else {
-                        for (pairs in equivalentregions) {
-                            if (pairs[0] == loadedRegion) {
-                                if (difficulty != n) {
-                                    difficulty = n;
-                                    region = pairs[1];
-                                    room = slugcats[difficulty].startingRoom;
-                                    pushState();
-                                }
-                            } else {
-                                if (difficulty != n) {
-                                    difficulty = n;
-                                    region = slugcats[difficulty].startingRegion;
-                                    room = slugcats[difficulty].startingRoom;
-                                    pushState();
-                                }
-                            }
-                        }
-                    }
-                }
-            } else {
-                if (difficulty != n) {
-                    difficulty = n;
-                    region = slugcats[difficulty].pregion;
-                    room = slugcats[difficulty].proom;
-                    pushState();
-                }
+            if (difficulty != n) {
+                difficulty = n;
+                region = slugcats[difficulty].pregion;
+                room = slugcats[difficulty].proom;
+                pushState();
             }
         }
 
@@ -528,7 +489,7 @@
             room = params.get("room");
             updateRegionList(difficulty, modded);
             loadRegion(difficulty, region, modded);
-            selectDifficulty(difficulty,checked);
+            selectDifficulty(difficulty);
         }
 
         window.onpopstate = newState;
@@ -986,7 +947,7 @@
                 placedObjectsLayer = L.geoJSON(json["placedobject_features"], {
                     pointToLayer: function (feature, latlng) {
                         let divhtml = "";
-                        for (let object of feature) { 
+                        for (let object of feature.properties) { 
                             // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                             // cycles through placed objects per room?, or at least the grouped up creatures, creature in creatures
                             var tooltip = "";
