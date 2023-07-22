@@ -308,6 +308,15 @@ const icon_by_name = {
     "SCAVTRADER": "ScavTrader_icon",
     "NOTRACKERS": "NoTrackers_icon",
     "ARENA": "Arena_icon",
+    //## Creature Attributes
+    "precycle": "PreCycle_icon",
+    "Night": "Night_icon",
+    "ignorecycle": "IgnoreCycle_icon",
+    "tentacleimmune": "TentacleImmune_icon",
+    "alternateform": "AlternateForm_icon",
+    "lavasafe": "LavaSafe_icon",
+    "voidsea": "VoidSea_icon",
+    "winter": "Winter_icon",
 }
 
 var requestLock = {};

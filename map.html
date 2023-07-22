@@ -572,7 +572,7 @@
 
         // New additions
         var shortcutsLayer;
-        var roomTags;
+        var roomTagsLayer;
         var batMigrationBlockagesLayer;
         var placedObjectsLayer;
         // Region stuff
@@ -810,25 +810,25 @@
                                 }
                                 var tooltip = "";
                                 if (creature.precycle) {
-                                    tooltip += "🚿";
+                                    tooltip += "PreCycle_icon.png";
                                 }
                                 if (creature.ignorecycle) {
-                                    tooltip += "Ignore Cycle";
+                                    tooltip += "Ignore Cycle_icon.png";
                                 }
                                 if (creature.night) {
-                                    tooltip += "🌙";
+                                    tooltip += "Night_icon.png";
                                 }
                                 if (creature.tentacleimmune) {
-                                    tooltip += "Tentacle Immune";
+                                    tooltip += "TentacleImmune_icon.png";
                                 }
                                 if (creature.lavasafe) {
-                                    tooltip += "Lava Safe";
+                                    tooltip += "LavaSafe_icon.png";
                                 }
                                 if (creature.voidsea) {
-                                    tooltip += "Void Sea";
+                                    tooltip += "VoidSea_icon.png";
                                 }
                                 if (creature.winter) {
-                                    tooltip += "Winter";
+                                    tooltip += "Winter_icon.png";
                                 }
                                 if (creature.alternateform) {
                                     if (creature.creature == "Small Centipede" || creature.creature == "SmallCentipede" || creature.creature == "Centipede Small") {
@@ -912,12 +912,30 @@
                     map.removeLayer(batMigrationBlockagesLayer);
                 }
                 batMigrationBlockagesLayer = L.geoJSON(json["batmigrationblockages_features"], {
-                    color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
-                    weight: 2,
-                    lineCap: "butt", // hehe
-                    dashArray: "5 8",
-                    interactive: false,
+                    pointToLayer: function (feature, latlng) {
+                        var icon = "";
+                        let divhtml = "";
+                        icon = "Batfly_icon";
+                        divhtml = `<div class="">
+                                <img class="icon-image" src="./resources/icons/${icon}.png"/>
+                                <div class="icon-label">Bat Migration Blockage</div>
+                                <div class="icon-tooltip">Bat Migration Blockage</div>
+                                </div>`;
+
+                        L.tooltip({ direction: "center", offset: [0, 0], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.blockageentry).setLatLng(L.latLng([].concat(feature.properties.coordinates).reverse())).addTo(batMigrationBlockagesLayer);
+
+                        layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, 0], interactive: true, className: "rw-text room-labels hover-label" });
+
+                        return L.marker(latlng, {
+                            icon: L.divIcon({
+                                className: 'object-divs',
+                                html: divhtml,
+                            }),
+                            interactive: false,
+                        });
+                    },
                 });
+                
                 if (hadBatMigration) batMigrationBlockagesLayer.addTo(map);
                 overlays.addOverlay(batMigrationBlockagesLayer, "Bat Migration Blockages");
 
