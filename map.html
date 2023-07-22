@@ -282,7 +282,7 @@
 
         <div>Settings</div>
         <form name="configuration" id="settings-select" class="scroll-ish"></form>
-        <input type="checkbox" id="selection-ckb" name="persistentselection" class="rw-ui rw-ui-ckb" autocomplete="off" onclick="persistentSelection(this.checked);" />
+        <input type="checkbox" id="selection-ckb" name="persistentselection" class="rw-ui rw-ui-ckb" autocomplete="off" onclick="selectDifficulty(difficulty,this.checked);" />
         <label for="selection-ckb" class="rw-text">Persistent Selection</label>
         <input type="checkbox" id="outlines-ckb" name="brightoutlines" class="rw-ui rw-ui-ckb" autocomplete="off" onclick="" />
         <label for="outlines-ckb" class="rw-text">Bright Outlines</label>
@@ -356,20 +356,52 @@
             }
         }
 
-        function selectDifficulty(n) {
-            // document.getElementById('selection-ckb').checked = checked;
+        function selectDifficulty(n,checked) {
+            document.getElementById('selection-ckb').checked = checked;
             for (var i = 0; i < document.difficulty.difficulties.length; i++) {
                 if (document.difficulty.difficulties[i].value == n) {
                     document.difficulty.difficulties[i].checked = true;
                 }
             }
-            if (difficulty != n) {
-                difficulty = n;
-                region = slugcats[difficulty].startingRegion;
-                room = slugcats[difficulty].startingRoom;
-                pushState();
+            if (checked) {
+                equivalentregions = [
+                    ["UG", "DS"], ["DS", "UG"],
+                    ["CL", "SH"], ["SH", "CL"],
+                    ["SS", "RM"], ["RM", "SS"],
+                    ["DM", "MS"], ["MS", "DM"],
+                    ["SL", "LM"], ["LM", "SL"]];
+                pregions = slugcats[pdifficulty].regions;
+
+                for (const acronym in pregions) {
+                    if (pregion == acronym) {
+                        region = pregion;
+                        break;
+                    } else {
+                        for (pairs in equivalentregions) {
+                            if (pairs[0] == loadedRegion) {
+                                region = pairs[1];
+                                break;
+                            } else {
+                                if (difficulty != n) {
+                                    difficulty = n;
+                                    region = slugcats[difficulty].startingRegion;
+                                    room = slugcats[difficulty].startingRoom;
+                                    pushState();
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                if (difficulty != n) {
+                    difficulty = n;
+                    region = slugcats[difficulty].pregion;
+                    room = slugcats[difficulty].proom;
+                    pushState();
+                }
             }
         }
+
 
         // Control with poor control options, whodvathot
         // layer control with control over the classnames
@@ -488,8 +520,7 @@
             room = params.get("room");
             updateRegionList(difficulty, modded);
             loadRegion(difficulty, region, modded);
-            selectDifficulty(difficulty);
-            persistentSelection(checked);
+            selectDifficulty(difficulty,checked);
         }
 
         window.onpopstate = newState;
@@ -646,36 +677,6 @@
             }
             region = pregion; // chaos
             modded = pmodded;
-
-            function persistentSelection(checked) {
-                document.getElementById('selection-ckb').checked = checked;
-                if (checked) {
-                    equivalentregions = [
-                        ["UG", "DS"], ["DS", "UG"],
-                        ["CL", "SH"], ["SH", "CL"],
-                        ["SS", "RM"], ["RM", "SS"],
-                        ["DM", "MS"], ["MS", "DM"],
-                        ["SL", "LM"], ["LM", "SL"]];
-                    pregions = slugcats[pdifficulty].regions;
-
-                    for (const acronym in pregions) {
-                        if (pregion == acronym) {
-                            region = pregion;
-                            break;
-                        } else {
-                            for (pairs in equivalentregions) {
-                                if (pairs[0] == loadedRegion) {
-                                    pregion = pairs[1];
-                                    break;
-                                } else {
-                                    region = slugcats[pdifficulty].startingRegion;
-                                    room = slugcats[pdifficulty].startingRoom;
-                                }
-                            }
-                        }
-                    }
-                }
-            };
 
             console.log("Loading: region {" + region + "} on slugcat {" + pdifficulty + "}, modded {" + modded + "}");
             var slugcat_url = {
@@ -982,11 +983,11 @@
                         let object = feature.properties.object;
                         var tooltip = "";
                         if (object.data != "") {
-                            tooltip = object.data;
+                            tooltip += object.data;
                         }
                         var icon = "72_unknown";
                         if (object.object in icon_by_name) {
-                            icon = icon_by_name[object.object];
+                            icon += icon_by_name[object.object];
                         } else {
                             console.log("missing icon for " + object.object);
                         }
