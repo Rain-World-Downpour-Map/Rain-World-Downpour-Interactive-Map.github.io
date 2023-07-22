@@ -365,8 +365,8 @@
             }
             if (difficulty != n) {
                 difficulty = n;
-                region = slugcats[difficulty].pregion;
-                room = slugcats[difficulty].proom;
+                region = slugcats[difficulty].region;
+                room = slugcats[difficulty].room;
                 pushState();
             }
         }
@@ -954,7 +954,7 @@
                 placedObjectsLayer = L.geoJSON(json["placedobject_features"], {
                     pointToLayer: function (feature, latlng) {
                         let divhtml = "";
-                        for (let object of feature.properties) { 
+                        for (let object of feature.properties.object) { 
                             // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                             // cycles through placed objects per room?, or at least the grouped up creatures, creature in creatures
                             var tooltip = "";
