@@ -756,7 +756,7 @@
                                         console.log("missing icon for " + creature.lineage[i]);
                                     }
                                     var tooltip = "";
-                                    var attribute = "";
+                                    var attribute = "null";
                                     if (creature.precycle) {
                                         attribute += "PreCycle";
                                     }
@@ -812,7 +812,7 @@
                                     console.log("missing icon for " + creature.creature);
                                 }
                                 var tooltip = "";
-                                var attribute = "";
+                                var attribute = "null";
                                 if (creature.precycle) {
                                     attribute += "PreCycle";
                                 }
@@ -864,6 +864,7 @@
                             icon: L.divIcon({
                                 className: 'creature-divs',
                                 html: divhtml,
+                                BgPos: [5, 5],
                             }),
                             interactive: false,
                         });
@@ -894,7 +895,7 @@
                         } else {
                             console.log("missing icon for " + object.object);
                         }
-                        divhtml = `<div class="object-entry">
+                        divhtml += `<div class="object-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">x${object.object}</div>
                                 <div class="icon-tooltip">${tooltip}</div>
@@ -928,9 +929,9 @@
                                 <div class="icon-tooltip">Bat Migration Blockage</div>
                                 </div>`;
 
-                        L.tooltip({ direction: "center", offset: [0, 0], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.blockageentry).setLatLng(L.latLng([].concat(feature.properties.coordinates).reverse())).addTo(batMigrationBlockagesLayer);
+                        // L.tooltip({ direction: "center", offset: [0, 0], permanent: true, className: "rw-text room-labels" }, layer).setContent(feature.properties.blockageentry).setLatLng(L.latLng([].concat(feature.properties.coordinates).reverse())).addTo(batMigrationBlockagesLayer);
 
-                        layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, 0], interactive: true, className: "rw-text room-labels hover-label" });
+                        // layer.bindTooltip(feature.properties.name, { direction: "center", offset: [0, 0], interactive: true, className: "rw-text room-labels hover-label" });
 
                         return L.marker(latlng, {
                             icon: L.divIcon({
@@ -968,11 +969,12 @@
                                 e.tooltip.getElement().style.removeProperty('opacity'); // 'defaults' amirite
                             },
                         });
+                        let roomtag = feature.properties.tag
                         var icon = "72_unknown";
-                        if (roomtag.roomtag in icon_by_name) {
-                            icon = icon_by_name[roomtag.roomtag];
+                        if (roomtag.tag in icon_by_name) {
+                            icon = icon_by_name[roomtag.tag];
                         } else {
-                            console.log("missing icon for " + roomtag.roomtag);
+                            console.log("missing icon for " + roomtag.tag);
                         }
                         var tooltip = "";
                         if (roomtag.SHELTER) {
