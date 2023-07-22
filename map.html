@@ -756,35 +756,40 @@
                                         console.log("missing icon for " + creature.lineage[i]);
                                     }
                                     var tooltip = "";
-                                    var attribute = "null";
+                                    var attribute = "";
                                     if (creature.precycle) {
                                         attribute += "PreCycle";
+                                        tooltip += "Pre-Cycle";
                                     }
                                     if (creature.ignorecycle) {
                                         attribute += "IgnoreCycle";
+                                        tooltip += "Ignore Cycle";
                                     }
                                     if (creature.night) {
                                         attribute += "Night";
+                                        tooltip += "Night";
                                     }
                                     if (creature.tentacleimmune) {
                                         attribute += "TentacleImmune";
+                                        tooltip += "Tentacle Immune";
                                     }
                                     if (creature.lavasafe) {
                                         attribute += "LavaSafe";
+                                        tooltip += "Lava Safe";
                                     }
                                     if (creature.voidsea) {
                                         attribute += "VoidSea";
+                                        tooltip += "Void Sea";
                                     }
                                     if (creature.winter) {
                                         attribute += "Winter";
+                                        tooltip += "Winter";
                                     }
                                     if (creature.alternateform) {
                                         if (creature.creature == "Small Centipede" || creature.creature == "SmallCentipede" || creature.creature == "Centipede Small") {
                                             icon = "Infant_Centipede_AlternateForm_icon";
                                         }
-                                        else {
-                                            tooltip += "Alternate Form";
-                                        }
+                                        tooltip += "Alternate Form";
                                         attribute += "AlternateForm";
                                     }
                                     if (creature.mean) {
@@ -796,12 +801,21 @@
                                     if (creature.seed) {
                                         tooltip += "Seed: " + creature.seed;
                                     }
-                                    divhtml += `<div class="lineage-entry">
+                                    if (attribute == "") {
+                                        divhtml += `<div class="lineage-entry">
+                                            <img class="icon-image" src="./resources/icons/${icon}.png"/>
+                                            <div class="icon-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
+                                            <div class="icon-tooltip">${tooltip}</div>
+                                            </div>`;
+                                    } else {
+                                        divhtml += `<div class="lineage-entry">
                                             <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                             <div class="icon-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
                                             <img class="icon-tooltip" src="./resources/icons/${attribute}_icon.png"/>
                                             <div class="icon-tooltip">${tooltip}</div>
                                             </div>`;
+                                    }
+                                    
                                 }
                                 divhtml += '</div>';
                             } else {
@@ -815,24 +829,31 @@
                                 var attribute = "null";
                                 if (creature.precycle) {
                                     attribute += "PreCycle";
+                                    tooltip += "Pre-Cycle";
                                 }
                                 if (creature.ignorecycle) {
                                     attribute += "IgnoreCycle";
+                                    tooltip += "Ignore Cycle";
                                 }
                                 if (creature.night) {
                                     attribute += "Night";
+                                    tooltip += "Night";
                                 }
                                 if (creature.tentacleimmune) {
                                     attribute += "TentacleImmune";
+                                    tooltip += "Tentacle Immune";
                                 }
                                 if (creature.lavasafe) {
                                     attribute += "LavaSafe";
+                                    tooltip += "Lava Safe";
                                 }
                                 if (creature.voidsea) {
                                     attribute += "VoidSea";
+                                    tooltip += "Void Sea";
                                 }
                                 if (creature.winter) {
                                     attribute += "Winter";
+                                    tooltip += "Winter";
                                 }
                                 if (creature.alternateform) {
                                     if (creature.creature == "Small Centipede" || creature.creature == "SmallCentipede" || creature.creature == "Centipede Small") {
@@ -852,12 +873,20 @@
                                 if (creature.seed) {
                                     tooltip += "seed: " + creature.seed;
                                 }
+                                if (attribute == "") {
+                                    divhtml += `<div class="creature-entry${creature_filter}">
+                                        <img class="icon-image" src="./resources/icons/${icon}.png"/>
+                                        <div class="icon-label">x${creature.amount}</div>
+                                        <div class="icon-tooltip">${tooltip}</div>
+                                        </div>`;
+                                } else {
                                 divhtml += `<div class="creature-entry${creature_filter}">
                                         <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                         <div class="icon-label">x${creature.amount}</div>
                                         <img class="icon-tooltip" src="./resources/icons/${attribute}_icon.png"/>
                                         <div class="icon-tooltip">${tooltip}</div>
                                         </div>`;
+                                }
                             }
                         }
                         return L.marker(latlng, {
@@ -881,7 +910,6 @@
                 placedObjectsLayer = L.geoJSON(json["placedobject_features"], {
                     pointToLayer: function (feature, latlng) {
                         // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
-                        let divhtml = "";
                         // cycles through placed objects per room?, or at least the grouped up creatures, creature in creatures
                         let object = feature.properties.object
                         var tooltip = "";
@@ -894,7 +922,7 @@
                         } else {
                             console.log("missing icon for " + object.object);
                         }
-                        divhtml = `<div class="object-entry">
+                        var divhtml = `<div class="object-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">x${object.object}</div>
                                 <div class="icon-tooltip">${tooltip}</div>
