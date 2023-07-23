@@ -373,10 +373,33 @@
                 difficulty = n;
                 region = loadedRegion;
                 room = lastRoomFocused;
+
+                equivalentregions = [
+                    ["UG", "DS"], ["DS", "UG"],
+                    ["CL", "SH"], ["SH", "CL"],
+                    ["SS", "RM"], ["RM", "SS"],
+                    ["DM", "MS"], ["MS", "DM"],
+                    ["SL", "LM"], ["LM", "SL"]];
+
+                pregions = slugcats[difficulty].regions;
+
+                for (const acronym in pregions) {
+                    if (pregion == acronym) {
+                        region = pregion;
+                    } else {
+                        for (pairs in equivalentregions) {
+                            if (pairs[0] == loadedRegion) {
+                                region = pairs[1];
+                            } else {
+                                region = slugcats[difficulty].startingRegion;
+                                room = slugcats[difficulty].startingRoom;
+                            }
+                        }
+                    }
+                }
                 pushState();
             }
         }
-
 
         // Control with poor control options, whodvathot
         // layer control with control over the classnames
@@ -961,9 +984,9 @@
                     pointToLayer: function (feature, latlng) {
                         // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         // cycles through placed objects per room?, or at least the grouped up creatures, creature in creatures
-                        let divhtml = "";
-                        let object = feature.properties.object;
-                        let data = feature.properties.data;
+                        var divhtml = "";
+                        var object = feature.properties.object;
+                        var data = feature.properties.data;
                         var tooltip = "";
                         if (data != "") {
                             tooltip += data;
@@ -974,7 +997,7 @@
                         } else {
                             console.log("missing icon for " + object);
                         }
-                        divhtml += `<div class="object-entry">
+                        divhtml = `<div class="object-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">x${object}</div>
                                 <div class="icon-tooltip">${tooltip}</div>
@@ -999,10 +1022,10 @@
                 }
                 batMigrationBlockagesLayer = L.geoJSON(json["batmigrationblockages_features"], {
                     pointToLayer: function (feature, latlng) {
-                        let divhtml = "";
+                        var divhtml = "";
                         var icon = "";
                         icon = "Batfly_icon";
-                        divhtml += `<div class="batblockage-entry">
+                        divhtml = `<div class="batblockage-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">Bat Migration Blockage</div>
                                 <div class="icon-tooltip"></div>
@@ -1029,7 +1052,7 @@
 
                 roomTagsLayer = L.geoJSON(json["roomtag_features"], {
                     pointToLayer: function (feature, latlng) {
-                        let roomtag = feature.properties;
+                        var roomtag = feature.properties;
                         var icon = "72_unknown";
                         if (roomtag.tag in icon_by_name) {
                             icon = icon_by_name[roomtag.tag.toLowerCase()];
@@ -1064,7 +1087,7 @@
                         if (roomtag.ARENA) {
                             tooltip = "Arena";
                         }
-                        var divhtml = `<div class="roomtag-entry">
+                        divhtml = `<div class="roomtag-entry">
                                     <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                     <div class="icon-label">x${roomtag}</div>
                                     <div class="icon-tooltip">${tooltip}</div>
