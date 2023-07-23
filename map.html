@@ -108,7 +108,7 @@
         .icon-attribute {
             position: absolute;
             margin-left: -15px;
-            margin-top: -10px;
+            margin-top: -35px;
         }
 
         .icon-label {
@@ -973,7 +973,7 @@
                         } else {
                             console.log("missing icon for " + object.object);
                         }
-                        divhtml += `<div class="object-entry">
+                        divhtml = `<div class="object-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">x${object.object}</div>
                                 <div class="icon-tooltip">${tooltip}</div>
@@ -1030,10 +1030,10 @@
                 roomTagsLayer = L.geoJSON(json["roomtag_features"], {
                     pointToLayer: function (feature, latlng) {
                         let divhtml = "";
-                        let roomtag = feature.properties.tag;
+                        let roomtag = feature.properties;
                         var icon = "72_unknown";
                         if (roomtag.tag in icon_by_name) {
-                            icon = icon_by_name[roomtag.tag];
+                            icon = icon_by_name[roomtag.tag.toLowerCase()];
                         } else {
                             console.log("missing room tag icon for " + roomtag.tag);
                         }
