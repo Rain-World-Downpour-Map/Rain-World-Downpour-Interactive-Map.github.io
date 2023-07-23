@@ -371,8 +371,8 @@
             }
             if (difficulty != n) {
                 difficulty = n;
-                region = slugcats[difficulty].loadedRegion;
-                room = slugcats[difficulty].lastRoomFocused;
+                region = loadedRegion;
+                room = lastRoomFocused;
                 pushState();
             }
         }
@@ -961,7 +961,6 @@
                     pointToLayer: function (feature, latlng) {
                         // Creatures are organized by dens, dens list spawns in it, flexbox stacks them visually on the den location, filter classes control visib
                         // cycles through placed objects per room?, or at least the grouped up creatures, creature in creatures
-                        let divhtml = "";
                         let object = feature.properties.object;
                         var tooltip = "";
                         if (object.data != "") {
@@ -973,7 +972,7 @@
                         } else {
                             console.log("missing icon for " + object.object);
                         }
-                        divhtml = `<div class="object-entry">
+                        var divhtml = `<div class="object-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">x${object.object}</div>
                                 <div class="icon-tooltip">${tooltip}</div>
@@ -1000,7 +999,6 @@
                     pointToLayer: function (feature, latlng) {
                         let divhtml = "";
                         var icon = "";
-                        let batentry = feature.properties.blockageentry;
                         icon = "Batfly_icon";
                         divhtml = `<div class="batblockage-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
@@ -1029,7 +1027,6 @@
 
                 roomTagsLayer = L.geoJSON(json["roomtag_features"], {
                     pointToLayer: function (feature, latlng) {
-                        let divhtml = "";
                         let roomtag = feature.properties;
                         var icon = "72_unknown";
                         if (roomtag.tag in icon_by_name) {
@@ -1039,33 +1036,33 @@
                         }
                         var tooltip = "";
                         if (roomtag.SHELTER) {
-                            tooltip += "Shelter";
+                            tooltip = "Shelter";
                         }
                         if (roomtag.ANCIENTSHELTER) {
-                            tooltip += "Ancient Shelter";
+                            tooltip = "Ancient Shelter";
                         }
                         if (roomtag.GATE) {
-                            tooltip += "Gate";
+                            tooltip = "Gate";
                         }
                         if (roomtag.SWARMROOM) {
-                            tooltip += "Swarm Room";
+                            tooltip = "Swarm Room";
                         }
                         if (roomtag.PERF_HEAVY) {
-                            tooltip += "Performance Heavy";
+                            tooltip = "Performance Heavy";
                         }
                         if (roomtag.SCAVOUTPOST) {
-                            tooltip += "Scavenger Toll";
+                            tooltip = "Scavenger Toll";
                         }
                         if (roomtag.SCAVTRADER) {
-                            tooltip += "Scavenger Merchant";
+                            tooltip = "Scavenger Merchant";
                         }
                         if (roomtag.NOTRACKERS) {
-                            tooltip += "No Trackers";
+                            tooltip = "No Trackers";
                         }
                         if (roomtag.ARENA) {
-                            tooltip += "Arena";
+                            tooltip = "Arena";
                         }
-                        divhtml += `<div class="roomtag-entry">
+                        var divhtml = `<div class="roomtag-entry">
                                     <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                     <div class="icon-label">x${roomtag}</div>
                                     <div class="icon-tooltip">${tooltip}</div>
