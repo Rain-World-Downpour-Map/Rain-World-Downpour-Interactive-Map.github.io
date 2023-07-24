@@ -373,14 +373,6 @@
                 difficulty = n;
                 region = loadedRegion;
                 room = focusedroom;
-
-                equivalentregions = [
-                    ["UG", "DS"], ["DS", "UG"],
-                    ["CL", "SH"], ["SH", "CL"],
-                    ["SS", "RM"], ["RM", "SS"],
-                    ["DM", "MS"], ["MS", "DM"],
-                    ["SL", "LM"], ["LM", "SL"]];
-
                 pushState();
             }
         }
@@ -966,7 +958,6 @@
                 }
                 placedObjectsLayer = L.geoJSON(json["placedobject_features"], {
                     pointToLayer: function (feature, latlng) {
-                        let divhtml = "";
                         var object = feature.properties.object;
                         var data = feature.properties.data;
                         var tooltip = "";
@@ -979,9 +970,9 @@
                         } else {
                             console.log("missing icon for " + object);
                         }
-                        divhtml += `<div class="object-entry">
+                        let divhtml = `<div class="object-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                <div class="icon-label">x${object}</div>
+                                <div class="icon-label">sdfsdf${object}</div>
                                 <div class="icon-tooltip">${tooltip}</div>
                                 </div>`;
                         return L.marker(latlng, {
@@ -1004,10 +995,9 @@
                 }
                 batMigrationBlockagesLayer = L.geoJSON(json["batmigrationblockages_features"], {
                     pointToLayer: function (feature, latlng) {
-                        let divhtml = "";
                         var icon = "";
                         icon = "Batfly_icon";
-                        divhtml += `<div class="batblockage-entry">
+                        let divhtml = `<div class="batblockage-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">Bat Migration Blockage</div>
                                 <div class="icon-tooltip"></div>
@@ -1034,7 +1024,6 @@
 
                 roomTagsLayer = L.geoJSON(json["roomtag_features"], {
                     pointToLayer: function (feature, latlng) {
-                        let divhtml = "";
                         let roomtag = feature.properties;
                         var icon = "72_unknown";
                         if (roomtag.tag in icon_by_name) {
@@ -1070,9 +1059,9 @@
                         if (roomtag.tag == "ARENA") {
                             tooltip = "Arena";
                         }
-                        divhtml += `<div class="roomtag-entry">
+                        let divhtml = `<div class="roomtag-entry">
                                     <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                    <div class="icon-label">x${roomtag}</div>
+                                    <div class="icon-label">fsfsddfs${roomtag}</div>
                                     <div class="icon-tooltip">${tooltip}</div>
                                     </div>`;
 
