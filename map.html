@@ -807,49 +807,49 @@
                                     }
                                     var tooltip = "";
                                     var attribute = "";
-                                    if (creature.precycle) {
+                                    if (creature.attributes[i].precycle) {
                                         attribute += "PreCycle";
                                         //tooltip += "Pre-Cycle";
                                     }
-                                    if (creature.ignorecycle) {
+                                    if (creature.attributes[i].ignorecycle) {
                                         attribute += "IgnoreCycle";
                                         //tooltip += "Ignore Cycle";
                                     }
-                                    if (creature.night) {
+                                    if (creature.attributes[i].night) {
                                         attribute += "Night";
                                         //tooltip += "Night";
                                     }
-                                    if (creature.tentacleimmune) {
+                                    if (creature.attributes[i].tentacleimmune) {
                                         attribute += "TentacleImmune";
                                         //tooltip += "Tentacle Immune";
                                     }
-                                    if (creature.lavasafe) {
+                                    if (creature.attributes[i].lavasafe) {
                                         attribute += "LavaSafe";
                                         //tooltip += "Lava Safe";
                                     }
-                                    if (creature.voidsea) {
+                                    if (creature.attributes[i].voidsea) {
                                         attribute += "VoidSea";
                                         //tooltip += "Void Sea";
                                     }
-                                    if (creature.winter) {
+                                    if (creature.attributes[i].winter) {
                                         attribute += "Winter";
                                         //tooltip += "Winter";
                                     }
-                                    if (creature.alternateform) {
-                                        if (creature.creature == "Small Centipede" || creature.creature == "SmallCentipede" || creature.creature == "Centipede Small") {
+                                    if (creature.attributes[i].alternateform) {
+                                        if (creature.attributes[i].creature == "Small Centipede" || creature.attributes[i].creature == "SmallCentipede" || creature.attributes[i].creature == "Centipede Small") {
                                             icon = "Infant_Centipede_AlternateForm_icon";
                                         }
                                         tooltip += "Alternate Form";
                                         //attribute += "AlternateForm";
                                     }
-                                    if (creature.mean) {
-                                        tooltip += "Mean: " + creature.mean;
+                                    if (creature.attributes[i].mean) {
+                                        tooltip += "Mean: " + creature.attributes[i].mean;
                                     }
-                                    if (creature.number) {
-                                        tooltip += "Number: " + creature.number;
+                                    if (creature.attributes[i].number) {
+                                        tooltip += "Number: " + creature.attributes[i].number;
                                     }
-                                    if (creature.seed) {
-                                        tooltip += "Seed: " + creature.seed;
+                                    if (creature.attributes[i].seed) {
+                                        tooltip += "Seed: " + creature.attributes[i].seed;
                                     }
                                     if (attribute == "") {
                                         divhtml += `<div class="lineage-entry">
