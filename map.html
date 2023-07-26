@@ -966,15 +966,23 @@
                         var object = feature.properties.object;
                         var data = feature.properties.data;
                         var tooltip = "";
-                        if (data != "") {
-                            tooltip += data;
-                        }
+                        let hiddenobjects = [
+                            "CustomDecal","FairyParticleSettings","LightSource","LightBeam","InsectGroup"
+                        ]
                         var icon = "72_unknown";
                         if (object in icon_by_name) {
                             icon = icon_by_name[object];
                         } else {
                             console.log("missing icon for " + object);
                         }
+                        if (data != "") {
+                            tooltip += data;
+                        }
+                        for (object in hiddenobjects) {
+                            tooltip += null;
+                            icon += null;
+                        }
+                        
                         objecthtml += `<div class="object-entry${object_filter}">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">${object}</div>
