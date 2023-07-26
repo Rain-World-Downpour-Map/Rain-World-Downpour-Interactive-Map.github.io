@@ -113,8 +113,10 @@
 
         .icon-label {
             position: absolute;
+            margin-left: 0px;
+            margin-top: -5px;
             font-weight: 900;
-            font-size: 100%;
+            font-size: 140%;
             color: white;
             -webkit-text-fill-color: white;
             /* Will override color (regardless of order) */
@@ -124,8 +126,8 @@
 
         .icon-tooltip {
             position: absolute;
-            margin-left: -8px;
-            margin-top: -22px;
+            margin-left: -100px;
+            margin-top: -20px;
             font-weight: 900;
             font-size: 150%;
             color: white;
@@ -844,13 +846,13 @@
                                             //attribute += "AlternateForm";
                                         }
                                         if (creature.mean) {
-                                            tooltip += "Mean: " + creature.mean;
+                                            tooltip += "Mean:" + creature.mean;
                                         }
                                         if (creature.number) {
-                                            tooltip += "Number: " + creature.number;
+                                            tooltip += "Number:" + creature.number;
                                         }
                                         if (creature.seed) {
-                                            tooltip += "Seed: " + creature.seed;
+                                            tooltip += "Seed:" + creature.seed;
                                         }
                                     }
                                     if (attribute == "") {
@@ -916,13 +918,13 @@
                                     attribute += "AlternateForm";
                                 }
                                 if (creature.mean) {
-                                    tooltip += "mean: " + creature.mean;
+                                    tooltip += "Mean:" + creature.mean;
                                 }
                                 if (creature.number) {
-                                    tooltip += "number: " + creature.number;
+                                    tooltip += "Number:" + creature.number;
                                 }
                                 if (creature.seed) {
-                                    tooltip += "seed: " + creature.seed;
+                                    tooltip += "Seed:" + creature.seed;
                                 }
                                 if (attribute == "") {
                                     divhtml += `<div class="creature-entry${creature_filter}">
@@ -960,6 +962,7 @@
                 placedObjectsLayer = L.geoJSON(json["placedobject_features"], {
                     pointToLayer: function (feature, latlng) {
                         let objecthtml = "";
+                        let object_filter = " object-filter";
                         var object = feature.properties.object;
                         var data = feature.properties.data;
                         var tooltip = "";
@@ -972,7 +975,7 @@
                         } else {
                             console.log("missing icon for " + object);
                         }
-                        objecthtml += `<div class="object-entry">
+                        objecthtml += `<div class="object-entry${object_filter}">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">sdfsdf${object}</div>
                                 <div class="icon-tooltip">${tooltip}</div>
@@ -998,9 +1001,10 @@
                 batMigrationBlockagesLayer = L.geoJSON(json["batmigrationblockages_features"], {
                     pointToLayer: function (feature, latlng) {
                         let bathtml = "";
+                        let batblockage_filter = " batblockage-filter";
                         var icon = "";
                         icon = "Batfly_icon";
-                        bathtml += `<div class="batblockage-entry">
+                        bathtml += `<div class="batblockage-entry${batblockage_filter}">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">Bat Migration Blockage</div>
                                 <div class="icon-tooltip"></div>
@@ -1027,6 +1031,7 @@
 
                 roomTagsLayer = L.geoJSON(json["roomtag_features"], {
                     pointToLayer: function (feature, latlng) {
+                        let roomtag_filter = " roomtag-filter";
                         let taghtml = "";
                         let roomtag = feature.properties;
                         var icon = "72_unknown";
@@ -1063,7 +1068,7 @@
                         if (roomtag.tag == "ARENA") {
                             tooltip = "Arena";
                         }
-                        taghtml += `<div class="roomtag-entry">
+                        taghtml += `<div class="roomtag-entry${roomtag_filter}">
                                     <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                     <div class="icon-label">fsfsddfs${roomtag}</div>
                                     <div class="icon-tooltip">${tooltip}</div>
