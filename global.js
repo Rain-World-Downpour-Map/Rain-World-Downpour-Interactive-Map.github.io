@@ -1,10 +1,10 @@
 const icon_by_name = {
     //##Placed Objects
     //## MSC placed objects
-    "GreenToken": "GreenToken",
-    "WhiteToken": "WhiteToken",
+    "GreenToken": "Green_Token_icon",
+    "WhiteToken": "White_Token_icon",
     "Germinator": "Germinator",
-    "RedToken": "RedToken",
+    "RedToken": "Red_Token_icon",
     "OEsphere": "OEsphere",
     "MSArteryPush": "MSArteryPush",
     "GooieDuck": "Gooieduck_icon",
@@ -17,7 +17,7 @@ const icon_by_name = {
     "KarmaShrine": "KarmaShrine",
     "Stowaway": "Stowaway_icon",
     "HRGuard": "Guardian_icon",
-    "DevToken": "DevToken",
+    "DevToken": "Dev_Token_icon",
     //## vanilla placed objects
     "LightSource": "LightSource",
     "FlareBomb": "Flashbang_icon",
@@ -76,8 +76,8 @@ const icon_by_name = {
     "PlayerPushback": "PlayerPushback",
     "MultiplayerItem": "MultiplayerItem",
     "SporePlant": "SporePlant",
-    "GoldToken": "GoldToken",
-    "BlueToken": "BlueToken",
+    "GoldToken": "Gold_Token_icon",
+    "BlueToken": "Blue_Token_icon",
     "DeadTokenStalk": "DeadTokenStalk",
     "NeedleEgg": "Noodlefly_Egg_icon",
     "BrokenShelterWaterLevel": "BrokenShelterWaterLevel",
