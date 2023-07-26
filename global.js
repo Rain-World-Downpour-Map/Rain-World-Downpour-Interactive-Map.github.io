@@ -53,7 +53,7 @@ const icon_by_name = {
     "KarmaFlower": "Karma_Flower_icon",
     "Mushroom": "Mushroom_icon",
     "SlimeMold": "Slime_Mold_icon",
-    "FlyLure": "Batnip_Icon",
+    "FlyLure": "Batnip_icon",
     "CosmeticSlimeMold": "null_icon",
     "CosmeticSlimeMold2": "null_icon",
     "FirecrackerPlant": "Cherrybomb_icon",
