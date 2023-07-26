@@ -59,6 +59,38 @@
             margin-right: 16px;
         }
 
+        .creature-label {
+            position: absolute;
+            margin-left: 0px;
+            margin-top: -5px;
+            font-weight: 900;
+            font-size: 140%;
+            color: white;
+            -webkit-text-fill-color: white;
+            /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+        .creature-tooltip {
+            position: absolute;
+            margin-left: -100px;
+            margin-top: -20px;
+            font-weight: 900;
+            font-size: 150%;
+            color: white;
+            -webkit-text-fill-color: white;
+            /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+        .creature-image {
+            position: absolute;
+            margin-left: -25px;
+            margin-top: -25px;
+        }
+
         .lineage-entry {
             height: 24px;
         }
@@ -75,6 +107,38 @@
             margin-right: 16px;
         }
 
+        .object-label {
+            position: absolute;
+            margin-left: 0px;
+            margin-top: -5px;
+            font-weight: 900;
+            font-size: 140%;
+            color: white;
+            -webkit-text-fill-color: white;
+            /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+        .object-tooltip {
+            position: absolute;
+            margin-left: -100px;
+            margin-top: -20px;
+            font-weight: 900;
+            font-size: 150%;
+            color: white;
+            -webkit-text-fill-color: white;
+            /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+        .object-image {
+            position: absolute;
+            margin-left: -25px;
+            margin-top: -25px;
+        }
+
         .roomtag-divs {
             display: flex;
             justify-content: center;
@@ -87,6 +151,38 @@
             margin-right: 16px;
         }
 
+        .roomtag-label {
+            position: absolute;
+            margin-left: 0px;
+            margin-top: -5px;
+            font-weight: 900;
+            font-size: 140%;
+            color: white;
+            -webkit-text-fill-color: white;
+            /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+        .roomtag-tooltip {
+            position: absolute;
+            margin-left: -100px;
+            margin-top: -20px;
+            font-weight: 900;
+            font-size: 150%;
+            color: white;
+            -webkit-text-fill-color: white;
+            /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+        .roomtag-image {
+            position: absolute;
+            margin-left: -25px;
+            margin-top: -25px;
+        }
+
         .batblockage-divs {
             display: flex;
             justify-content: center;
@@ -97,6 +193,38 @@
             /* to be overwritten */
             margin-left: 16px;
             margin-right: 16px;
+        }
+
+        .batblockage-label {
+            position: absolute;
+            margin-left: 0px;
+            margin-top: -5px;
+            font-weight: 900;
+            font-size: 140%;
+            color: white;
+            -webkit-text-fill-color: white;
+            /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+        .batblockage-tooltip {
+            position: absolute;
+            margin-left: -100px;
+            margin-top: -20px;
+            font-weight: 900;
+            font-size: 150%;
+            color: white;
+            -webkit-text-fill-color: white;
+            /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+        .batblockage-image {
+            position: absolute;
+            margin-left: -25px;
+            margin-top: -25px;
         }
 
         .icon-image {
@@ -857,16 +985,16 @@
                                     }
                                     if (attribute == "") {
                                         divhtml += `<div class="lineage-entry">
-                                            <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                            <div class="icon-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
-                                            <div class="icon-tooltip">${tooltip}</div>
+                                            <img class="creature-image" src="./resources/icons/${icon}.png"/>
+                                            <div class="creature-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
+                                            <div class="creature-tooltip">${tooltip}</div>
                                             </div>`;
                                     } else {
                                         divhtml += `<div class="lineage-entry">
-                                            <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                            <div class="icon-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
+                                            <img class="creature-image" src="./resources/icons/${icon}.png"/>
+                                            <div class="creature-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
                                             <img class="icon-attribute" src="./resources/icons/${attribute}_icon.png"/>
-                                            <div class="icon-tooltip">${tooltip}</div>
+                                            <div class="creature-tooltip">${tooltip}</div>
                                             </div>`;
                                     }
                                 }
@@ -928,15 +1056,15 @@
                                 }
                                 if (attribute == "") {
                                     divhtml += `<div class="creature-entry${creature_filter}">
-                                        <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                        <div class="icon-label">x${creature.amount}</div>
-                                        <div class="icon-tooltip">${tooltip}</div>
+                                        <img class="creature-image" src="./resources/icons/${icon}.png"/>
+                                        <div class="creature-label">x${creature.amount}</div>
+                                        <div class="creature-tooltip">${tooltip}</div>
                                         </div>`;
                                 } else {
                                 divhtml += `<div class="creature-entry${creature_filter}">
-                                        <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                        <div class="icon-label">x${creature.amount}</div>
-                                        <img class="icon-attribute" src="./resources/icons/${attribute}_icon.png"/>
+                                        <img class="creature-image" src="./resources/icons/${icon}.png"/>
+                                        <div class="creature-label">x${creature.amount}</div>
+                                        <img class="creature-attribute" src="./resources/icons/${attribute}_icon.png"/>
                                         </div>`;
                                 }
                             }
@@ -970,31 +1098,29 @@
                             "CustomDecal","FairyParticleSettings","LightSource","LightBeam","InsectGroup"
                         ]
                         var icon = "72_unknown";
-                        if (object in icon_by_name) {
-                            icon = icon_by_name[object];
-                        } else {
-                            console.log("missing icon for " + object);
-                        }
-                        if (data != "") {
-                            tooltip += data;
-                        }
-                        for (object in hiddenobjects) {
-                            tooltip += null;
-                            icon += null;
-                        }
                         
-                        objecthtml += `<div class="object-entry${object_filter}">
-                                <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                <div class="icon-label">${object}</div>
-                                <div class="icon-tooltip"></div>
-                                </div>`;
-                        return L.marker(latlng, {
+                        for (!object in hiddenobjects) {
+                            if (object in icon_by_name) {
+                            icon = icon_by_name[object];
+                            } else {
+                                console.log("missing icon for " + object);
+                            }
+                            if (data != "") {
+                                tooltip += data;
+                            }
+                            objecthtml += `<div class="object-entry${object_filter}">
+                                    <img class="object-image" src="./resources/icons/${icon}.png"/>
+                                    <div class="object-label">${object}</div>
+                                    <div class="object-tooltip"></div>
+                                    </div>`;
+                            return L.marker(latlng, {
                             icon: L.divIcon({
                                 className: 'object-divs',
                                 html: objecthtml,
                             }),
                             interactive: false,
                         });
+                        }
                     },
                 });
                 if (hadPlacedObjects) placedObjectsLayer.addTo(map);
@@ -1013,11 +1139,10 @@
                         var icon = "";
                         icon = "Batfly_icon";
                         bathtml += `<div class="batblockage-entry${batblockage_filter}">
-                                <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                <div class="icon-label">Bat Migration Blockage</div>
-                                <div class="icon-tooltip"></div>
+                                <img class="batblockage-image" src="./resources/icons/${icon}.png"/>
+                                <div class="batblockage-label">Bat Migration Blockage</div>
+                                <div class="batblockage-tooltip"></div>
                                 </div>`;
-
                         return L.marker(latlng, {
                             icon: L.divIcon({
                                 className: 'batblockage-divs',
@@ -1067,7 +1192,7 @@
                         }
                         if (roomtag.tag == "PERF_HEAVY") {
                             tooltip = "Performance Heavy";
-                            icon = "PerfHeavy_icon";
+                            icon = "Perf_Heavy_icon";
                         }
                         if (roomtag.tag == "SCAVOUTPOST") {
                             tooltip = "Scavenger Toll";
@@ -1086,11 +1211,10 @@
                             icon = "Arena_icon";
                         }
                         taghtml += `<div class="roomtag-entry${roomtag_filter}">
-                                    <img class="icon-image" src="./resources/icons/${icon}.png"/>
-                                    <div class="icon-label"></div>
-                                    <div class="icon-tooltip">${tooltip}</div>
-                                    </div>`;
-
+                                <img class="roomtag-image" src="./resources/icons/${icon}.png"/>
+                                <div class="roomtag-label"></div>
+                                <div class="roomtag-tooltip">${tooltip}</div>
+                                </div>`;
                         return L.marker(latlng, {
                             icon: L.divIcon({
                                 className: 'roomtag-divs',
