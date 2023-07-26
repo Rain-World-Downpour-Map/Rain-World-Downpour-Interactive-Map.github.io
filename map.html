@@ -807,50 +807,50 @@
                                     }
                                     var tooltip = "";
                                     var attribute = "";
-                                    if (creature[i].attributes != null) {
-                                        if (creature[i].precycle) {
+                                    if (creature.attributes[i] != null) {
+                                        if (creature.precycle) {
                                             attribute += "PreCycle";
                                             //tooltip += "Pre-Cycle";
                                         }
-                                        if (creature[i].ignorecycle) {
+                                        if (creature.ignorecycle) {
                                             attribute += "IgnoreCycle";
                                             //tooltip += "Ignore Cycle";
                                         }
-                                        if (creature[i].night) {
+                                        if (creature.night) {
                                             attribute += "Night";
                                             //tooltip += "Night";
                                         }
-                                        if (creature[i].tentacleimmune) {
+                                        if (creature.tentacleimmune) {
                                             attribute += "TentacleImmune";
                                             //tooltip += "Tentacle Immune";
                                         }
-                                        if (creature[i].lavasafe) {
+                                        if (creature.lavasafe) {
                                             attribute += "LavaSafe";
                                             //tooltip += "Lava Safe";
                                         }
-                                        if (creature[i].voidsea) {
+                                        if (creature.voidsea) {
                                             attribute += "VoidSea";
                                             //tooltip += "Void Sea";
                                         }
-                                        if (creature[i].winter) {
+                                        if (creature.winter) {
                                             attribute += "Winter";
                                             //tooltip += "Winter";
                                         }
-                                        if (creature[i].alternateform) {
-                                            if (creature[i].creature == "Small Centipede" || creature[i].creature == "SmallCentipede" || creature[i].creature == "Centipede Small") {
+                                        if (creature.alternateform) {
+                                            if (creature.creature == "Small Centipede" || creature.creature == "SmallCentipede" || creature.creature == "Centipede Small") {
                                                 icon = "Infant_Centipede_AlternateForm_icon";
                                             }
                                             tooltip += "Alternate Form";
                                             //attribute += "AlternateForm";
                                         }
-                                        if (creature[i].mean) {
-                                            tooltip += "Mean: " + creature[i].mean;
+                                        if (creature.mean) {
+                                            tooltip += "Mean: " + creature.mean;
                                         }
-                                        if (creature[i].number) {
-                                            tooltip += "Number: " + creature[i].number;
+                                        if (creature.number) {
+                                            tooltip += "Number: " + creature.number;
                                         }
-                                        if (creature[i].seed) {
-                                            tooltip += "Seed: " + creature[i].seed;
+                                        if (creature.seed) {
+                                            tooltip += "Seed: " + creature.seed;
                                         }
                                     }
                                     if (attribute == "") {
@@ -867,7 +867,6 @@
                                             <div class="icon-tooltip">${tooltip}</div>
                                             </div>`;
                                     }
-                                    
                                 }
                                 divhtml += '</div>';
                             } else {
