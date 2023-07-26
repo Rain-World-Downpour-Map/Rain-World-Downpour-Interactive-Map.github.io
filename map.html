@@ -1096,29 +1096,32 @@
                         var tooltip = "";
                         let hiddenobjects = ["CustomDecal","FairyParticleSettings","LightSource","LightBeam","InsectGroup"]
                         var icon = "72_unknown";
-                        if (object in hiddenobjects) {
-                            continue;
-                        }
-                        if (object in icon_by_name) {
-                        icon = icon_by_name[object];
-                        } else {
-                            console.log("missing icon for " + object);
-                        }
-                        if (data != "") {
-                            tooltip += data;
-                        }
-                        objecthtml += `<div class="object-entry${object_filter}">
+                        for (object in icon_by_name) {
+                            if (object in hiddenobjects) {
+                                continue;
+                            } else {
+                                if (object in icon_by_name) {
+                                    icon = icon_by_name[object];
+                                } else {
+                                    console.log("missing icon for " + object);
+                                }
+                                if (data != "") {
+                                    tooltip += data;
+                                }
+                                objecthtml += `<div class="object-entry${object_filter}">
                                 <img class="object-image" src="./resources/icons/${icon}.png"/>
                                 <div class="object-label">${object}</div>
                                 <div class="object-tooltip"></div>
                                 </div>`;
-                        return L.marker(latlng, {
-                            icon: L.divIcon({
-                                className: 'object-divs',
-                                html: objecthtml,
-                            }),
-                            interactive: false,
-                        });
+                                return L.marker(latlng, {
+                                    icon: L.divIcon({
+                                        className: 'object-divs',
+                                        html: objecthtml,
+                                    }),
+                                    interactive: false,
+                                });
+                            }
+                        }
                     },
                 });
                 if (hadPlacedObjects) placedObjectsLayer.addTo(map);
