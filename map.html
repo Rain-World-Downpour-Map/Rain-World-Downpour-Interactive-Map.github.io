@@ -936,8 +936,8 @@
                                 divhtml += '<div class="creature-entry ' + creature_filter + '">';
                                 for (let i = 0; i < creature.lineage.length; i++) {
                                     var icon = "72_unknown";
-                                    if (creature.lineage[i] in icon_by_name) {
-                                        icon = icon_by_name[creature.lineage[i]];
+                                    if (creature.lineage[i] in creatures_by_name) {
+                                        icon = creatures_by_name[creature.lineage[i]];
                                     } else {
                                         console.log("missing icon for " + creature.lineage[i]);
                                     }
@@ -1007,8 +1007,8 @@
                                 divhtml += '</div>';
                             } else {
                                 var icon = "72_unknown";
-                                if (creature.creature in icon_by_name) {
-                                    icon = icon_by_name[creature.creature];
+                                if (creature.creature in creatures_by_name) {
+                                    icon = creatures_by_name[creature.creature];
                                 } else {
                                     console.log("missing icon for " + creature.creature);
                                 }
@@ -1102,18 +1102,18 @@
                         var tooltip = "";
                         let hiddenobjects = ["CustomDecal","FairyParticleSettings","LightSource","LightBeam","InsectGroup"]
                         var icon = "72_unknown";
-                        if (object in icon_by_name && !(object in hiddenobjects)) {
-                            icon = icon_by_name[object];
+                        if (object in object_by_name && !(object in hiddenobjects)) {
+                            icon = object_by_name[object];
                         } else {
                             console.log("missing icon for " + object);
                         }
-                        if (data != "") {
-                            tooltip += data;
+                        for (datum in data) {
+                            tooltip += datum;
                         }
                         objecthtml += `<div class="object-entry${object_filter}">
                         <img class="object-image" src="./resources/icons/${icon}.png"/>
                         <div class="object-label"></div>
-                        <div class="object-tooltip"></div>
+                        <div class="object-tooltip">${tooltip}</div>
                         </div>`;
                         return L.marker(latlng, {
                             icon: L.divIcon({
@@ -1169,8 +1169,8 @@
                         let taghtml = "";
                         let roomtag = feature.properties;
                         var icon = "72_unknown";
-                        if (roomtag.tag in icon_by_name) {
-                            icon = icon_by_name[roomtag.tag.toLowerCase()];
+                        if (roomtag.tag in roomtag_by_name) {
+                            icon = roomtag_by_name[roomtag.tag.toLowerCase()];
                         } else {
                             console.log("missing room tag icon for " + roomtag.tag);
                         }
