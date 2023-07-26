@@ -807,49 +807,51 @@
                                     }
                                     var tooltip = "";
                                     var attribute = "";
-                                    if (creature.attributes[i].precycle) {
-                                        attribute += "PreCycle";
-                                        //tooltip += "Pre-Cycle";
-                                    }
-                                    if (creature.attributes[i].ignorecycle) {
-                                        attribute += "IgnoreCycle";
-                                        //tooltip += "Ignore Cycle";
-                                    }
-                                    if (creature.attributes[i].night) {
-                                        attribute += "Night";
-                                        //tooltip += "Night";
-                                    }
-                                    if (creature.attributes[i].tentacleimmune) {
-                                        attribute += "TentacleImmune";
-                                        //tooltip += "Tentacle Immune";
-                                    }
-                                    if (creature.attributes[i].lavasafe) {
-                                        attribute += "LavaSafe";
-                                        //tooltip += "Lava Safe";
-                                    }
-                                    if (creature.attributes[i].voidsea) {
-                                        attribute += "VoidSea";
-                                        //tooltip += "Void Sea";
-                                    }
-                                    if (creature.attributes[i].winter) {
-                                        attribute += "Winter";
-                                        //tooltip += "Winter";
-                                    }
-                                    if (creature.attributes[i].alternateform) {
-                                        if (creature.attributes[i].creature == "Small Centipede" || creature.attributes[i].creature == "SmallCentipede" || creature.attributes[i].creature == "Centipede Small") {
-                                            icon = "Infant_Centipede_AlternateForm_icon";
+                                    if (creature[i].attributes != null) {
+                                        if (creature[i].precycle) {
+                                            attribute += "PreCycle";
+                                            //tooltip += "Pre-Cycle";
                                         }
-                                        tooltip += "Alternate Form";
-                                        //attribute += "AlternateForm";
-                                    }
-                                    if (creature.attributes[i].mean) {
-                                        tooltip += "Mean: " + creature.attributes[i].mean;
-                                    }
-                                    if (creature.attributes[i].number) {
-                                        tooltip += "Number: " + creature.attributes[i].number;
-                                    }
-                                    if (creature.attributes[i].seed) {
-                                        tooltip += "Seed: " + creature.attributes[i].seed;
+                                        if (creature[i].ignorecycle) {
+                                            attribute += "IgnoreCycle";
+                                            //tooltip += "Ignore Cycle";
+                                        }
+                                        if (creature[i].night) {
+                                            attribute += "Night";
+                                            //tooltip += "Night";
+                                        }
+                                        if (creature[i].tentacleimmune) {
+                                            attribute += "TentacleImmune";
+                                            //tooltip += "Tentacle Immune";
+                                        }
+                                        if (creature[i].lavasafe) {
+                                            attribute += "LavaSafe";
+                                            //tooltip += "Lava Safe";
+                                        }
+                                        if (creature[i].voidsea) {
+                                            attribute += "VoidSea";
+                                            //tooltip += "Void Sea";
+                                        }
+                                        if (creature[i].winter) {
+                                            attribute += "Winter";
+                                            //tooltip += "Winter";
+                                        }
+                                        if (creature[i].alternateform) {
+                                            if (creature[i].creature == "Small Centipede" || creature[i].creature == "SmallCentipede" || creature[i].creature == "Centipede Small") {
+                                                icon = "Infant_Centipede_AlternateForm_icon";
+                                            }
+                                            tooltip += "Alternate Form";
+                                            //attribute += "AlternateForm";
+                                        }
+                                        if (creature[i].mean) {
+                                            tooltip += "Mean: " + creature[i].mean;
+                                        }
+                                        if (creature[i].number) {
+                                            tooltip += "Number: " + creature[i].number;
+                                        }
+                                        if (creature[i].seed) {
+                                            tooltip += "Seed: " + creature[i].seed;
+                                        }
                                     }
                                     if (attribute == "") {
                                         divhtml += `<div class="lineage-entry">
@@ -958,6 +960,7 @@
                 }
                 placedObjectsLayer = L.geoJSON(json["placedobject_features"], {
                     pointToLayer: function (feature, latlng) {
+                        let objecthtml = "";
                         var object = feature.properties.object;
                         var data = feature.properties.data;
                         var tooltip = "";
@@ -970,7 +973,7 @@
                         } else {
                             console.log("missing icon for " + object);
                         }
-                        let divhtml = `<div class="object-entry">
+                        objecthtml += `<div class="object-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">sdfsdf${object}</div>
                                 <div class="icon-tooltip">${tooltip}</div>
@@ -978,7 +981,7 @@
                         return L.marker(latlng, {
                             icon: L.divIcon({
                                 className: 'object-divs',
-                                html: divhtml,
+                                html: objecthtml,
                             }),
                             interactive: false,
                         });
@@ -995,9 +998,10 @@
                 }
                 batMigrationBlockagesLayer = L.geoJSON(json["batmigrationblockages_features"], {
                     pointToLayer: function (feature, latlng) {
+                        let bathtml = "";
                         var icon = "";
                         icon = "Batfly_icon";
-                        let divhtml = `<div class="batblockage-entry">
+                        bathtml += `<div class="batblockage-entry">
                                 <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                 <div class="icon-label">Bat Migration Blockage</div>
                                 <div class="icon-tooltip"></div>
@@ -1006,7 +1010,7 @@
                         return L.marker(latlng, {
                             icon: L.divIcon({
                                 className: 'batblockage-divs',
-                                html: divhtml,
+                                html: bathtml,
                             }),
                             interactive: false,
                         });
@@ -1024,6 +1028,7 @@
 
                 roomTagsLayer = L.geoJSON(json["roomtag_features"], {
                     pointToLayer: function (feature, latlng) {
+                        let taghtml = "";
                         let roomtag = feature.properties;
                         var icon = "72_unknown";
                         if (roomtag.tag in icon_by_name) {
@@ -1059,7 +1064,7 @@
                         if (roomtag.tag == "ARENA") {
                             tooltip = "Arena";
                         }
-                        let divhtml = `<div class="roomtag-entry">
+                        taghtml += `<div class="roomtag-entry">
                                     <img class="icon-image" src="./resources/icons/${icon}.png"/>
                                     <div class="icon-label">fsfsddfs${roomtag}</div>
                                     <div class="icon-tooltip">${tooltip}</div>
@@ -1068,7 +1073,7 @@
                         return L.marker(latlng, {
                             icon: L.divIcon({
                                 className: 'roomtag-divs',
-                                html: divhtml,
+                                html: taghtml,
                             }),
                             interactive: false,
                         });
