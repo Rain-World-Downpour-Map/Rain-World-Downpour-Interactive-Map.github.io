@@ -1107,11 +1107,17 @@
                         } else {
                             console.log("missing icon for " + object);
                         }
+
+                        if (object in hiddenobjects) {
+
+                        }
+                        else {
                         objecthtml += `<div class="object-entry${object_filter}">
                         <img class="object-image" src="./resources/icons/${icon}.png"/>
                         <div class="object-label"></div>
                         <div class="object-tooltip">${tooltip}</div>
                         </div>`;
+                        }
                         return L.marker(latlng, {
                             icon: L.divIcon({
                                 className: 'object-divs',
