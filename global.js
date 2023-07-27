@@ -152,7 +152,7 @@ const icon_by_name = {
     //##Placed Objects
     //## MSC placed objects
     "GreenToken": "Green_Token_icon",
-    "WhiteToken": "White_Token_icon",
+    "WhiteToken": "Broadcast_pre-pebbles_icon",
     "Germinator": "Germinator_icon",
     "RedToken": "Red_Token_icon",
     "OEsphere": "OE_sphere_icon",
@@ -167,7 +167,7 @@ const icon_by_name = {
     "KarmaShrine": "Karma_Shrine_icon",
     "Stowaway": "Stowaway_icon",
     "HRGuard": "HR_Guard_icon",
-    "DevToken": "MiniSatellite_icon",
+    "DevToken": "Dev_Token_icon",
     //## vanilla placed objects
     "LightSource": "null_icon",
     "FlareBomb": "Flashbang_icon",
@@ -221,7 +221,7 @@ const icon_by_name = {
     "TradeOutpost": "Trade_Outpost_icon",
     "ScavengerTreasury": "Scavenger_Treasury_icon",
     "ScavTradeInstruction": "Scav_Trade_Instruction_icon",
-    "CustomDecal": "Custom_Decal_icon",
+    "CustomDecal": "null_icon",
     "InsectGroup": "bee",
     "PlayerPushback": "Player_Pushback_icon",
     "MultiplayerItem": "Multiplayer_Item_icon",
@@ -232,7 +232,7 @@ const icon_by_name = {
     "NeedleEgg": "Noodlefly_Egg_icon",
     "BrokenShelterWaterLevel": "Broken_Shelter_Water_Level_icon",
     "BubbleGrass": "Bubble_Weed_icon",
-    "Filter": "filter",
+    "Filter": "null_icon",
     "ReliableIggyDirection": "Reliable_Iggy_Direction_icon",
     "Hazer": "Hazer_icon",
     "DeadHazer": "Hazer_icon",
