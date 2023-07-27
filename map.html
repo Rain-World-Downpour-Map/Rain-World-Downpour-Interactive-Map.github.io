@@ -1107,7 +1107,7 @@
                         } else {
                             console.log("missing icon for " + object);
                         }
-                        for (datum in data) {
+                        for (let datum of data) {
                             tooltip += datum;
                         }
                         objecthtml += `<div class="object-entry${object_filter}">
