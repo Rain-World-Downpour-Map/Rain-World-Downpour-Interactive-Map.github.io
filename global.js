@@ -87,12 +87,7 @@ const icon_by_name = {
     "su": "Pearl_su_icon",
     "uw": "Pearl_uw_icon",
     "vs": "Pearl_vs_icon",
-}
-
-const creatures_by_name = {
-    "NONE": "63_none",
-    "None": "63_none",
-    //## Creatures
+     //## Creatures
     "Green": "Green_Lizard_icon",
     "Pink": "Pink_Lizard_icon",
     "Blue": "Blue_Lizard_icon",
@@ -204,22 +199,6 @@ const creatures_by_name = {
     "lavasafe": "LavaSafe_icon",
     "voidsea": "VoidSea_icon",
     "winter": "Winter_icon",
-}
-
-const roomtag_by_name = {
-    //## Room Tags
-    "SHELTER": "Shelter_icon",
-    "ANCIENTSHELTER": "AncientShelter_icon",
-    "GATE": "Gate_icon",
-    "SWARMROOM": "SwarmRoom_icon",
-    "PERF_HEAVY": "Perf_Heavy_icon",
-    "SCAVOUTPOST": "ScavOutpost_icon",
-    "SCAVTRADER": "ScavTrader_icon",
-    "NOTRACKERS": "NoTrackers_icon",
-    "ARENA": "Arena_icon",
-}
-
-const object_by_name = {
     //##Placed Objects
     //## MSC placed objects
     "GreenToken": "Green_Token_icon",
@@ -328,6 +307,16 @@ const object_by_name = {
     "ExitSymbolAncientShelter": "ShortcutAShelter",
     "BlinkingFlower": "Blinking_Flower_icon",
     //##End PlacedObjects
+    //## Room Tags
+    "SHELTER": "Shelter_icon",
+    "ANCIENTSHELTER": "AncientShelter_icon",
+    "GATE": "Gate_icon",
+    "SWARMROOM": "SwarmRoom_icon",
+    "PERF_HEAVY": "Perf_Heavy_icon",
+    "SCAVOUTPOST": "ScavOutpost_icon",
+    "SCAVTRADER": "ScavTrader_icon",
+    "NOTRACKERS": "NoTrackers_icon",
+    "ARENA": "Arena_icon",
 }
 
 var requestLock = {};
