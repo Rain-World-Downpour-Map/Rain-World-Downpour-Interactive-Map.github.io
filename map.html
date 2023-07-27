@@ -1107,9 +1107,6 @@
                         } else {
                             console.log("missing icon for " + object);
                         }
-                        for (let datum in feature.properties.data) {
-                            tooltip += datum;
-                        }
                         objecthtml += `<div class="object-entry${object_filter}">
                         <img class="object-image" src="./resources/icons/${icon}.png"/>
                         <div class="object-label"></div>
