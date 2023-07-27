@@ -1109,7 +1109,11 @@
                         }
 
                         if (object in hiddenobjects) {
-
+                            objecthtml += `<div class="">
+                        <img class="object-image" src="./resources/icons/${icon}.png"/>
+                        <div class="object-label"></div>
+                        <div class="object-tooltip">${tooltip}</div>
+                        </div>`;
                         }
                         else {
                         objecthtml += `<div class="object-entry${object_filter}">
