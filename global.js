@@ -90,6 +90,8 @@ const icon_by_name = {
 }
 
 const creatures_by_name = {
+    "NONE": "63_none",
+    "None": "63_none",
     //## Creatures
     "Green": "Green_Lizard_icon",
     "Pink": "Pink_Lizard_icon",
