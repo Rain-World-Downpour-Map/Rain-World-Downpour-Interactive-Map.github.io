@@ -508,7 +508,11 @@
             if (difficulty != n) {
                 difficulty = n;
                 region = loadedRegion;
-                room = focusedroom;
+                if (room != null) {
+                    room = focusedroom;
+                } else {
+                    room = null;
+                }
                 pushState();
             }
         }
