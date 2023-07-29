@@ -952,7 +952,10 @@
                         let shortcuthtml = "";
                         let shortcut_filter = " shortcut-filter";
                         var icon = "";
-                        icon = "AlternateForm_icon";
+                        if (features.properties.terrain == ShortcutEntrance) {
+                            icon = "shortcutdots"
+                        }
+                        
                         shortcuthtml += `<div class="shortcut-entry${shortcut_filter}">
                                 <img class="shortcut-image" src="./resources/icons/${icon}.png"/>
                                 <div class="shortcut-label"></div>
