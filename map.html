@@ -233,6 +233,50 @@
             margin-top: -25px;
         }
 
+        .shortcut-divs {
+            display: flex;
+            justify-content: center;
+        }
+
+        .shortcut-entry {
+            display: none;
+            /* to be overwritten */
+            margin-left: 16px;
+            margin-right: 16px;
+        }
+
+        .shortcut-label {
+            position: absolute;
+            margin-left: 0px;
+            margin-top: -5px;
+            font-weight: 900;
+            font-size: 140%;
+            color: white;
+            -webkit-text-fill-color: white;
+            /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+        .shortcut-tooltip {
+            position: absolute;
+            margin-left: -100px;
+            margin-top: -20px;
+            font-weight: 900;
+            font-size: 150%;
+            color: white;
+            -webkit-text-fill-color: white;
+            /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+        .object-image {
+            position: absolute;
+            margin-left: -25px;
+            margin-top: -25px;
+        }
+
         .icon-image {
             position: absolute;
             margin-left: -25px;
@@ -394,6 +438,12 @@
 
     <style id="batblockagefilters">
         .batblockage-filter {
+            display: initial
+        }
+    </style>
+
+    <style id="shortcutfilters">
+        .shortcut-filter {
             display: initial
         }
     </style>
@@ -897,12 +947,25 @@
                     overlays.removeLayer(shortcutsLayer);
                     map.removeLayer(shortcutsLayer);
                 }
-                shortcutsLayer = new L.BezierGeoJSON(roomjson["shortcut_features"], {
-                    color: 'rgba(' + json["shortcutcolor"].join(',') + ',0.72)', // so the white looks better
-                    weight: 2,
-                    lineCap: "butt", // hehe
-                    dashArray: "5 8",
-                    interactive: false,
+                shortcutsLayer = L.geoJSON(json["shortcut_features"], {
+                    pointToLayer: function (feature, latlng) {
+                        let shortcuthtml = "";
+                        let shortcut_filter = " shortcut-filter";
+                        var icon = "";
+                        icon = "AlternateForm_icon";
+                        bathtml += `<div class="shortcut-entry${shortcut_filter}">
+                                <img class="shortcut-image" src="./resources/icons/${icon}.png"/>
+                                <div class="shortcut-label">label</div>
+                                <div class="shortcut-tooltip">tooltip</div>
+                                </div>`;
+                        return L.marker(latlng, {
+                            icon: L.divIcon({
+                                className: 'shortcut-divs',
+                                html: shortcuthtml,
+                            }),
+                            interactive: false,
+                        });
+                    },
                 });
                 if (hadShortcuts) shortcutsLayer.addTo(map);
                 overlays.addOverlay(shortcutsLayer, "Shortcuts");

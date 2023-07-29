@@ -197,7 +197,7 @@ const icon_by_name = {
     "DataPearl": "Pearl_misc_icon",
     "UniqueDataPearl": "Pearl_misc_icon",
     "SeedCob": "Colored_Popcorn_Plant_icon",
-    "DeadSeedCob": "Colored_Dead_Popcorn_Plant_icon",
+    "DeadSeedCob": "null_icon",
     "WaterNut": "Bubble_Fruit_icon",
     "JellyFish": "Jellyfish_icon",
     "KarmaFlower": "Karma_Flower_icon",
