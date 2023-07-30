@@ -952,39 +952,39 @@
                         let shortcuthtml = "";
                         let shortcut_filter = " shortcut-filter";
                         var icon = "null_icon";
-                        let shortcut = feature.properties.shortcut;
-                        if (feature.properties.garbagehole) {
-                            icon = "Garbage_Worm_icon"
+                        var shortcut = feature.properties.shortcut;
+                        if (feature.properties.garbagehole != null && feature.properties.garbagehole == true) {
+                            icon = "Garbage_Worm_icon";
                         }
-                        if (feature.properties.wormgrass) {
-                            icon = "Worm_Grass_icon"
+                        if (feature.properties.wormgrass != null && feature.properties.wormgrass == true) {
+                            icon = "Worm_Grass_icon";
                         }
-                        if (feature.properties.waterfall) {
-                            icon = "Waterfall_icon"
+                        if (feature.properties.waterfall != null && feature.properties.waterfall == true) {
+                            icon = "Waterfall_icon";
                         }
-                        if (feature.properties.hivetile) {
-                            icon = "Batfly_Hive_icon"
+                        if (feature.properties.hivetile != null && feature.properties.hivetile == true) {
+                            icon = "Batfly_Hive_icon";
                         }
-                        //if (shortcut) {
+                        if (shortcut != null) {
                             if (shortcut == "DeadEnd") {
-                                icon = "Shortcut_Dead_End_icon"
+                                icon = "Shortcut_Dead_End_icon";
                             }
                             if (shortcut == "Normal") {
-                                icon = "Shortcut_Normal_icon"
+                                icon = "Shortcut_Normal_icon";
                             }
                             if (shortcut == "RoomExit") {
-                                icon = "Shortcut_Room_Exit_icon"
+                                icon = "Shortcut_Room_Exit_icon";
                             }
                             if (shortcut == "CreatureHole") {
-                                icon = "Shortcut_Creature_Hole_icon"
+                                icon = "Shortcut_Creature_Hole_icon";
                             }
                             if (shortcut == "NPCTransportation") {
-                                icon = "Shortcut_NPC_Transportation_icon"
+                                icon = "Shortcut_NPC_Transportation_icon";
                             }
                             if (shortcut == "RegionTransportation") {
-                                icon = "Shortcut_Region_Transportation_icon"
+                                icon = "Shortcut_Region_Transportation_icon";
                             }
-                        //}
+                        }
                         shortcuthtml += `<div class="shortcut-entry${shortcut_filter}">
                                 <img class="shortcut-image" src="./resources/icons/${icon}.png"/>
                                 <div class="shortcut-label"></div>

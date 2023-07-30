@@ -25,6 +25,17 @@ const icon_by_name = {
     "batfly": "Batfly_icon",
     "vulturegrub": "Vulture_Grub_icon",
     "BigJelly": "Giant_Jellyfish_icon",
+    //## Shortcuts
+    "DeadEnd": "Shortcut_Dead_End_icon",
+    "Normal": "Shortcut_Normal_icon",
+    "RoomExit": "Shortcut_Room_Exit_icon",
+    "CreatureHole": "Shortcut_Creature_Hole_icon",
+    "NPCTransportation": "Shortcut_NPC_Transportation_icon",
+    "RegionTransportation": "Shortcut_Region_Transportation_icon",
+    "garbagehole": "Garbage_Worm_icon",
+    "wormgrass": "Worm_Grass_icon",
+    "waterfall": "Waterfall_icon",
+    "hivetile": "Batfly_Hive_icon",
     //## Slugcats
     "SlugNPC": "Slugpup_icon",
     "slugcat": "Slugcat_icon",
