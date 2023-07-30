@@ -965,26 +965,26 @@
                         if (feature.properties.hivetile) {
                             icon = "Batfly_Hive_icon"
                         }
-                        if (shortcut) {
-                            if (shortcut == DeadEnd) {
+                        //if (shortcut) {
+                            if (shortcut == "DeadEnd") {
                                 icon = "Shortcut_Dead_End_icon"
                             }
-                            if (shortcut == Normal) {
+                            if (shortcut == "Normal") {
                                 icon = "Shortcut_Normal_icon"
                             }
-                            if (shortcut == RoomExit) {
+                            if (shortcut == "RoomExit") {
                                 icon = "Shortcut_Room_Exit_icon"
                             }
-                            if (shortcut == CreatureHole) {
+                            if (shortcut == "CreatureHole") {
                                 icon = "Shortcut_Creature_Hole_icon"
                             }
-                            if (shortcut == NPCTransportation) {
+                            if (shortcut == "NPCTransportation") {
                                 icon = "Shortcut_NPC_Transportation_icon"
                             }
-                            if (shortcut == RegionTransportation) {
+                            if (shortcut == "RegionTransportation") {
                                 icon = "Shortcut_Region_Transportation_icon"
                             }
-                        }
+                        //}
                         shortcuthtml += `<div class="shortcut-entry${shortcut_filter}">
                                 <img class="shortcut-image" src="./resources/icons/${icon}.png"/>
                                 <div class="shortcut-label"></div>
@@ -1195,7 +1195,7 @@
                 placedObjectsLayer = L.geoJSON(json["placedobject_features"], {
                     pointToLayer: function (feature, latlng) {
                         let objecthtml = "";
-                        let object_filter = " object-filter";
+                        var object_filter = " object-filter";
                         var object = feature.properties.object;
                         var data = feature.properties.data;
                         var tooltip = "";
@@ -1208,6 +1208,7 @@
                         }
 
                         if (object in hiddenobjects) {
+                            var object_filter = "";
                             objecthtml += `<div>
                                     </div>`;
                         }
