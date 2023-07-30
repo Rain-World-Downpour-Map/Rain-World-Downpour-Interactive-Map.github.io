@@ -950,22 +950,32 @@
                 shortcutsLayer = L.geoJSON(json["shortcut_features"], {
                     pointToLayer: function (feature, latlng) {
                         let shortcuthtml = "";
-                        let shortcut_filter = " shortcut-filter";
-                        var icon = "null_icon";
+                        var shortcut_filter = "";
                         var shortcut = feature.properties.shortcut;
+                        var icon = "72_unknown";
+                        if (shortcut in icon_by_name) {
+                            icon = icon_by_name[shortcut];
+                        } else {
+                            console.log("missing icon for " + shortcut);
+                        }
                         if (feature.properties.garbagehole != null && feature.properties.garbagehole == true) {
                             icon = "Garbage_Worm_icon";
+                            var shortcut_filter = " shortcut-filter";
                         }
                         if (feature.properties.wormgrass != null && feature.properties.wormgrass == true) {
                             icon = "Worm_Grass_icon";
+                            var shortcut_filter = " shortcut-filter";
                         }
                         if (feature.properties.waterfall != null && feature.properties.waterfall == true) {
                             icon = "Waterfall_icon";
+                            var shortcut_filter = " shortcut-filter";
                         }
                         if (feature.properties.hivetile != null && feature.properties.hivetile == true) {
                             icon = "Batfly_Hive_icon";
+                            var shortcut_filter = " shortcut-filter";
                         }
                         if (shortcut != null) {
+                            var shortcut_filter = " shortcut-filter";
                             if (shortcut == "DeadEnd") {
                                 icon = "Shortcut_Dead_End_icon";
                             }
