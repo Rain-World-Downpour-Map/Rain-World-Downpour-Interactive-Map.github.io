@@ -951,11 +951,40 @@
                     pointToLayer: function (feature, latlng) {
                         let shortcuthtml = "";
                         let shortcut_filter = " shortcut-filter";
-                        var icon = "";
-                        //for (let data of feature.properties) {
-                        icon = "shortcutdots"
-                        //}
-                        
+                        var icon = "null_icon";
+                        let shortcut = feature.properties.shortcut;
+                        if (feature.properties.garbagehole) {
+                            icon = "Garbage_Worm_icon"
+                        }
+                        if (feature.properties.wormgrass) {
+                            icon = "Worm_Grass_icon"
+                        }
+                        if (feature.properties.waterfall) {
+                            icon = "Waterfall_icon"
+                        }
+                        if (feature.properties.hivetile) {
+                            icon = "Batfly_Hive_icon"
+                        }
+                        if (shortcut) {
+                            if (shortcut == DeadEnd) {
+                                icon = "Shortcut_Dead_End_icon"
+                            }
+                            if (shortcut == Normal) {
+                                icon = "Shortcut_Normal_icon"
+                            }
+                            if (shortcut == RoomExit) {
+                                icon = "Shortcut_Room_Exit_icon"
+                            }
+                            if (shortcut == CreatureHole) {
+                                icon = "Shortcut_Creature_Hole_icon"
+                            }
+                            if (shortcut == NPCTransportation) {
+                                icon = "Shortcut_NPC_Transportation_icon"
+                            }
+                            if (shortcut == RegionTransportation) {
+                                icon = "Shortcut_Region_Transportation_icon"
+                            }
+                        }
                         shortcuthtml += `<div class="shortcut-entry${shortcut_filter}">
                                 <img class="shortcut-image" src="./resources/icons/${icon}.png"/>
                                 <div class="shortcut-label"></div>
