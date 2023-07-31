@@ -959,7 +959,7 @@
                         let shortcut_filter = " shortcut-filter";
                         let roomtile = feature.properties.roomtile
                         let shortcut = roomtile.shortcut;
-                        var icon = "Shortcut_Dot_icon";
+                        var icon = "";
                         var tooltip = "";
                         if (shortcut in icon_by_name) {
                             icon = icon_by_name[shortcut];
@@ -968,19 +968,15 @@
                         }
                         if (roomtile.garbagehole != null && roomtile.garbagehole) {
                             icon = "Garbage_Worm_icon";
-                            tooltip = "Garbage Worm";
                         }
                         if (roomtile.wormgrass != null && roomtile.wormgrass) {
                             icon = "Worm_Grass_icon";
-                            tooltip = "WormGrass";
                         }
                         if (roomtile.waterfall != null && roomtile.waterfall) {
                             icon = "Waterfall_icon";
-                            tooltip = "Waterfall";
                         }
                         if (roomtile.hivetile != null && roomtile.hivetile) {
                             icon = "Batfly_Hive_icon";
-                            tooltip = "Batfly Hive";
                         }
                         if (shortcut != null) {
                             if (shortcut == "DeadEnd") {
