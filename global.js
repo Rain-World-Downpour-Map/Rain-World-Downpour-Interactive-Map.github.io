@@ -237,7 +237,7 @@ const icon_by_name = {
     "PlayerPushback": "Player_Pushback_icon",
     "MultiplayerItem": "Multiplayer_Item_icon",
     "SporePlant": "Beehive_icon",
-    "GoldToken": "Gold_Token",
+    "GoldToken": "Golden_Token",
     "BlueToken": "Blue_Token",
     "DeadTokenStalk": "null_icon",
     "NeedleEgg": "Noodlefly_Egg_icon",
