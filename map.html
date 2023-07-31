@@ -950,9 +950,9 @@
                 shortcutsLayer = L.geoJSON(json["shortcut_features"], {
                     pointToLayer: function (feature, latlng) {
                         let shortcuthtml = "";
-                        var shortcut_filter = "";
+                        let shortcut_filter = " shortcut-filter";
                         var shortcut = feature.properties.shortcut;
-                        var icon = "72_unknown";
+                        var icon = "Shortcut_Dot_icon";
                         if (shortcut in icon_by_name) {
                             icon = icon_by_name[shortcut];
                         } else {
@@ -960,22 +960,17 @@
                         }
                         if (feature.properties.garbagehole != null && feature.properties.garbagehole == true) {
                             icon = "Garbage_Worm_icon";
-                            var shortcut_filter = " shortcut-filter";
                         }
                         if (feature.properties.wormgrass != null && feature.properties.wormgrass == true) {
                             icon = "Worm_Grass_icon";
-                            var shortcut_filter = " shortcut-filter";
                         }
                         if (feature.properties.waterfall != null && feature.properties.waterfall == true) {
                             icon = "Waterfall_icon";
-                            var shortcut_filter = " shortcut-filter";
                         }
                         if (feature.properties.hivetile != null && feature.properties.hivetile == true) {
                             icon = "Batfly_Hive_icon";
-                            var shortcut_filter = " shortcut-filter";
                         }
                         if (shortcut != null) {
-                            var shortcut_filter = " shortcut-filter";
                             if (shortcut == "DeadEnd") {
                                 icon = "Shortcut_Dead_End_icon";
                             }
