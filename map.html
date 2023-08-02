@@ -1217,7 +1217,9 @@
                         var object = feature.properties.object;
                         var data = feature.properties.data;
                         var tooltip = "";
-                        let hiddenobjects = ["CustomDecal","FairyParticleSettings","LightSource","LightBeam","InsectGroup"]
+                        let hiddenobjects = ["MSArteryPush","SuperStructureFuses","WallMycelia","LightSource","LightFixture","SpotLight",
+                        "CorruptionDarkness","SSLightRod","DeadSeedCob","CosmeticSlimeMold","CosmeticSlimeMold2","CustomDecal","InsectGroup",
+                        "DeadTokenStalk","LightBeam","Filter","FairyParticleSettings","DayNightSettings","SteamPipe","WallSteamer",]
                         var icon = "72_unknown";
                         if (object in icon_by_name && !(object in hiddenobjects)) {
                             icon = icon_by_name[object];
