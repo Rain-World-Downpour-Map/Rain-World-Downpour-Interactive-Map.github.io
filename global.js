@@ -162,10 +162,10 @@ const icon_by_name = {
     "winter": "Winter_icon",
     //##Placed Objects
     //## MSC placed objects
-    "GreenToken": "Green_Token",
+    "GreenToken": "Green_Token_icon",
     "WhiteToken": "Broadcast_pre-pebbles_icon",
     "Germinator": "Germinator_icon",
-    "RedToken": "Red_Token",
+    "RedToken": "Red_Token_icon",
     "OEsphere": "OE_sphere_icon",
     "GooieDuck": "Gooieduck_icon",
     "LillyPuck": "Lilypuck_icon",
@@ -177,7 +177,7 @@ const icon_by_name = {
     "KarmaShrine": "Karma_Shrine_icon",
     "Stowaway": "Stowaway_icon",
     "HRGuard": "HR_Guard_icon",
-    "DevToken": "Dev_Token",
+    "DevToken": "Dev_Token_icon",
     //## vanilla placed objects
     "FlareBomb": "Flashbang_icon",
     "PuffBall": "Spore_Puff_icon",
@@ -224,8 +224,8 @@ const icon_by_name = {
     "PlayerPushback": "Player_Pushback_icon",
     "MultiplayerItem": "Multiplayer_Item_icon",
     "SporePlant": "Beehive_icon",
-    "GoldToken": "Golden_Token",
-    "BlueToken": "Blue_Token",
+    "GoldToken": "Gold_Token_icon",
+    "BlueToken": "Blue_Token_icon",
     "NeedleEgg": "Noodlefly_Egg_icon",
     "BrokenShelterWaterLevel": "PreCycle_icon",
     "BubbleGrass": "Bubble_Weed_icon",

@@ -561,9 +561,52 @@
                     document.difficulty.difficulties[i].checked = true;
                 }
             }
+
             if (difficulty != n) {
                 difficulty = n;
                 region = loadedRegion;
+                if (pregion == "oe" && (pdifficulty != "white" || pdifficulty != "yellow" || pdifficulty != "gourmand")) {
+                    region = "sb";
+                }
+                if (pregion == "lc" && pdifficulty != "artificer") {
+                    region = "uw";
+                }
+                if (pregion == "ms" && (pdifficulty != "white" || pdifficulty != "yellow" || pdifficulty != "red" || pdifficulty != "gourmand" || pdifficulty != "rivulet" || pdifficulty != "saint")) {
+                    region == "sl";
+                }
+                if (pregion == "lm" && (pdifficulty != "artificer" || pdifficulty != "spear")) {
+                    region = "sl";
+                }
+                if (pregion == "sl" && (pdifficulty == "artificer" || pdifficulty == "spear")) {
+                    region = "lm";
+                }
+                if (pregion == "rm" && pdifficulty != "rivulet") {
+                    region = "ss";
+                }
+                if (pregion == "ss" && pdifficulty == "rivulet") {
+                    region = "rm";
+                }
+                if (pregion == "dm" && pdifficulty != "spear") {
+                    region = "ms";
+                }
+                if (pregion == "ms" && pdifficulty == "spear") {
+                    region = "dm";
+                }
+                if (pregion == "ug" && pdifficulty != "saint") {
+                    region = "ds";
+                }
+                if (pregion == "ds" && pdifficulty == "saint") {
+                    region = "ug";
+                }
+                if (pregion == "cl" && pdifficulty != "saint") {
+                    region = "sh";
+                }
+                if ((pregion == "sh" || pregion == "uw" || pregion == "ss") && pdifficulty == "saint") {
+                    region = "cl";
+                }
+                if (pregion == "hr" && pdifficulty != "saint") {
+                    region = "sb";
+                }
                 if (room != null) {
                     room = focusedroom;
                 } else {
