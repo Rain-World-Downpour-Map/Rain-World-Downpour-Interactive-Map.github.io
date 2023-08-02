@@ -1217,22 +1217,18 @@
                         var object = feature.properties.object;
                         var data = feature.properties.data;
                         var tooltip = "";
-                        let hiddenobjects = ["MSArteryPush","SuperStructureFuses","WallMycelia","LightSource","LightFixture","SpotLight",
-                        "CorruptionDarkness","SSLightRod","DeadSeedCob","CosmeticSlimeMold","CosmeticSlimeMold2","CustomDecal","InsectGroup",
-                        "DeadTokenStalk","LightBeam","Filter","FairyParticleSettings","DayNightSettings","SteamPipe","WallSteamer",]
                         var icon = "72_unknown";
                         if (object in icon_by_name && !(object in hiddenobjects)) {
                             icon = icon_by_name[object];
                         } else {
                             console.log("missing icon for " + object);
                         }
-
-                        if (object in hiddenobjects) {
+                        if (object in hidden_placed_objects) {
+                            icon = "null_icon";
                             var object_filter = "";
                             objecthtml += `<div>
                                     </div>`;
-                        }
-                        else {
+                        } else {
                         objecthtml += `<div class="object-entry${object_filter}">
                                     <img class="object-image" src="./resources/icons/${icon}.png"/>
                                     <div class="object-label"></div>
