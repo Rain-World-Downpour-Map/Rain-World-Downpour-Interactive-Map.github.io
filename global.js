@@ -283,7 +283,7 @@ const hidden_placed_objects = {
     "SteamPipe": "Steam_Pipe_icon",
     "WallSteamer": "Wall_Steamer_icon",
 }
-const collectable_by_name = {   
+const collectables_by_name = {   
     //## Broadcasts
     "cc": "Broadcast_cc_icon",
     "dm": "Broadcast_dm_icon",
@@ -296,6 +296,40 @@ const collectable_by_name = {
     "sb": "Broadcast_sb_icon",
     "sh": "Broadcast_sh_icon",
     "si": "Broadcast_si_icon",
+    "cc": "Broadcast_cc_icon",
+    "dm": "Broadcast_dm_icon",
+    "ds": "Broadcast_ds_icon",
+    "gw": "Broadcast_gw_icon",
+    "hi": "Broadcast_hi_icon",
+    "lm": "Broadcast_lm_icon",
+    "Chatlog_CC0": "Broadcast_cc_icon",
+    "Chatlog_Broadcast7": "Broadcast_pre-pebbles_icon",
+    "Chatlog_DS0": "Broadcast_ds_icon",
+    "Chatlog_GW0": "Pearl_gw_icon",
+    "Chatlog_HI0": "Broadcast_hi_icon",
+    "Chatlog_Broadcast5": "Broadcast_pre-pebbles_icon",
+    "Chatlog_Broadcast6": "Broadcast_pre-pebbles_icon",
+    "Chatlog_Broadcast4": "Broadcast_pre-pebbles_icon",
+    "Chatlog_SB0": "Broadcast_sb_icon",
+    "Chatlog_Broadcast3": "Broadcast_pre-pebbles_icon",
+    "Chatlog_SH0": "Broadcast_sh_icon",
+    "Chatlog_SI2": "Broadcast_si_icon",
+    "Chatlog_SI5": "Broadcast_si_icon",
+    "Chatlog_SI3": "Broadcast_si_icon",
+    "Chatlog_SI4": "Broadcast_si_icon",
+    "Chatlog_Broadcast1": "Broadcast_pre-pebbles_icon",
+    "Chatlog_Broadcast2": "Broadcast_pre-pebbles_icon",
+    "Chatlog_Broadcast0": "Broadcast_pre-pebbles_icon",
+    "Chatlog_GW2": "Broadcast_gw_icon",
+    "Chatlog_GW0": "Broadcast_gw_icon",
+    "Chatlog_GW1": "Broadcast_gw_icon",
+    "Chatlog_DM1": "Broadcast_dm_icon",
+    "Chatlog_DM0": "Broadcast_dm_icon",
+    "Chatlog_LM0": "Broadcast_lm_icon",
+    "Chatlog_Broadcast1": "Broadcast_pre-pebbles_icon",
+    "Chatlog_LM1": "Broadcast_lm_icon",
+    "Chatlog_Broadcast9": "Broadcast_pre-pebbles_icon",
+    "Chatlog_Broadcast8": "Broadcast_pre-pebbles_icon",
     //## Pearls
     "broadcastmisc": "Pearl_broadcastmisc_icon",
     "cc": "Pearl_cc_icon",
@@ -335,8 +369,6 @@ const collectable_by_name = {
     "uw": "Pearl_uw_icon",
     "vs": "Pearl_vs_icon",
 }
-
-
 
 var requestLock = {};
 var lastRequest = null;

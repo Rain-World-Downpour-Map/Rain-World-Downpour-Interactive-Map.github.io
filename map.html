@@ -1266,6 +1266,12 @@
                         } else {
                             console.log("missing icon for " + object);
                         }
+                        if (object == "UniqueDataPearl") {
+                            icon = icon_by_name[data.pearlType.toLowerCase()];
+                        }
+                        if (object == "WhiteToken") {
+                            icon = icon_by_name[data.tokenString.toLowerCase()];
+                        }
                         if (object in hidden_placed_objects) {
                             icon = "null_icon";
                             var object_filter = "";
