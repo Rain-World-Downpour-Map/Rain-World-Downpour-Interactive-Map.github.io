@@ -565,46 +565,46 @@
             if (difficulty != n) {
                 difficulty = n;
                 region = loadedRegion;
-                if (pregion == "oe" && (pdifficulty != "white" || pdifficulty != "yellow" || pdifficulty != "gourmand")) {
+                if (loadedRegion == "oe" && (n != "white" || n != "yellow" || n != "gourmand")) {
                     region = "sb";
                 }
-                if (pregion == "lc" && pdifficulty != "artificer") {
+                if (loadedRegion == "lc" && n != "artificer") {
                     region = "uw";
                 }
-                if (pregion == "ms" && (pdifficulty != "white" || pdifficulty != "yellow" || pdifficulty != "red" || pdifficulty != "gourmand" || pdifficulty != "rivulet" || pdifficulty != "saint")) {
+                if (loadedRegion == "ms" && (n != "white" || n != "yellow" || n != "red" || n != "gourmand" || n != "rivulet" || n != "saint")) {
                     region == "sl";
                 }
-                if (pregion == "lm" && (pdifficulty != "artificer" || pdifficulty != "spear")) {
+                if (loadedRegion == "lm" && (n != "artificer" || n != "spear")) {
                     region = "sl";
                 }
-                if (pregion == "sl" && (pdifficulty == "artificer" || pdifficulty == "spear")) {
+                if (loadedRegion == "sl" && (n == "artificer" || n == "spear")) {
                     region = "lm";
                 }
-                if (pregion == "rm" && pdifficulty != "rivulet") {
+                if (loadedRegion == "rm" && n != "rivulet") {
                     region = "ss";
                 }
-                if (pregion == "ss" && pdifficulty == "rivulet") {
+                if (loadedRegion == "ss" && n == "rivulet") {
                     region = "rm";
                 }
-                if (pregion == "dm" && pdifficulty != "spear") {
+                if (loadedRegion == "dm" && n != "spear") {
                     region = "ms";
                 }
-                if (pregion == "ms" && pdifficulty == "spear") {
+                if (loadedRegion == "ms" && n == "spear") {
                     region = "dm";
                 }
-                if (pregion == "ug" && pdifficulty != "saint") {
+                if (loadedRegion == "ug" && n != "saint") {
                     region = "ds";
                 }
-                if (pregion == "ds" && pdifficulty == "saint") {
+                if (loadedRegion == "ds" && n == "saint") {
                     region = "ug";
                 }
-                if (pregion == "cl" && pdifficulty != "saint") {
+                if (loadedRegion == "cl" && n != "saint") {
                     region = "sh";
                 }
-                if ((pregion == "sh" || pregion == "uw" || pregion == "ss") && pdifficulty == "saint") {
+                if ((loadedRegion == "sh" || loadedRegion == "uw" || loadedRegion == "ss") && n == "saint") {
                     region = "cl";
                 }
-                if (pregion == "hr" && pdifficulty != "saint") {
+                if (loadedRegion == "hr" && n != "saint") {
                     region = "sb";
                 }
                 if (room != null) {
