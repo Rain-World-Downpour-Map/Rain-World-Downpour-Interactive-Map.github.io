@@ -1218,7 +1218,7 @@
                         var data = feature.properties.data;
                         var tooltip = "";
                         var icon = "72_unknown";
-                        if (object in icon_by_name && !(object in hiddenobjects)) {
+                        if (object in icon_by_name && !(object in hidden_placed_objects)) {
                             icon = icon_by_name[object];
                         } else {
                             console.log("missing icon for " + object);
