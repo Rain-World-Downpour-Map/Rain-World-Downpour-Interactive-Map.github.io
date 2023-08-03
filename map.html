@@ -1228,9 +1228,15 @@
                             icon = icon_by_name[data.pearlType.toLowerCase()];
                             tooltip = data.pearlType;
                         }
-                        if (object == "BlueToken" || object == "GoldToken" || object == "RedToken" || object == "WhiteToken" || object == "DevToken" || object == "GreenToken") {
+                        if (object == "WhiteToken") {
+                            icon = icon_by_name[data.tokenString.toLowerCase()];
+                            tooltip = data.tokenString;
+                        }
+                        if (object == "BlueToken" || object == "GoldToken" || object == "RedToken" || object == "DevToken" || object == "GreenToken") {
                             if (data.tokenString != null) {
-                                icon = icon_by_name[data.tokenString.toLowerCase()];
+                                if (data.tokenString in icon_by_name) {
+                                    attribute = icon_by_name[data.tokenString]
+                                }
                                 tooltip = data.tokenString;
                             }
                         }
@@ -1243,6 +1249,7 @@
                         objecthtml += `<div class="object-entry${object_filter}">
                                     <img class="object-image" src="./resources/icons/${icon}.png"/>
                                     <div class="object-label"></div>
+                                    <img class="icon-attribute" src="./resources/icons/${attribute}_icon.png"/>
                                     <div class="object-tooltip">${tooltip}</div>
                                     </div>`;
                         }
