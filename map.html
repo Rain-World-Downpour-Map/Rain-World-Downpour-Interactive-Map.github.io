@@ -8,7 +8,7 @@
 
     <meta property="og:image" content="https://rain-world-downpour-map.github.io/embed.jpg" />
     <meta property="og:type" content="object" />
-    <meta property="og:title" content="Rain World Map" />
+    <meta property="og:title" content="Rain World Downpour Map" />
     <meta property="og:url" content="https://rain-world-downpour-map.github.io" />
     <meta property="og:description"
           content="An online interactive map that includes every region and slugcat in Rain World: Downpour. - github.com/rain-world-downpour-map" />
@@ -795,7 +795,7 @@
 
         // New additions
         var placedObjectsLayer;
-        var tileNodeLayer;
+        var tileNodesLayer;
         var roomTagsLayer;
         var batMigrationBlockagesLayer;
         // Region stuff
@@ -1177,12 +1177,12 @@
                 overlays.addOverlay(placedObjectsLayer, "Placed Objects");
                 
                 // Tile Nodes
-                let hadTileNodes = map.hasLayer(tileNodeLayer) || loadedRegion == null;
-                if (tileNodeLayer != null) {
-                    overlays.removeLayer(tileNodeLayer);
-                    map.removeLayer(tileNodeLayer);
+                let hadTileNodes = map.hasLayer(tileNodesLayer) || loadedRegion == null;
+                if (tileNodesLayer != null) {
+                    overlays.removeLayer(tileNodesLayer);
+                    map.removeLayer(tileNodesLayer);
                 }
-                tileNodeLayer = L.geoJSON(json["tilenode_features"], {
+                tileNodesLayer = L.geoJSON(json["tilenode_features"], {
                     pointToLayer: function (feature, latlng) {
                         let tilenodehtml = "";
                         let tilenode_filter = " tilenode-filter";
@@ -1246,7 +1246,8 @@
                         });
                     },
                 });
-                overlays.addOverlay(tileNodeLayer, "Tile Nodes");
+                if (hadTileNodes) tileNodesLayer.addTo(map);
+                overlays.addOverlay(tileNodesLayer, "Tile Nodes");
 
                 // Room Tags
                 let hadRoomTags = map.hasLayer(roomTagsLayer) || loadedRegion == null;
