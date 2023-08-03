@@ -1182,7 +1182,7 @@
                     overlays.removeLayer(tileNodesLayer);
                     map.removeLayer(tileNodesLayer);
                 }
-                shortcutsLayer = L.geoJSON(json["shortcut_features"], {
+                tileNodesLayer = L.geoJSON(json["shortcut_features"], {
                     pointToLayer: function (feature, latlng) {
                         let tileNodeshtml = "";
                         let tileNodes_filter = " tileNodes-filter";
