@@ -233,19 +233,19 @@
             margin-top: -25px;
         }
 
-        .tileNodes-divs {
+        .tilenode-divs {
             display: flex;
             justify-content: center;
         }
 
-        .tileNodes-entry {
+        .tilenode-entry {
             display: none;
             /* to be overwritten */
             margin-left: 16px;
             margin-right: 16px;
         }
 
-        .tileNodes-label {
+        .tilenode-label {
             position: absolute;
             margin-left: 0px;
             margin-top: -5px;
@@ -258,7 +258,7 @@
             -webkit-text-stroke-color: black;
         }
 
-        .tileNodes-tooltip {
+        .tilenode-tooltip {
             position: absolute;
             margin-left: -100px;
             margin-top: -20px;
@@ -271,7 +271,7 @@
             -webkit-text-stroke-color: black;
         }
 
-        .tileNodes-image {
+        .tilenode-image {
             position: absolute;
             margin-left: -25px;
             margin-top: -25px;
@@ -448,8 +448,8 @@
         }
     </style>
 
-    <style id="tileNodesfilters">
-        .shortcut-filter {
+    <style id="tilenodefilters">
+        .tilenode-filter {
             display: initial
         }
     </style>
@@ -795,7 +795,7 @@
 
         // New additions
         var placedObjectsLayer;
-        var tileNodesLayer;
+        var tilenodeLayer;
         var roomTagsLayer;
         var batMigrationBlockagesLayer;
         // Region stuff
@@ -1177,15 +1177,15 @@
                 overlays.addOverlay(placedObjectsLayer, "Placed Objects");
                 
                 // Tile Nodes
-                let hadTileNodes = map.hasLayer(tileNodesLayer) || loadedRegion == null;
-                if (tileNodesLayer != null) {
-                    overlays.removeLayer(tileNodesLayer);
-                    map.removeLayer(tileNodesLayer);
+                let hadTileNodes = map.hasLayer(tilenodeLayer) || loadedRegion == null;
+                if (tilenodeLayer != null) {
+                    overlays.removeLayer(tilenodeLayer);
+                    map.removeLayer(tilenodeLayer);
                 }
-                tileNodesLayer = L.geoJSON(json["shortcut_features"], {
+                tilenodeLayer = L.geoJSON(json["tilenode_features"], {
                     pointToLayer: function (feature, latlng) {
-                        let tileNodeshtml = "";
-                        let tileNodes_filter = " tileNodes-filter";
+                        let tilenodehtml = "";
+                        let tilenode_filter = " tilenode-filter";
                         let roomtile = feature.properties.roomtile
                         let shortcut = roomtile.shortcut;
                         var icon = "";
@@ -1232,21 +1232,21 @@
                                 tooltip = " Region Transport";
                             }
                         }
-                        tileNodeshtml += `<div class="tileNodes-entry${tileNodes_filter}">
-                                <img class="tileNodes-image" src="./resources/icons/${icon}.png"/>
-                                <div class="tileNodes-label"></div>
-                                <div class="tileNodes-tooltip">${tooltip}</div>
+                        tilenodehtml += `<div class="tilenode-entry${tilenode_filter}">
+                                <img class="tilenode-image" src="./resources/icons/${icon}.png"/>
+                                <div class="tilenode-label"></div>
+                                <div class="tilenode-tooltip">${tooltip}</div>
                                 </div>`;
                         return L.marker(latlng, {
                             icon: L.divIcon({
-                                className: 'shortcut-divs',
-                                html: tileNodeshtml,
+                                className: 'tilenode-divs',
+                                html: tilenodehtml,
                             }),
                             interactive: false,
                         });
                     },
                 });
-                overlays.addOverlay(tileNodesLayer, "Tile Nodes");
+                overlays.addOverlay(tilenodeLayer, "Tile Nodes");
 
                 // Room Tags
                 let hadRoomTags = map.hasLayer(roomTagsLayer) || loadedRegion == null;
