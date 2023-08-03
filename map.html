@@ -477,14 +477,6 @@
         <div>Slugcat</div>
         <form name="difficulty" class="difficulty-select" id="scug-selector">
         </form>
-
-        <div>Settings</div>
-        <form name="configuration" id="settings-select" class="scroll-ish"></form>
-        <input type="checkbox" id="selection-ckb" name="persistentselection" class="rw-ui rw-ui-ckb" autocomplete="off" onclick="selectDifficulty(difficulty, this.checked);" />
-        <label for="selection-ckb" class="rw-text">Persistent Selection (non-functional)</label>
-        <input type="checkbox" id="outlines-ckb" name="brightoutlines" class="rw-ui rw-ui-ckb" autocomplete="off" onclick="" />
-        <label for="outlines-ckb" class="rw-text">Bright Outlines (non-functional)</label>
-
         <div>Layers</div>
         <div id="layer-content" class="scroll-ish"></div>
     </div>
@@ -600,6 +592,10 @@
                     this._container.className = this.options.containerClass;
                     this._section.className = this.options.sectionClass;
                     if (this.options.hideBaseLayers) {
+                        if (shortcutsLayer != null) map.removeLayer(shortcutsLayer);
+                        if (roomTagsLayer != null) map.removeLayer(roomTagsLayer);
+                        if (batMigrationBlockagesLayer != null) map.removeLayer(batMigrationBlockagesLayer);
+                        if (placedObjectsLayer != null) map.removeLayer(placedObjectsLayer);
                         this._baseLayersList.style.display = "none";
                         this._layersLink.style.display = "none";
                     }
@@ -829,11 +825,7 @@
         var connectionsLayer;
         var geometryLayer;
         var densLayer;
-        var _baseLayersList = {
-        "tile nodes": shortcutsLayer,
-        "room tags": roomTagsLayer,
-        "bat blockages": batMigrationBlockagesLayer,
-        "placed objects": placedObjectsLayer,
+        var baseLayersList = {
         "tiles": tileLayer,
         "rooms": roomsLayer,
         "room names": roomNames,
