@@ -855,62 +855,6 @@
             }
             region = pregion; // chaos
             modded = pmodded;
-            if (pregion == "oe" && (pdifficulty != "white" || pdifficulty != "yellow" || pdifficulty != "gourmand")) {
-                region = "sb";
-                pushState();
-            }
-            if (pregion == "lc" && pdifficulty != "artificer") {
-                region = "uw";
-                pushState();
-            }
-            if (pregion == "ms" && (pdifficulty != "white" || pdifficulty != "yellow" || pdifficulty != "red" || pdifficulty != "gourmand" || pdifficulty != "rivulet" || pdifficulty != "saint")) {
-                region == "sl";
-                pushState();
-            }
-            if (pregion == "lm" && (pdifficulty != "artificer" || pdifficulty != "spear")) {
-                region = "sl";
-                pushState();
-            }
-            if (pregion == "sl" && (pdifficulty == "artificer" || pdifficulty == "spear")) {
-                region = "lm";
-                pushState();
-            }
-            if (pregion == "rm" && pdifficulty != "rivulet") {
-                region = "ss";
-                pushState();
-            }
-            if (pregion == "ss" && pdifficulty == "rivulet") {
-                region = "rm";
-                pushState();
-            }
-            if (pregion == "dm" && pdifficulty != "spear") {
-                region = "ms";
-                pushState();
-            }
-            if (pregion == "ms" && pdifficulty == "spear") {
-                region = "dm";
-                pushState();
-            }
-            if (pregion == "ug" && pdifficulty != "saint") {
-                region = "ds";
-                pushState();
-            }
-            if (pregion == "ds" && pdifficulty == "saint") {
-                region = "ug";
-                pushState();
-            }
-            if (pregion == "cl" && pdifficulty != "saint") {
-                region = "sh";
-                pushState();
-            }
-            if ((pregion == "sh" || pregion == "uw" || pregion == "ss") && pdifficulty == "saint") {
-                region = "cl";
-                pushState();
-            }
-            if (pregion == "hr" && pdifficulty != "saint") {
-                region = "sb";
-                pushState();
-            }
 
             console.log("Loading: region {" + region + "} on slugcat {" + pdifficulty + "}, modded {" + modded + "}");
             var slugcat_url = {
@@ -1286,9 +1230,9 @@
                         if (object == "UniqueDataPearl") {
                             icon = collectables_by_name[data.pearlType.toLowerCase()];
                         }
-                        if (object == "WhiteToken") {
-                            icon = collectables_by_name[data.tokenString.toLowerCase()];
-                        }
+                        //if (object == "WhiteToken") {
+                       //     icon = collectables_by_name[data.tokenString.toLowerCase()];
+                       // }
                         if (object in hidden_placed_objects) {
                             icon = "null_icon";
                             var object_filter = "";
