@@ -1246,14 +1246,21 @@
                             var object_filter = "";
                             objecthtml += `<div>
                                     </div>`;
-                        } else {
-                        objecthtml += `<div class="object-entry${object_filter}">
+                        } else if (attribute != "") {
+                            objecthtml += `<div class="object-entry${object_filter}">
                                     <img class="object-image" src="./resources/icons/${icon}.png"/>
                                     <div class="object-label"></div>
                                     <img class="icon-attribute" src="./resources/icons/${attribute}_icon.png"/>
                                     <div class="object-tooltip">${tooltip}</div>
                                     </div>`;
+                        } else {
+                            objecthtml += `<div class="object-entry${object_filter}">
+                                    <img class="object-image" src="./resources/icons/${icon}.png"/>
+                                    <div class="object-label"></div>
+                                    <div class="object-tooltip">${tooltip}</div>
+                                    </div>`;
                         }
+                        
                         return L.marker(latlng, {
                             icon: L.divIcon({
                                 className: 'object-divs',
