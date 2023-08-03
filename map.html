@@ -565,48 +565,6 @@
             if (difficulty != n) {
                 difficulty = n;
                 region = loadedRegion;
-                if (loadedRegion == "oe" && (n != "white" || n != "yellow" || n != "gourmand")) {
-                    region = "sb";
-                }
-                if (loadedRegion == "lc" && n != "artificer") {
-                    region = "uw";
-                }
-                if (loadedRegion == "ms" && (n != "white" || n != "yellow" || n != "red" || n != "gourmand" || n != "rivulet" || n != "saint")) {
-                    region == "sl";
-                }
-                if (loadedRegion == "lm" && (n != "artificer" || n != "spear")) {
-                    region = "sl";
-                }
-                if (loadedRegion == "sl" && (n == "artificer" || n == "spear")) {
-                    region = "lm";
-                }
-                if (loadedRegion == "rm" && n != "rivulet") {
-                    region = "ss";
-                }
-                if (loadedRegion == "ss" && n == "rivulet") {
-                    region = "rm";
-                }
-                if (loadedRegion == "dm" && n != "spear") {
-                    region = "ms";
-                }
-                if (loadedRegion == "ms" && n == "spear") {
-                    region = "dm";
-                }
-                if (loadedRegion == "ug" && n != "saint") {
-                    region = "ds";
-                }
-                if (loadedRegion == "ds" && n == "saint") {
-                    region = "ug";
-                }
-                if (loadedRegion == "cl" && n != "saint") {
-                    region = "sh";
-                }
-                if ((loadedRegion == "sh" || loadedRegion == "uw" || loadedRegion == "ss") && n == "saint") {
-                    region = "cl";
-                }
-                if (loadedRegion == "hr" && n != "saint") {
-                    region = "sb";
-                }
                 if (room != null) {
                     room = focusedroom;
                 } else {
@@ -897,6 +855,48 @@
             }
             region = pregion; // chaos
             modded = pmodded;
+            if (pregion == "oe" && (pdifficulty != "white" || pdifficulty != "yellow" || pdifficulty != "gourmand")) {
+                region = "sb";
+            }
+            if (pregion == "lc" && pdifficulty != "artificer") {
+                region = "uw";
+            }
+            if (pregion == "ms" && (pdifficulty != "white" || pdifficulty != "yellow" || pdifficulty != "red" || pdifficulty != "gourmand" || pdifficulty != "rivulet" || pdifficulty != "saint")) {
+                region == "sl";
+            }
+            if (pregion == "lm" && (pdifficulty != "artificer" || pdifficulty != "spear")) {
+                region = "sl";
+            }
+            if (pregion == "sl" && (pdifficulty == "artificer" || pdifficulty == "spear")) {
+                region = "lm";
+            }
+            if (pregion == "rm" && pdifficulty != "rivulet") {
+                region = "ss";
+            }
+            if (pregion == "ss" && pdifficulty == "rivulet") {
+                region = "rm";
+            }
+            if (pregion == "dm" && pdifficulty != "spear") {
+                region = "ms";
+            }
+            if (pregion == "ms" && pdifficulty == "spear") {
+                region = "dm";
+            }
+            if (pregion == "ug" && pdifficulty != "saint") {
+                region = "ds";
+            }
+            if (pregion == "ds" && pdifficulty == "saint") {
+                region = "ug";
+            }
+            if (pregion == "cl" && pdifficulty != "saint") {
+                region = "sh";
+            }
+            if ((pregion == "sh" || pregion == "uw" || pregion == "ss") && pdifficulty == "saint") {
+                region = "cl";
+            }
+            if (pregion == "hr" && pdifficulty != "saint") {
+                region = "sb";
+            }
 
             console.log("Loading: region {" + region + "} on slugcat {" + pdifficulty + "}, modded {" + modded + "}");
             var slugcat_url = {
@@ -1266,11 +1266,14 @@
                         } else {
                             console.log("missing icon for " + object);
                         }
+                        if (object in collectables_by_name) {
+                            icon = collectables_by_name[object];
+                        }
                         if (object == "UniqueDataPearl") {
-                            icon = icon_by_name[data.pearlType.toLowerCase()];
+                            icon = collectables_by_name[data.pearlType.toLowerCase()];
                         }
                         if (object == "WhiteToken") {
-                            icon = icon_by_name[data.tokenString.toLowerCase()];
+                            icon = collectables_by_name[data.tokenString.toLowerCase()];
                         }
                         if (object in hidden_placed_objects) {
                             icon = "null_icon";
