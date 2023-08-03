@@ -829,6 +829,18 @@
         var connectionsLayer;
         var geometryLayer;
         var densLayer;
+        var _baseLayersList = {
+        "tile nodes": shortcutsLayer,
+        "room tags": roomTagsLayer,
+        "bat blockages": batMigrationBlockagesLayer,
+        "placed objects": placedObjectsLayer,
+        "tiles": tileLayer,
+        "rooms": roomsLayer,
+        "room names": roomNames,
+        "connections": connectionsLayer,
+        "geometry": geometryLayer,
+        "creatures": densLayer,
+        };
         var loadedDifficulty = null;
         var loadedRegion = null;
         var loadedModded = {};
