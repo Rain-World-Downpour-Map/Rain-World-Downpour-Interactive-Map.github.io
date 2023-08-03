@@ -1224,15 +1224,16 @@
                         } else {
                             console.log("missing icon for " + object);
                         }
-                        if (object in collectables_by_name) {
-                            icon = collectables_by_name[object];
-                        }
                         if (object == "UniqueDataPearl") {
-                            icon = collectables_by_name[data.pearlType.toLowerCase()];
+                            icon = icon_by_name[data.pearlType.toLowerCase()];
+                            tooltip = data.pearlType;
                         }
-                        //if (object == "WhiteToken") {
-                       //     icon = collectables_by_name[data.tokenString.toLowerCase()];
-                       // }
+                        if (object == "BlueToken" || object == "GoldToken" || object == "RedToken" || object == "WhiteToken" || object == "DevToken" || object == "GreenToken") {
+                            if (data.tokenString != null) {
+                                icon = icon_by_name[data.tokenString.toLowerCase()];
+                                tooltip = data.tokenString;
+                            }
+                        }
                         if (object in hidden_placed_objects) {
                             icon = "null_icon";
                             var object_filter = "";

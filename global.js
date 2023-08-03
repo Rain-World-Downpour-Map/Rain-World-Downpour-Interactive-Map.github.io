@@ -258,32 +258,6 @@ const icon_by_name = {
     "SCAVTRADER": "ScavTrader_icon",
     "NOTRACKERS": "NoTrackers_icon",
     "ARENA": "Arena_icon",
-}
-const hidden_placed_objects = {
-    //## MSC
-    "MSArteryPush": "MS_Artery_Push_icon",
-    //## Vanilla
-    "SuperStructureFuses": "Super_Structure_Fuses_icon",
-    "WallMycelia": "Wall_Mycelia_icon",
-    "LightSource": "Light_Source_icon",
-    "LightFixture": "Light_Fixture_icon",
-    "SpotLight": "Spot_Light_icon",
-    "CorruptionDarkness": "Corruption_Darkness_icon",
-    "SSLightRod": "SS_Light_Rod_icon",
-    "DeadSeedCob": "Dead_Seed_Cob_icon",
-    "CosmeticSlimeMold": "Cosmetic_Slime_Mold_icon",
-    "CosmeticSlimeMold2": "Cosmetic_Slime_Mold_2_icon",
-    "CustomDecal": "Custom_Decal_icon",
-    "InsectGroup": "Insect_Group_icon",
-    "DeadTokenStalk": "Dead_Token_Stalk_icon",
-    "LightBeam": "Light_Beam_icon",
-    "Filter": "Filter_icon",
-    "FairyParticleSettings": "Fairy_Particle_Settings_icon",
-    "DayNightSettings": "Day_Night_Settings_icon",
-    "SteamPipe": "Steam_Pipe_icon",
-    "WallSteamer": "Wall_Steamer_icon",
-}
-const collectables_by_name = {   
     //## Broadcasts
     "cc": "Broadcast_cc_icon",
     "dm": "Broadcast_dm_icon",
@@ -369,6 +343,31 @@ const collectables_by_name = {
     "uw": "Pearl_uw_icon",
     "vs": "Pearl_vs_icon",
 }
+const hidden_placed_objects = {
+    //## MSC
+    "MSArteryPush": "MS_Artery_Push_icon",
+    //## Vanilla
+    "SuperStructureFuses": "Super_Structure_Fuses_icon",
+    "WallMycelia": "Wall_Mycelia_icon",
+    "LightSource": "Light_Source_icon",
+    "LightFixture": "Light_Fixture_icon",
+    "SpotLight": "Spot_Light_icon",
+    "CorruptionDarkness": "Corruption_Darkness_icon",
+    "SSLightRod": "SS_Light_Rod_icon",
+    "DeadSeedCob": "Dead_Seed_Cob_icon",
+    "CosmeticSlimeMold": "Cosmetic_Slime_Mold_icon",
+    "CosmeticSlimeMold2": "Cosmetic_Slime_Mold_2_icon",
+    "CustomDecal": "Custom_Decal_icon",
+    "InsectGroup": "Insect_Group_icon",
+    "DeadTokenStalk": "Dead_Token_Stalk_icon",
+    "LightBeam": "Light_Beam_icon",
+    "Filter": "Filter_icon",
+    "FairyParticleSettings": "Fairy_Particle_Settings_icon",
+    "DayNightSettings": "Day_Night_Settings_icon",
+    "SteamPipe": "Steam_Pipe_icon",
+    "WallSteamer": "Wall_Steamer_icon",
+}
+
 
 var requestLock = {};
 var lastRequest = null;
