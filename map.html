@@ -592,10 +592,6 @@
                     this._container.className = this.options.containerClass;
                     this._section.className = this.options.sectionClass;
                     if (this.options.hideBaseLayers) {
-                        if (shortcutsLayer != null) map.removeLayer(shortcutsLayer);
-                        if (roomTagsLayer != null) map.removeLayer(roomTagsLayer);
-                        if (batMigrationBlockagesLayer != null) map.removeLayer(batMigrationBlockagesLayer);
-                        if (placedObjectsLayer != null) map.removeLayer(placedObjectsLayer);
                         this._baseLayersList.style.display = "none";
                         this._layersLink.style.display = "none";
                     }
