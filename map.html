@@ -1228,7 +1228,7 @@
                             icon = icon_by_name[data.pearlType.toLowerCase()];
                             tooltip = data.pearlType;
                         }
-                        if (object == "WhiteToken") {
+                        if (object == "WhiteToken" && data.tokenString != null) {
                             icon = icon_by_name[data.tokenString.toLowerCase()];
                             tooltip = data.tokenString;
                         }
