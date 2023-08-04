@@ -1189,7 +1189,6 @@
                         let roomtile = feature.properties.roomtile
                         let shortcut = roomtile.shortcut;
                         var icon = "";
-                        var tooltip = "";
                         if (shortcut in icon_by_name) {
                             icon = icon_by_name[shortcut];
                         } else {
@@ -1210,32 +1209,25 @@
                         if (shortcut != null) {
                             if (shortcut == "DeadEnd") {
                                 icon = "Shortcut_Dead_End_icon";
-                                tooltip = "DeadEnd";
                             }
                             if (shortcut == "Normal") {
-                                icon = "Shortcut_Normal_icon";
                             }
                             if (shortcut == "RoomExit") {
                                 icon = "Shortcut_Room_Exit_icon";
-                                tooltip = "Room Exit";
                             }
                             if (shortcut == "CreatureHole") {
                                 icon = "Shortcut_Creature_Hole_icon";
-                                tooltip = "Creature Hole";
                             }
                             if (shortcut == "NPCTransportation") {
                                 icon = "Shortcut_NPC_Transportation_icon";
-                                tooltip = "NPC Transport";
                             }
                             if (shortcut == "RegionTransportation") {
                                 icon = "Shortcut_Region_Transportation_icon";
-                                tooltip = " Region Transport";
                             }
                         }
                         tilenodehtml += `<div class="tilenode-entry${tilenode_filter}">
                                 <img class="tilenode-image" src="./resources/icons/${icon}.png"/>
                                 <div class="tilenode-label"></div>
-                                <div class="tilenode-tooltip">${tooltip}</div>
                                 </div>`;
                         return L.marker(latlng, {
                             icon: L.divIcon({
