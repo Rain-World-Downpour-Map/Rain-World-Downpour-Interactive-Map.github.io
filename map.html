@@ -1135,13 +1135,13 @@
                                 tooltip = data.pearlType;
                             }
                         } else {
-                            console.log("missing icon for " + object);
+                            console.log("missing pearl icon for " + object);
                         }
                         if (object == "WhiteToken" && data.tokenString != null) {
                             icon = broadcast_icons[data.tokenString];
                             tooltip = data.tokenString;
                         } else {
-                            console.log("missing pearl icon for " + object);
+                            console.log("missing broadcast icon for " + object);
                         }
                         if (object == "BlueToken" || object == "GoldToken" || object == "RedToken" || object == "DevToken" || object == "GreenToken") {
                             if (data.tokenString != null) {
@@ -1151,7 +1151,7 @@
                                 tooltip = data.tokenString;
                             } 
                         } else {
-                            console.log("missing icon for " + object);
+                            console.log("missing token icon for " + object);
                         }
                         if (object in hidden_placed_objects) {
                             icon = "null_icon";
