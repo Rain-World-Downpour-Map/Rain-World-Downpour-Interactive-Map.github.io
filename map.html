@@ -1131,14 +1131,14 @@
                         }
                         if (object == "UniqueDataPearl" || object == "DataPearl") {
                             if (data.pearlType != null) {
-                                icon = icon_by_name[data.pearlType];
+                                icon = pearl_icons[data.pearlType];
                                 tooltip = data.pearlType;
                             }
                         } else {
                             console.log("missing icon for " + object);
                         }
                         if (object == "WhiteToken" && data.tokenString != null) {
-                            icon = pearl_icons[data.tokenString];
+                            icon = broadcast_icons[data.tokenString];
                             tooltip = data.tokenString;
                         } else {
                             console.log("missing pearl icon for " + object);
