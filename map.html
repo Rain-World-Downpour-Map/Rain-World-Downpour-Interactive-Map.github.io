@@ -501,10 +501,8 @@
             }
             html += `
 <label class="difficulty-btn">
-        <div>
-            <input type="radio" class="rw-ui" name="difficulties" onclick="selectDifficulty('${slugcatName}');" value="${slugcatName}" autocomplete="off">
-            <img src="./resources/icons/${icon}.png">
-        </div>
+        <input type="radio" class="rw-ui" name="difficulties" onclick="selectDifficulty('${slugcatName}');" value="${slugcatName}" autocomplete="off">
+        <img src="./resources/icons/${icon}.png">
 </label>`;
             document.getElementById('scug-selector').innerHTML = html;
         }
@@ -521,10 +519,8 @@
                 html += `
 <label>
     <div class="region-btn">
-        <div>
-            <input type="radio" class="rw-ui" name="regions" onclick="selectRegion(this.value);" value="${r}"${r == region ? ' checked="checked"' : ''} autocomplete = "off">
-            <span>${regions[r].toUpperCase()} (${r})</span>
-        </div>
+        <input type="radio" class="rw-ui" name="regions" onclick="selectRegion(this.value);" value="${r}"${r == region ? ' checked="checked"' : ''} autocomplete = "off">
+        <span>${regions[r].toUpperCase()} (${r})</span>
     </div>
 </label>`
             }
