@@ -1126,23 +1126,32 @@
                         var icon = "72_unknown";
                         if (object in icon_by_name && !(object in hidden_placed_objects)) {
                             icon = icon_by_name[object];
-                        } else if (object == "UniqueDataPearl" || object == "DataPearl") {
+                        } else {
+                            console.log("missing icon for " + object);
+                        }
+                        if (object == "UniqueDataPearl" || object == "DataPearl") {
                             if (data.pearlType != null) {
-                                icon = pearl_icons[data.pearlType];
+                                icon = icon_by_name[data.pearlType];
                                 tooltip = data.pearlType;
                             }
-                        } else if (object == "WhiteToken" && data.tokenString != null) {
-                            icon = broadcast_icons[data.tokenString];
+                        } else {
+                            console.log("missing icon for " + object);
+                        }
+                        if (object == "WhiteToken" && data.tokenString != null) {
+                            icon = pearl_icons[data.tokenString];
                             tooltip = data.tokenString;
-                        } else if (object == "BlueToken" || object == "GoldToken" || object == "RedToken" || object == "DevToken" || object == "GreenToken") {
+                        } else {
+                            console.log("missing pearl icon for " + object);
+                        }
+                        if (object == "BlueToken" || object == "GoldToken" || object == "RedToken" || object == "DevToken" || object == "GreenToken") {
                             if (data.tokenString != null) {
                                 if (data.tokenString in icon_by_name) {
                                     attribute = icon_by_name[data.tokenString]
                                 }
                                 tooltip = data.tokenString;
-                            } else {
-                                console.log("missing icon for " + object);
-                            }
+                            } 
+                        } else {
+                            console.log("missing icon for " + object);
                         }
                         if (object in hidden_placed_objects) {
                             icon = "null_icon";
