@@ -1131,22 +1131,30 @@
                         }
                         if (object == "UniqueDataPearl" || object == "DataPearl") {
                             if (data.pearlType != null) {
-                                icon = pearl_icons[data.pearlType];
-                                tooltip = data.pearlType;
-                            }
-                        } else {
-                            console.log("missing pearl icon for " + object);
-                        }
-                        if (object == "WhiteToken" && data.tokenString != null) {
-                            icon = broadcast_icons[data.tokenString];
-                            tooltip = data.tokenString;
-                        } else {
-                            console.log("missing broadcast icon for " + object);
-                        }
+                                if (data.pearlType in pearl_icons) {
+                                    icon = pearl_icons[data.pearlType];
+                                    tooltip = data.pearlType;
+                                } else {
+                                    console.log("missing pearl icon for " + data.pearlType);
+                                }
+                            } 
+                        } 
+                        if (object == "WhiteToken") {
+                            if (data.tokenString != null) {
+                                if (data.tokenString in broadcast_icons) {
+                                    icon = broadcast_icons[data.tokenString];
+                                    tooltip = data.tokenString;
+                                } else {
+                                    console.log("missing broadcast icon for " + data.tokenString);
+                                }
+                            } 
+                        } 
                         if (object == "BlueToken" || object == "GoldToken" || object == "RedToken" || object == "DevToken" || object == "GreenToken") {
                             if (data.tokenString != null) {
                                 if (data.tokenString in icon_by_name) {
                                     attribute = icon_by_name[data.tokenString]
+                                } else {
+                                    console.log("missing token item icon for " + data.tokenString);
                                 }
                                 tooltip = data.tokenString;
                             } 

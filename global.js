@@ -182,6 +182,7 @@ const icon_by_name = {
     "ReliableSpear": "Spear_icon",
     "spear": "Spear_icon",
     "boomstick": "Explosive_Spear_icon",
+    "ElectricSpear": "Electric_Spear_icon",
     //## Superstructure
     "CoralStem": "Coral_Stem_icon",
     "CoralStemWithNeurons": "Coral_Stem_With_Neurons_icon",
