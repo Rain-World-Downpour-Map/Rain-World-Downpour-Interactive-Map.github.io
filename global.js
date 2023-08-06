@@ -183,6 +183,8 @@ const icon_by_name = {
     "spear": "Spear_icon",
     "boomstick": "Explosive_Spear_icon",
     "ElectricSpear": "Electric_Spear_icon",
+    "RarefactionCell": "Rarefaction_Cell_icon",
+    "SingularityBomb": "Singularity_Bomb_icon",
     //## Superstructure
     "CoralStem": "Coral_Stem_icon",
     "CoralStemWithNeurons": "Coral_Stem_With_Neurons_icon",
@@ -201,6 +203,7 @@ const icon_by_name = {
     "StuckDaddy": "Stuck_Daddy_icon",
     "RotFlyPaper": "Rot_Fly_Paper_icon",
     //## Other
+    "Filter": "Filter_icon",
     "CentipedeAttractor": "Centipede_Attractor_icon",
     "DandelionPatch": "SkyDandelion",
     "GhostSpot": "Echo_icon",
@@ -215,7 +218,7 @@ const icon_by_name = {
     "ScavTradeInstruction": "Scav_Trade_Instruction_icon",
     "PlayerPushback": "Player_Pushback_icon",
     "MultiplayerItem": "Multiplayer_Item_icon",
-    "BrokenShelterWaterLevel": "PreCycle_icon",
+    "BrokenShelterWaterLevel": "Broken_Shelter_Water_Level_icon",
     "ReliableIggyDirection": "Reliable_Iggy_Direction_icon",
     "Rainbow": "Rainbow_icon",
     "NoLeviathanStrandingZone": "No_Leviathan_Stranding_Zone_icon",
@@ -265,8 +268,32 @@ const icon_by_name = {
     "saint": "Saint_icon",
     "inv": "Sofanthiel_icon",
 }
+//## Objects we don't display
+const hidden_placed_objects = {
+    //## MSCt
+    "MSArteryPush": "MS_Artery_Push_icon",
+    //## Vanilla
+    "SuperStructureFuses": "Super_Structure_Fuses_icon",
+    "WallMycelia": "Wall_Mycelia_icon",
+    "LightSource": "Light_Source_icon",
+    "LightFixture": "Light_Fixture_icon",
+    "SpotLight": "Spot_Light_icon",
+    "CorruptionDarkness": "Corruption_Darkness_icon",
+    "SSLightRod": "SS_Light_Rod_icon",
+    "DeadSeedCob": "Dead_Seed_Cob_icon",
+    "CosmeticSlimeMold": "Cosmetic_Slime_Mold_icon",
+    "CosmeticSlimeMold2": "Cosmetic_Slime_Mold_2_icon",
+    "CustomDecal": "Custom_Decal_icon",
+    "InsectGroup": "Insect_Group_icon",
+    "DeadTokenStalk": "Dead_Token_Stalk_icon",
+    "LightBeam": "Light_Beam_icon",
+    "FairyParticleSettings": "Fairy_Particle_Settings_icon",
+    "DayNightSettings": "Day_Night_Settings_icon",
+    "SteamPipe": "Steam_Pipe_icon",
+    "WallSteamer": "Wall_Steamer_icon",
+}
+//## Pearls
 const pearl_icons = {
-    //## Pearls
     "BroadcastMisc": "Pearl_broadcastmisc_icon",
     "CC": "Pearl_cc_icon",
     "CL": "Pearl_cl_icon",
@@ -353,31 +380,6 @@ const broadcast_icons = {
     "Chatlog_Broadcast9": "Broadcast_pre-pebbles_icon",
     "Chatlog_Broadcast8": "Broadcast_pre-pebbles_icon",
 }
-const hidden_placed_objects = {
-    //## MSC
-    "MSArteryPush": "MS_Artery_Push_icon",
-    //## Vanilla
-    "SuperStructureFuses": "Super_Structure_Fuses_icon",
-    "WallMycelia": "Wall_Mycelia_icon",
-    "LightSource": "Light_Source_icon",
-    "LightFixture": "Light_Fixture_icon",
-    "SpotLight": "Spot_Light_icon",
-    "CorruptionDarkness": "Corruption_Darkness_icon",
-    "SSLightRod": "SS_Light_Rod_icon",
-    "DeadSeedCob": "Dead_Seed_Cob_icon",
-    "CosmeticSlimeMold": "Cosmetic_Slime_Mold_icon",
-    "CosmeticSlimeMold2": "Cosmetic_Slime_Mold_2_icon",
-    "CustomDecal": "Custom_Decal_icon",
-    "InsectGroup": "Insect_Group_icon",
-    "DeadTokenStalk": "Dead_Token_Stalk_icon",
-    "LightBeam": "Light_Beam_icon",
-    "Filter": "Filter_icon",
-    "FairyParticleSettings": "Fairy_Particle_Settings_icon",
-    "DayNightSettings": "Day_Night_Settings_icon",
-    "SteamPipe": "Steam_Pipe_icon",
-    "WallSteamer": "Wall_Steamer_icon",
-}
-
 
 var requestLock = {};
 var lastRequest = null;
