@@ -1126,8 +1126,6 @@
                         var icon = "72_unknown";
                         if (object in icon_by_name && !(object in hidden_placed_objects)) {
                             icon = icon_by_name[object];
-                        } else {
-                            console.log("missing icon for " + object);
                         }
                         if (object == "UniqueDataPearl" || object == "DataPearl") {
                             if (data.pearlType != null) {
@@ -1137,9 +1135,8 @@
                                 } else {
                                     console.log("missing pearl icon for " + data.pearlType);
                                 }
-                            } 
-                        } 
-                        if (object == "WhiteToken") {
+                            }
+                        } else if (object == "WhiteToken") {
                             if (data.tokenString != null) {
                                 if (data.tokenString in broadcast_icons) {
                                     icon = broadcast_icons[data.tokenString];
@@ -1147,36 +1144,34 @@
                                 } else {
                                     console.log("missing broadcast icon for " + data.tokenString);
                                 }
-                            } 
-                        } 
-                        if (object == "BlueToken" || object == "GoldToken" || object == "RedToken" || object == "DevToken" || object == "GreenToken") {
+                            }
+                        } else if (object == "BlueToken" || object == "GoldToken" || object == "RedToken" || object == "DevToken" || object == "GreenToken") {
                             if (data.tokenString != null) {
                                 if (data.tokenString in icon_by_name) {
-                                    attribute = icon_by_name[data.tokenString]
+                                    attribute = icon_by_name[data.tokenString];
+                                    tooltip = data.tokenString;
                                 } else {
                                     console.log("missing token item icon for " + data.tokenString);
                                 }
-                                tooltip = data.tokenString;
-                            } 
-                        } else {
-                            console.log("missing token icon for " + object);
+                            }
+                        } else if (!(object in icon_by_name)) {
+                            console.log("missing icon for " + object);
                         }
+                        
                         if (object in hidden_placed_objects) {
                             icon = "null_icon";
                             var object_filter = "";
                             objecthtml += `<div>
                                     </div>`;
-                        } else if (attribute != "") {
+                        } else if (attribute != "" && attrlabel != "") {
                             objecthtml += `<div class="object-entry${object_filter}">
                                     <img class="object-image" src="./resources/icons/${icon}.png"/>
-                                    <div class="object-label"></div>
                                     <img class="icon-attribute" src="./resources/icons/${attribute}_icon.png"/>
                                     <div class="object-tooltip">${tooltip}</div>
                                     </div>`;
                         } else {
                             objecthtml += `<div class="object-entry${object_filter}">
                                     <img class="object-image" src="./resources/icons/${icon}.png"/>
-                                    <div class="object-label"></div>
                                     <div class="object-tooltip">${tooltip}</div>
                                     </div>`;
                         }
