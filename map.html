@@ -1145,24 +1145,36 @@
                                 icon = token_icons[object];
                                 if (object == "WhiteToken") {
                                     if (data.tokenString != null) {
-                                        tooltip = data.tokenString;
-                                        if (data.tokenString in broadcast_icons) {
-                                            icon = broadcast_icons[data.tokenString];
+                                        if (data.tokenString != "") {
+                                            tooltip = data.tokenString;
+                                            if (data.tokenString in broadcast_icons) {
+                                                icon = broadcast_icons[data.tokenString];
+                                            } else {
+                                                console.log("missing broadcast icon for " + data.tokenString);
+                                            }
                                         } else {
-                                            console.log("missing broadcast icon for " + data.tokenString);
+                                            console.log("empty tokenString for " + object);
                                         }
+                                    } else {
+                                        console.log("null tokenString for " + object);
                                     }
                                 } else if (data.tokenString != null) {
-                                    tooltip = data.tokenString;
-                                    if (data.tokenString in icon_by_name) {
-                                        attribute = icon_by_name[data.tokenString];
-                                    } else if (data.tokenString in standard_placed_object_icons) {
-                                        attribute = standard_placed_object_icons[data.tokenString];
-                                    } else if (data.tokenString == "DataPearl") {
-                                        attribute = "Pearl_misc_icon";
+                                    if (data.tokenString != "") {
+                                        tooltip = data.tokenString;
+                                        if (data.tokenString in icon_by_name) {
+                                            attribute = icon_by_name[data.tokenString];
+                                        } else if (data.tokenString in standard_placed_object_icons) {
+                                            attribute = standard_placed_object_icons[data.tokenString];
+                                        } else if (data.tokenString == "DataPearl") {
+                                            attribute = "Pearl_misc_icon";
+                                        } else {
+                                            console.log("missing token item icon for " + data.tokenString);
+                                        }
                                     } else {
-                                        console.log("missing token item icon for " + data.tokenString);
+                                        console.log("empty tokenString for " + object);
                                     }
+                                } else {
+                                    console.log("null tokenString for " + object);
                                 }
                             } else {
                                 icon = "null_icon";
@@ -1172,12 +1184,18 @@
                             if (collectable) {
                                 icon = pearl_icons[object];
                                 if (data.pearlType != null) {
-                                    tooltip = data.pearlType;
-                                    if (data.pearlType in pearl_icons) {
-                                        icon = pearl_icons[data.pearlType];
+                                    if (data.pearlType != "") {
+                                        tooltip = data.pearlType;
+                                        if (data.pearlType in pearl_icons) {
+                                            icon = pearl_icons[data.pearlType];
+                                        } else {
+                                            console.log("missing pearlType icon for " + data.pearlType);
+                                        }
                                     } else {
-                                        console.log("missing pearlType icon for " + data.pearlType);
+                                        console.log("empty pearlType for " + object);
                                     }
+                                } else {
+                                    console.log("null pearlType for " + object);
                                 }
                             } else {
                                 icon = "null_icon";
