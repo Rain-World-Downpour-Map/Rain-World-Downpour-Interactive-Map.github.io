@@ -477,6 +477,7 @@
         <div>Slugcat</div>
         <form name="difficulty" class="difficulty-select" id="scug-selector">
         </form>
+
         <div>Layers</div>
         <div id="layer-content" class="scroll-ish"></div>
     </div>
@@ -501,8 +502,8 @@
             }
             html += `
 <label class="difficulty-btn">
-        <input type="radio" class="rw-ui" name="difficulties" onclick="selectDifficulty('${slugcatName}');" value="${slugcatName}" autocomplete="off">
-        <img src="./resources/icons/${icon}.png">
+            <input type="radio" class="rw-ui" name="difficulties" onclick="selectDifficulty('${slugcatName}');" value="${slugcatName}" autocomplete="off">
+            <img src="./resources/icons/${icon}.png">
 </label>`;
             document.getElementById('scug-selector').innerHTML = html;
         }
@@ -518,10 +519,10 @@
             for (var r of region_order) {
                 html += `
 <label>
-    <div class="region-btn">
-        <input type="radio" class="rw-ui" name="regions" onclick="selectRegion(this.value);" value="${r}"${r == region ? ' checked="checked"' : ''} autocomplete = "off">
-        <span>${regions[r].toUpperCase()} (${r})</span>
-    </div>
+        <div class="region-btn">
+            <input type="radio" class="rw-ui" name="regions" onclick="selectRegion(this.value);" value="${r}"${r == region ? ' checked="checked"' : ''} autocomplete = "off">
+            <span>${regions[r].toUpperCase()} (${r})</span>
+        </div>
 </label>`
             }
             document.getElementById('region-select').innerHTML = html;
@@ -634,6 +635,9 @@
         var modded;
         var difficulty;
         var room;
+        var collectable;
+        var decorative;
+        var mechanical;
         function pushState(noNavigation) {
             let changes = false;
             let modded_param = params.get("modded") == 'on';
@@ -798,6 +802,11 @@
         var tileNodesLayer;
         var roomTagsLayer;
         var batMigrationBlockagesLayer;
+        // Settings?
+        var standard = true;
+        var collectable = true;
+        var decorative = false;
+        var mechanical = false;
         // Region stuff
         var tileLayer;
         var roomsLayer;
@@ -932,11 +941,11 @@
                     map.removeLayer(geometryLayer);
                 }
                 geometryLayer = L.geoJSON(roomjson["geo_features"], {
-                interactive: false,
-                color: 'rgb(' + json["geocolor"].join(',') + ')',
-                weight: 2,
-                lineCap: "butt", // im easily entertained
-                lineJoin: "miter",
+                    interactive: false,
+                    color: 'rgb(' + json["geocolor"].join(',') + ')',
+                    weight: 2,
+                    lineCap: "butt", // im easily entertained
+                    lineJoin: "miter",
                 });
                 if (hadGeometry) geometryLayer.addTo(map);
                 overlays.addOverlay(geometryLayer, "Geometry");
@@ -1013,17 +1022,17 @@
                                     }
                                     if (attribute == "") {
                                         divhtml += `<div class="lineage-entry">
-                                            <img class="creature-image" src="./resources/icons/${icon}.png"/>
-                                            <div class="creature-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
-                                            <div class="creature-tooltip">${tooltip}</div>
-                                            </div>`;
+                                                <img class="creature-image" src="./resources/icons/${icon}.png"/>
+                                                <div class="creature-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
+                                                <div class="creature-tooltip">${tooltip}</div>
+                                                </div>`;
                                     } else {
                                         divhtml += `<div class="lineage-entry">
-                                            <img class="creature-image" src="./resources/icons/${icon}.png"/>
-                                            <div class="creature-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
-                                            <img class="icon-attribute" src="./resources/icons/${attribute}_icon.png"/>
-                                            <div class="creature-tooltip">${tooltip}</div>
-                                            </div>`;
+                                                <img class="creature-image" src="./resources/icons/${icon}.png"/>
+                                                <div class="creature-label">${Math.trunc(Number.parseFloat(creature.lineage_probs[i]) * 100)}%</div>
+                                                <img class="icon-attribute" src="./resources/icons/${attribute}_icon.png"/>
+                                                <div class="creature-tooltip">${tooltip}</div>
+                                                </div>`;
                                     }
                                 }
                                 divhtml += '</div>';
@@ -1069,7 +1078,7 @@
                                         icon = "Infant_Centipede_AlternateForm_icon";
                                     }
                                     else {
-                                    tooltip += "Alternate Form";
+                                        tooltip += "Alternate Form";
                                     }
                                     attribute += "AlternateForm";
                                 }
@@ -1084,16 +1093,16 @@
                                 }
                                 if (attribute == "") {
                                     divhtml += `<div class="creature-entry${creature_filter}">
-                                        <img class="creature-image" src="./resources/icons/${icon}.png"/>
-                                        <div class="creature-label">x${creature.amount}</div>
-                                        <div class="creature-tooltip">${tooltip}</div>
-                                        </div>`;
+                                            <img class="creature-image" src="./resources/icons/${icon}.png"/>
+                                            <div class="creature-label">x${creature.amount}</div>
+                                            <div class="creature-tooltip">${tooltip}</div>
+                                            </div>`;
                                 } else {
-                                divhtml += `<div class="creature-entry${creature_filter}">
-                                        <img class="creature-image" src="./resources/icons/${icon}.png"/>
-                                        <div class="creature-label">x${creature.amount}</div>
-                                        <img class="creature-attribute" src="./resources/icons/${attribute}_icon.png"/>
-                                        </div>`;
+                                    divhtml += `<div class="creature-entry${creature_filter}">
+                                            <img class="creature-image" src="./resources/icons/${icon}.png"/>
+                                            <div class="creature-label">x${creature.amount}</div>
+                                            <img class="creature-attribute" src="./resources/icons/${attribute}_icon.png"/>
+                                            </div>`;
                                 }
                             }
                         }
@@ -1124,58 +1133,91 @@
                         var tooltip = "";
                         var attribute = "";
                         var icon = "72_unknown";
-                        if (object in icon_by_name && !(object in hidden_placed_objects)) {
-                            icon = icon_by_name[object];
-                        }
-                        if (object == "UniqueDataPearl" || object == "DataPearl") {
-                            if (data.pearlType != null) {
-                                if (data.pearlType in pearl_icons) {
-                                    icon = pearl_icons[data.pearlType];
+                        if (object in standard_placed_object_icons) {
+                            if (standard) {
+                                icon = standard_placed_object_icons[object];
+                            } else {
+                                icon = "null_icon";
+                                object_filter = "";
+                            }
+                        } else if (object in token_icons) {
+                            if (collectable) {
+                                icon = token_icons[object];
+                                if (object == "WhiteToken") {
+                                    if (data.tokenString != null) {
+                                        tooltip = data.tokenString;
+                                        if (data.tokenString in broadcast_icons) {
+                                            icon = broadcast_icons[data.tokenString];
+                                        } else {
+                                            console.log("missing broadcast icon for " + data.tokenString);
+                                        }
+                                    }
+                                } else if (data.tokenString != null) {
+                                    tooltip = data.tokenString;
+                                    if (data.tokenString in icon_by_name) {
+                                        attribute = icon_by_name[data.tokenString];
+                                    } else if (data.tokenString in standard_placed_object_icons) {
+                                        attribute = standard_placed_object_icons[data.tokenString];
+                                    } else if (data.tokenString == "DataPearl") {
+                                        attribute = "Pearl_misc_icon";
+                                    } else {
+                                        console.log("missing token item icon for " + data.tokenString);
+                                    }
+                                }
+                            } else {
+                                icon = "null_icon";
+                                object_filter = "";
+                            }
+                        } else if (object in pearl_icons) {
+                            if (collectable) {
+                                icon = pearl_icons[object];
+                                if (data.pearlType != null) {
                                     tooltip = data.pearlType;
-                                } else {
-                                    console.log("missing pearl icon for " + data.pearlType);
+                                    if (data.pearlType in pearl_icons) {
+                                        icon = pearl_icons[data.pearlType];
+                                    } else {
+                                        console.log("missing pearlType icon for " + data.pearlType);
+                                    }
                                 }
+                            } else {
+                                icon = "null_icon";
+                                object_filter = "";
                             }
-                        } else if (object == "WhiteToken") {
-                            if (data.tokenString != null) {
-                                if (data.tokenString in broadcast_icons) {
-                                    icon = broadcast_icons[data.tokenString];
-                                    tooltip = data.tokenString;
-                                } else {
-                                    console.log("missing broadcast icon for " + data.tokenString);
-                                }
+                        } else if (object in decorative_placed_object_icons) {
+                            if (decorative) {
+                                icon = decorative_placed_object_icons[object];
+                            } else {
+                                icon = "null_icon";
+                                object_filter = "";
                             }
-                        } else if (object == "BlueToken" || object == "GoldToken" || object == "RedToken" || object == "DevToken" || object == "GreenToken") {
-                            if (data.tokenString != null) {
-                                if (data.tokenString in icon_by_name) {
-                                    attribute = icon_by_name[data.tokenString];
-                                    tooltip = data.tokenString;
-                                } else {
-                                    console.log("missing token item icon for " + data.tokenString);
-                                }
+                        } else if (object in mechanical_placed_object_icons) {
+                            if (mechanical) {
+                                icon = mechanical_placed_object_icons[object];
+                            } else {
+                                icon = "null_icon";
+                                object_filter = "";
                             }
-                        } else if (!(object in icon_by_name)) {
+                        } else {
                             console.log("missing icon for " + object);
-                        }
-                        
-                        if (object in hidden_placed_objects) {
                             icon = "null_icon";
                             var object_filter = "";
                             objecthtml += `<div>
-                                    </div>`;
-                        } else if (attribute != "") {
+                                        </div>`;
+                        }
+
+                        if (attribute != "") {
                             objecthtml += `<div class="object-entry${object_filter}">
-                                    <img class="object-image" src="./resources/icons/${icon}.png"/>
-                                    <img class="icon-attribute" src="./resources/icons/${attribute}_icon.png"/>
-                                    <div class="object-tooltip">${tooltip}</div>
-                                    </div>`;
+                                        <img class="object-image" src="./resources/icons/${icon}.png"/>
+                                        <img class="icon-attribute" src="./resources/icons/${attribute}.png"/>
+                                        <div class="object-tooltip">${tooltip}</div>
+                                        </div>`;
                         } else {
                             objecthtml += `<div class="object-entry${object_filter}">
-                                    <img class="object-image" src="./resources/icons/${icon}.png"/>
-                                    <div class="object-tooltip">${tooltip}</div>
-                                    </div>`;
+                                        <img class="object-image" src="./resources/icons/${icon}.png"/>
+                                        <div class="object-tooltip">${tooltip}</div>
+                                        </div>`;
                         }
-                        
+
                         return L.marker(latlng, {
                             icon: L.divIcon({
                                 className: 'object-divs',
@@ -1186,7 +1228,7 @@
                     },
                 });
                 overlays.addOverlay(placedObjectsLayer, "Placed Objects");
-                
+
                 // Tile Nodes
                 let hadTileNodes = map.hasLayer(tileNodesLayer) || loadedRegion == null;
                 if (tileNodesLayer != null) {
@@ -1237,9 +1279,9 @@
                             }
                         }
                         tilenodehtml += `<div class="tilenode-entry${tilenode_filter}">
-                                <img class="tilenode-image" src="./resources/icons/${icon}.png"/>
-                                <div class="tilenode-label"></div>
-                                </div>`;
+                                    <img class="tilenode-image" src="./resources/icons/${icon}.png"/>
+                                    <div class="tilenode-label"></div>
+                                    </div>`;
                         return L.marker(latlng, {
                             icon: L.divIcon({
                                 className: 'tilenode-divs',
@@ -1307,10 +1349,10 @@
                             icon = "Arena_icon";
                         }
                         taghtml += `<div class="roomtag-entry${roomtag_filter}">
-                                <img class="roomtag-image" src="./resources/icons/${icon}.png"/>
-                                <div class="roomtag-label"></div>
-                                <div class="roomtag-tooltip">${tooltip}</div>
-                                </div>`;
+                                    <img class="roomtag-image" src="./resources/icons/${icon}.png"/>
+                                    <div class="roomtag-label"></div>
+                                    <div class="roomtag-tooltip">${tooltip}</div>
+                                    </div>`;
                         return L.marker(latlng, {
                             icon: L.divIcon({
                                 className: 'roomtag-divs',
@@ -1335,10 +1377,10 @@
                         var icon = "";
                         icon = "Batfly_icon";
                         bathtml += `<div class="batblockage-entry${batblockage_filter}">
-                                <img class="batblockage-image" src="./resources/icons/${icon}.png"/>
-                                <div class="batblockage-label">Bat Migration Blockage</div>
-                                <div class="batblockage-tooltip"></div>
-                                </div>`;
+                                    <img class="batblockage-image" src="./resources/icons/${icon}.png"/>
+                                    <div class="batblockage-label">Bat Migration Blockage</div>
+                                    <div class="batblockage-tooltip"></div>
+                                    </div>`;
                         return L.marker(latlng, {
                             icon: L.divIcon({
                                 className: 'batblockage-divs',
