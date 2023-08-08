@@ -1244,40 +1244,33 @@
                         var icon = "";
                         if (shortcut in icon_by_name) {
                             icon = icon_by_name[shortcut];
-                        } else {
-                            console.log("missing icon for " + shortcut);
-                        }
-                        if (roomtile.garbagehole != null && roomtile.garbagehole) {
+                        } else if (roomtile.garbagehole != null && roomtile.garbagehole) {
                             icon = "Garbage_Worm_icon";
-                        }
-                        if (roomtile.wormgrass != null && roomtile.wormgrass) {
+                        } else if (roomtile.wormgrass != null && roomtile.wormgrass) {
                             icon = "Worm_Grass_icon";
-                        }
-                        if (roomtile.waterfall != null && roomtile.waterfall) {
+                        } else if (roomtile.waterfall != null && roomtile.waterfall) {
                             icon = "Waterfall_icon";
-                        }
-                        if (roomtile.hivetile != null && roomtile.hivetile) {
+                        } else if (roomtile.hivetile != null && roomtile.hivetile) {
                             icon = "Batfly_Hive_icon";
-                        }
-                        if (shortcut != null) {
+                        } else if (shortcut != null) {
                             if (shortcut == "DeadEnd") {
                                 icon = "Shortcut_Dead_End_icon";
-                            }
-                            if (shortcut == "Normal") {
-                            }
-                            if (shortcut == "RoomExit") {
+                            } else if (shortcut == "Normal") {
+                            } else if (shortcut == "RoomExit") {
                                 icon = "Shortcut_Room_Exit_icon";
-                            }
-                            if (shortcut == "CreatureHole") {
+                            } else if (shortcut == "CreatureHole") {
                                 icon = "Shortcut_Creature_Hole_icon";
-                            }
-                            if (shortcut == "NPCTransportation") {
+                            } else if (shortcut == "NPCTransportation") {
                                 icon = "Shortcut_NPC_Transportation_icon";
-                            }
-                            if (shortcut == "RegionTransportation") {
+                            } else if (shortcut == "RegionTransportation") {
                                 icon = "Shortcut_Region_Transportation_icon";
+                            } else {
+                                console.log("missing shortcut node icon for " + shortcut);
                             }
+                        } else {
+                            console.log("missing tile node icon for " + roomtile);
                         }
+
                         tilenodehtml += `<div class="tilenode-entry${tilenode_filter}">
                                     <img class="tilenode-image" src="./resources/icons/${icon}.png"/>
                                     <div class="tilenode-label"></div>
