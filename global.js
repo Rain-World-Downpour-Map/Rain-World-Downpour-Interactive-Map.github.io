@@ -227,6 +227,10 @@ const standard_placed_object_icons = {
     "MoonCloak": "Cloak_icon",
     "GhostSpot": "Echo_icon",
     "KarmaShrine": "Karma_Shrine_icon",
+    //## Scavenger stuffs
+    "ScavengerOutpost": "Scavenger_Outpost_icon",
+    "TradeOutpost": "Trade_Outpost_icon",
+    "ScavengerTreasury": "Scavenger_Treasury_icon",
 }
 //## Tokens
 const token_icons = {
@@ -381,9 +385,6 @@ const mechanical_placed_object_icons = {
     "SuperJumpInstruction": "Super_Jump_Instruction_icon",
     "ProjectedImagePosition": "Projected_Image_Position_icon",
     "NoSpearStickZone": "No_Spear_Stick_Zone_icon",
-    "ScavengerOutpost": "Scavenger_Outpost_icon",
-    "TradeOutpost": "Trade_Outpost_icon",
-    "ScavengerTreasury": "Scavenger_Treasury_icon",
     "ScavTradeInstruction": "Scav_Trade_Instruction_icon",
     "PlayerPushback": "Player_Pushback_icon",
     "MultiplayerItem": "Multiplayer_Item_icon",
