@@ -23,11 +23,17 @@ const icon_by_name = {
     "Green": "Green_Lizard_icon",
     "Pink": "Pink_Lizard_icon",
     "Blue": "Blue_Lizard_icon",
+    "BlueLizard": "Blue_Lizard_icon",
     "White": "White_Lizard_icon",
+    "WhiteLizard": "White_Lizard_icon",
     "Black": "Black_Lizard_icon",
+    "BlackLizard": "Black_Lizard_icon",
     "Yellow": "Yellow_Lizard_icon",
+    "YellowLizard": "Yellow_Lizard_icon",
     "Cyan": "Cyan_Lizard_icon",
+    "CyanLizard": "Cyan_Lizard_icon",
     "Red": "Red_Lizard_icon",
+    "RedLizard": "Red_Lizard_icon",
     "Salamander": "Salamander_icon",
     "CicadaA": "White_Squidcada_icon",
     "CicadaB": "Black_Squidcada_icon",
@@ -51,6 +57,7 @@ const icon_by_name = {
     "InfantCentipedeAlternateForm": "Infant_Centipede_AlternateForm_icon",
     "Centipede": "Adult_Centipede_icon",
     "Big Centipede": "Overgrown_Centipede_icon",
+    "BigCentipede": "Overgrown_Centipede_icon",
     "Red Centipede": "Red_Centipede_icon",
     "RedCentipede": "Red_Centipede_icon",
     "Centiwing": "Centiwing_icon",
@@ -68,6 +75,7 @@ const icon_by_name = {
     "SpitterSpider": "Spitter_Spider_icon",
     "Miros Bird": "Miros_Bird_icon",
     "Miros": "Miros_Bird_icon",
+    "MirosBird": "Miros_Bird_icon",
     "Bro": "Brother_Long_Legs_icon",
     "BrotherLongLegs": "Brother_Long_Legs_icon",
     "Daddy": "Daddy_Long_Legs_icon",
@@ -217,8 +225,10 @@ const standard_placed_object_icons = {
     //## Never actually placed (right?)
     "rock": "Rubbish_icon",
     "bomb": "Grenade_icon",
+    "ScavengerBomb": "Grenade_icon",
     "spear": "Spear_icon",
     "boomstick": "Explosive_Spear_icon",
+    "FireSpear": "Explosive_Spear_icon",
     "ElectricSpear": "Electric_Spear_icon",
     "RarefactionCell": "Rarefaction_Cell_icon",
     "SingularityBomb": "Singularity_Bomb_icon",
@@ -231,6 +241,8 @@ const standard_placed_object_icons = {
     "ScavengerOutpost": "Scavenger_Outpost_icon",
     "TradeOutpost": "Trade_Outpost_icon",
     "ScavengerTreasury": "Scavenger_Treasury_icon",
+    //## porl
+    "Pearl": "Pearl_misc_icon",
 }
 //## Tokens
 const token_icons = {
