@@ -521,6 +521,7 @@
     </div>
 
     <script>
+        var loadedCount = 1;
         'use strict';
         // misc iconography but mostly Creatures
 
@@ -1283,6 +1284,7 @@
                         });
                     },
                 });
+                if (hadPlacedObjects) placedObjectsLayer.addTo(map);
                 overlays.addOverlay(placedObjectsLayer, "Placed Objects");
 
                 // Tile Nodes
@@ -1340,6 +1342,7 @@
                         });
                     },
                 });
+                if (hadTileNodes) tileNodesLayer.addTo(map);
                 overlays.addOverlay(tileNodesLayer, "Tile Nodes");
 
                 // Room Tags
@@ -1348,7 +1351,6 @@
                     overlays.removeLayer(roomTagsLayer);
                     map.removeLayer(roomTagsLayer);
                 }
-
                 roomTagsLayer = L.geoJSON(json["roomtag_features"], {
                     pointToLayer: function (feature, latlng) {
                         let roomtag_filter = " roomtag-filter";
@@ -1411,6 +1413,7 @@
                         });
                     },
                 });
+                if (hadRoomTags) roomTagsLayer.addTo(map);
                 overlays.addOverlay(roomTagsLayer, "Room Tags");
 
                 // Bat Migration Blockages
@@ -1439,6 +1442,7 @@
                         });
                     },
                 });
+                if (hadBatMigration) batMigrationBlockagesLayer.addTo(map);
                 overlays.addOverlay(batMigrationBlockagesLayer, "Bat Migration Blockages");
 
                 // Zoom to room on rooms loaded
@@ -1466,6 +1470,16 @@
                 loadedDifficulty = pdifficulty;
                 loadedRegion = pregion;
                 loadedModded = pmodded;
+                // Don't enable certain layers when loaded for the first time
+                if (loadedCount == 1) {
+                    map.removeLayer(placedObjectsLayer);
+                    map.removeLayer(tileNodesLayer);
+                    map.removeLayer(roomTagsLayer);
+                    map.removeLayer(batMigrationBlockagesLayer);
+                    console.log("Map has been loaded for the first time; not showing Placed Objects, Tile Nodes, Room Tags, or Bat Migration Blockages")
+                };
+                console.log("A total of " + loadedCount + " regions have been loaded");
+                loadedCount += 1;
             }, true);
         }
 
