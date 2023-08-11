@@ -410,7 +410,7 @@
             top: calc(50% - 10px);
             /* proof that CSS is stupid, cant fucking vertical center text */
         }
-
+        
         #region-select {
             padding-left: 8px;
             padding-right: 8px;
@@ -422,6 +422,35 @@
             padding-right: 24px !important;
             margin-right: -16px !important;
         }
+
+        /* Button back to index */
+        .top-panel {
+            align-content: center;
+            position: absolute;
+            top: 24px;
+            left: calc(50% - 100px);
+            max-height: 54px;
+            display: flex;
+            flex-direction: column;
+            padding: 8px;
+            background: #0c0c0c;
+            z-index: 1000;
+            color: #cccccc;
+        }
+
+        .index-button {
+            width: 200px;
+            height: 24px;
+            position: relative;
+            word-wrap: anywhere;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        input[type='button'].rw-ui {
+            background-color: #0c0c0c;
+        }
+
     </style>
 
     <style id="creaturefilters">
@@ -464,6 +493,15 @@
 
 <body>
     <div id="mapid"></div>
+
+    <div class="top-panel rw-text">
+        <div class="index-button">
+            <label>
+                <input type="button" class="rw-ui" name="indexbutton" onclick="window.location.href = `index.html`;" autocomplete="off">
+                <span>Index</span>
+            </label>
+        </div>
+    </div>
 
     <div class="side-panel left-panel rw-text">
         <div style="padding-left: 8px; padding-bottom: 8px;">
