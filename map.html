@@ -406,9 +406,13 @@
             margin-bottom: 8px;
         }
 
-        input[type='radio'].rw-ui + span {
+        input[type='radio'].rw-ui+span {
             top: calc(50% - 10px);
             /* proof that CSS is stupid, cant fucking vertical center text */
+        }
+        input[type='button'].rw-ui + span,
+        input[type='button'].rw-ui:checked + span {
+            color: white;
         }
         
         #region-select {
@@ -522,6 +526,7 @@
 
     <script>
         var loadedCount = 1;
+        var tospawn = false;
         'use strict';
         // misc iconography but mostly Creatures
 
@@ -541,7 +546,7 @@
             }
             html += `
 <label class="difficulty-btn">
-            <input type="radio" class="rw-ui" name="difficulties" ondblclick="selectDifficulty('${slugcatName}','${true}');" onclick="selectDifficulty('${slugcatName}','${false}');" value="(${slugcatName},${false});" autocomplete="off">
+            <input type="radio" class="rw-ui" name="difficulties" onclick="selectDifficulty('${slugcatName}','${tospawn}');" value="(${slugcatName},${tospawn});" autocomplete="off">
             <img src="./resources/icons/${icon}.png">
 </label>`;
             document.getElementById('scug-selector').innerHTML = html;
@@ -579,7 +584,7 @@
             }
         }
 
-        function selectDifficulty(n, tospawn) {
+        function selectDifficulty(n, alt) {
             for (var i = 0; i < document.difficulty.difficulties.length; i++) {
                 if (document.difficulty.difficulties[i].value == n) {
                     document.difficulty.difficulties[i].checked = true;
@@ -587,7 +592,7 @@
             }
             if (difficulty != n) {
                 difficulty = n;
-                if (tospawn == true) {
+                if (alt == true) {
                     region = slugcats[difficulty].startingRegion;
                     room = slugcats[difficulty].startingRoom;
                     
