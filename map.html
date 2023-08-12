@@ -410,7 +410,9 @@
             top: calc(50% - 10px);
             /* proof that CSS is stupid, cant fucking vertical center text */
         }
-        input[type='button'].rw-ui + span,
+        input[type='button'].rw-ui + span {
+            color: #cccccc;
+        }
         input[type='button'].rw-ui:checked + span {
             color: white;
         }
@@ -451,7 +453,8 @@
             margin-bottom: 8px;
         }
 
-        input[type='button'].rw-ui {
+        button.rw-ui {
+            height: fit-content;
             background-color: #0c0c0c;
         }
 
@@ -498,13 +501,10 @@
 <body>
     <div id="mapid"></div>
 
-    <div class="top-panel rw-text">
-        <div class="index-button">
-            <label>
-                <input type="button" class="rw-ui" name="indexbutton" onclick="window.location.href = `index.html`;" autocomplete="off">
-                <span>Index</span>
-            </label>
-        </div>
+    <div class="top-panel">
+        <label>
+            <button class="rw-ui rw-text" name="indexbutton" onclick="window.location.href = `index.html`;" autocomplete="off">Index</button>
+        </label>
     </div>
 
     <div class="side-panel left-panel rw-text">
