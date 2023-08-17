@@ -222,7 +222,7 @@ const standard_placed_object_icons = {
     "Lantern": "Lantern_icon",
     "lantern": "Lantern_icon",
     "ReliableSpear": "Spear_icon",
-    //## Never actually placed (right?)
+    //## not explicitly placed
     "rock": "Rubbish_icon",
     "bomb": "Grenade_icon",
     "ScavengerBomb": "Grenade_icon",
