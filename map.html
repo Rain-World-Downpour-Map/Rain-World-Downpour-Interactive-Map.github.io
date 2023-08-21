@@ -1207,16 +1207,27 @@
                 placedObjectsLayer = L.geoJSON(json["placedobject_features"], {
                     pointToLayer: function (feature, latlng) {
                         let objecthtml = "";
-                        var object_filter = " object-filter";
-                        var object = feature.properties.object;
-                        var data = feature.properties.data;
-                        var visibleFilter = true;
-                        var tooltip = "";
-                        var attribute = "";
-                        var icon = "72_unknown";
-                        // Normal code for objects not part of a filter
-                        // Features embedded inside of filter features are still read and parsed, since they are fully fledged features of their own, just in a different location
-                        if (object != "Filter") {
+                        let object_filter = " object-filter";
+                        let object = feature.properties.object;
+                        let data = feature.properties.data;
+                        // console.log(feature);
+                        let tooltip = "";
+                        let attribute = "";
+                        let icon = "72_unknown";
+                        // handles objects that are not filtered, and objects that are filtered, which are either exempt from or hidden by such filter
+                        if (feature.properties.filterToPlayers != null) {
+                            let slugcatFilter = feature.properties.filterToPlayers.join(", ").toLowerCase();
+                            let objectRoom = feature.properties.room;
+                            if (!slugcatFilter.includes(difficulty)) {
+                                console.log(difficulty + " / " + objectRoom + " / " + object + "; is exempt from the current filter");
+                            } else {
+                                console.log(difficulty + " / " + objectRoom + " / " + object + "; is hidden by a filter");
+                            }
+                        } else {
+                            console.log(difficulty + " / " + feature.properties.room + " / " + object + "; doesn't have a filterToPlayers attribute");
+                        }
+                        // for objects either outside of a filter, or those inside a filter and currently exempt from the rules of said filter
+                        if (feature.properties.filterToPlayers == null || (feature.properties.filterToPlayers != null && !(feature.properties.filterToPlayers.join(", ").toLowerCase()).includes(difficulty))) {
                             if (object in standard_placed_object_icons) {
                                 if (standard) {
                                     icon = standard_placed_object_icons[object];
@@ -1225,24 +1236,20 @@
                                     object_filter = "";
                                 }
                             } else if (object in token_icons) {
-                                var availableToPlayers = feature.properties.data.availableToPlayers;
-                                for (let slugcat in availableToPlayers) {
-                                    if (slugcat.toLowerCase() == difficulty) {
-                                        visibleFilter = false;
-                                    }
-                                }
-                                if (visibleFilter) {
+                                // this is the native filter property for tokens
+                                let hiddenSlugcats = feature.properties.data.availableToPlayers.join(", ").toLowerCase();
+                                if (!hiddenSlugcats.includes(difficulty)) {
                                     if (collectable) {
                                         // WhiteToken (Broadcasts)
                                         if (object == "WhiteToken") {
-                                            if (difficulty != "spear") { 
+                                            if (difficulty != "spear") {
                                                 icon = "null_icon";
                                             } else if (data.tokenString != null) {
                                                 if (data.tokenString != "") {
                                                     tooltip = data.tokenString;
                                                     if (data.tokenString in broadcast_icons) {
                                                         icon = broadcast_icons[data.tokenString];
-                                                        console.log("Showing " + object + " - " + data.tokenString + " Due to Availability: " + availableToPlayers);
+                                                        console.log("Showing " + object + " - " + data.tokenString + " Due to Availability: " + hiddenSlugcats + " | current difficulty: " + difficulty);
                                                     } else {
                                                         console.log("missing broadcast icon for " + data.tokenString);
                                                     }
@@ -1252,12 +1259,12 @@
                                             } else {
                                                 console.log("null tokenString for " + object);
                                             }
-                                        // RedToken, GoldToken, DevToken, GreenToken, and BlueToken
+                                            // RedToken, GoldToken, DevToken, GreenToken, and BlueToken
                                         } else if (object != "WhiteToken" && data.tokenString != null) {
                                             icon = token_icons[object];
                                             if (data.tokenString != "") {
                                                 tooltip = data.tokenString;
-                                                console.log("Showing " + object + " - " + data.tokenString + " Due to Availability: " + availableToPlayers);
+                                                console.log("Showing " + object + " - " + data.tokenString + " Due to Availability: " + hiddenSlugcats + " current difficulty: " + difficulty);
                                                 /* RedToken's just use region acronyms and GoldToken's use that plus subregion strings for multiple tokens in one region:
                                                 (CC (gutter) and SB (filter), plus that one DevToken in MS with the "Default" tokenString */
                                                 if (object == "BlueToken" || object == "GreenToken") {
@@ -1290,7 +1297,7 @@
                                         object_filter = "";
                                     }
                                 } else {
-                                    console.log("Hiding " + object + " Due to Availability: " + availableToPlayers);
+                                    console.log("Hiding " + object + " Due to Availability: " + hiddenSlugcats + " current difficulty: " + difficulty);
                                     icon = "null_icon";
                                     object_filter = "";
                                 }
@@ -1298,10 +1305,12 @@
                                 if (collectable) {
                                     icon = pearl_icons[object];
                                     if (data.pearlType != null) {
-                                        /* Generic Pearls are abundant and we don't need 15 thousand "Misc" strings, 
-                                        and broadcast pearls are plenty identifiable with their pink icons and specific placements */
-                                        if (data.pearlType != "" && data.pearlType != "Misc" && data.pearlType != "BroadcastMisc") {
-                                            tooltip = data.pearlType;
+                                        if (data.pearlType != "") {
+                                            /* Generic Pearls are abundant and we don't need 15 thousand "Misc" strings,
+                                            and broadcast pearls are plenty identifiable with their pink icons and specific placements */
+                                            if (data.pearlType != "Misc" && data.pearlType != "BroadcastMisc") {
+                                                tooltip = data.pearlType;
+                                            }
                                             if (data.pearlType in pearl_icons) {
                                                 icon = pearl_icons[data.pearlType];
                                             } else {
