@@ -919,7 +919,43 @@
                 }
                 return;
             }
-            region = pregion; // chaos
+            equivalentRegion = pregion;
+
+            if (pregion == "OE" && (pdifficulty != "white" && pdifficulty != "yellow" && pdifficulty != "gourmand")) {
+                equivalentRegion = "SB";
+            } else if (pregion == "LC" && pdifficulty != "artificer") {
+                equivalentRegion = "UW";
+            } else if (pregion == "MS" && (pdifficulty != "white" && pdifficulty != "yellow" && pdifficulty != "red" && pdifficulty != "gourmand" && pdifficulty != "rivulet" && pdifficulty != "saint")) {
+                equivalentRegion == "SL";
+            } else if (pregion == "LM" && (pdifficulty != "artificer" && pdifficulty != "spear")) {
+                equivalentRegion = "SL";
+            } else if (pregion == "SL" && (pdifficulty == "artificer" || pdifficulty == "spear")) {
+                equivalentRegion = "LM";
+            } else if (pregion == "RM" && pdifficulty != "rivulet" && pdifficulty != "saint") {
+                equivalentRegion = "SS";
+            } else if (pregion == "SS" && pdifficulty == "rivulet") {
+                equivalentRegion = "RM";
+            } else if (pregion == "DM" && pdifficulty != "spear") {
+                equivalentRegion = "MS";
+            } else if (pregion == "MS" && pdifficulty == "spear") {
+                equivalentRegion = "DM";
+            } else if (pregion == "UG" && pdifficulty != "saint") {
+                equivalentRegion = "DS";
+            } else if (pregion == "DS" && pdifficulty == "saint") {
+                equivalentRegion = "UG";
+            } else if (pregion == "CL" && pdifficulty != "saint") {
+                equivalentRegion = "SH";
+            } else if ((pregion == "SH" || pregion == "UW" || pregion == "SS" || pregion == "RM") && pdifficulty == "saint") {
+                equivalentRegion = "CL";
+            } else if (pregion == "HR" && pdifficulty != "saint") {
+                equivalentRegion = "SB";
+            }
+
+            region = equivalentRegion;
+
+            if (pregion != equivalentRegion) {
+                console.log("Redirected from " + loadedDifficulty + " / " + loadedRegion + " to " + pdifficulty + " / " + pregion + " to " + region);
+            }
             modded = pmodded;
 
             console.log("Loading: region {" + region + "} on slugcat {" + pdifficulty + "}, modded {" + modded + "}");
@@ -1224,7 +1260,7 @@
                                 console.log(difficulty + " / " + objectRoom + " / " + object + "; is hidden by a filter");
                             }
                         } else {
-                            console.log(difficulty + " / " + feature.properties.room + " / " + object + "; doesn't have a filterToPlayers attribute");
+                            //console.log(difficulty + " / " + feature.properties.room + " / " + object + "; doesn't have a filterToPlayers attribute");
                         }
                         // for objects either outside of a filter, or those inside a filter and currently exempt from the rules of said filter
                         if (feature.properties.filterToPlayers == null || (feature.properties.filterToPlayers != null && !(feature.properties.filterToPlayers.join(", ").toLowerCase()).includes(difficulty))) {
