@@ -242,41 +242,43 @@
 </head>
 
 <body>
-    <form id="main-menu">
-        <div class="rw-title">Rain World:<br>Downpour</div>
-        <div class="rw-bigtext" style="text-align: center; margin-top:0.5em;">I'm lost as...</div>
-        <div id="scuglist-group">
-            <div id="scuglist-vanilla"></div>
-        </div>
+    <section>
+        <form id="main-menu">
+            <div class="rw-title">Rain World:<br>Downpour</div>
+            <div class="rw-bigtext" style="text-align: center; margin-top:0.5em;">I'm lost as...</div>
+            <div id="scuglist-group">
+                <div id="scuglist-vanilla"></div>
+            </div>
 
-        <script>
-            let slugcats = {};
+            <script>
+                let slugcats = {};
 
-            getJsonObject("slugcats.json", function (json) {
-                slugcats = json;
-                var html = "";
-                for (const slugcatName in slugcats) {
-                    var icon = "72_unknown";
-                    if (slugcatName in icon_by_name) {
-                        icon = icon_by_name[slugcatName];
-                    } else {
-                        console.log("missing icon for " + slugcatName);
+                getJsonObject("slugcats.json", function (json) {
+                    slugcats = json;
+                    var html = "";
+                    for (const slugcatName in slugcats) {
+                        var icon = "72_unknown";
+                        if (slugcatName in icon_by_name) {
+                            icon = icon_by_name[slugcatName];
+                        } else {
+                            console.log("missing icon for " + slugcatName);
+                        }
+                        html += `
+    <label class="difficulty-btn">
+                <input type="radio" class="rw-ui" name="difficulties" onclick="selectDifficulty('${slugcatName}');" autocomplete="off">
+                <img src="./resources/icons/${icon}.png">
+    </label>`;
+                        document.getElementById('scuglist-vanilla').innerHTML = html;
                     }
-                    html += `
-<label class="difficulty-btn">
-            <input type="radio" class="rw-ui" name="difficulties" onclick="selectDifficulty('${slugcatName}');" autocomplete="off">
-            <img src="./resources/icons/${icon}.png">
-</label>`;
-                    document.getElementById('scuglist-vanilla').innerHTML = html;
+                }, true);
+
+                function selectDifficulty(slugName) {
+                    window.location.href = `map.html?slugcat=${slugName}&region=${slugcats[slugName].startingRegion}&room=${slugcats[slugName].startingRoom}`;
                 }
-            }, true);
+            </script>
 
-            function selectDifficulty(slugName) {
-                window.location.href = `map.html?slugcat=${slugName}&region=${slugcats[slugName].startingRegion}&room=${slugcats[slugName].startingRoom}`;
-            }
-        </script>
-
-    </form>
+        </form>
+    </section>
 
     <aside id="sidenav" class="index-sidebar rw-ui">
         <a href="#indextop">Index</a>
@@ -297,7 +299,7 @@
         <a href="#decorative">Decorative</a>
     </aside>
 
-    <div id="indexcontents">
+    <article id="indexcontents">
         <h2 id="indextop">Index</h2>
         <div class="indexgroup">
             <h3 id="random">Random Icons</h3>
@@ -1212,10 +1214,15 @@
                     <figcaption>Dead Hazer</figcaption>
                     <content></content>
                 </figure>
+                <figure>
+                    <img src="./resources/icons/Echo_icon.png" />
+                    <figcaption>Ghost Spot / Echo</figcaption>
+                    <content>Defines where an Echo is placed</content>
+                </figure>
             </div>
             <br>
             <div class="indexgroup">
-                <h4 id="edible">Edible</h4>
+                <h4 id="consumable">Consumable</h4>
                 <figure>
                     <img src="./resources/icons/Dandelion_Peach_icon.png" />
                     <figcaption>Dandelion Peach</figcaption>
@@ -1257,24 +1264,10 @@
                     <content></content>
                 </figure>
                 <figure>
-                    <img src="./resources/icons/Colored_Popcorn_Plant_icon.png" />
-                    <figcaption>Popcorn Plant</figcaption>
-                    <content></content>
-                </figure>
-                <figure>
                     <img src="./resources/icons/Bubble_Fruit_icon.png" />
                     <figcaption>Bubble Fruit</figcaption>
                     <content></content>
                 </figure>
-                <figure>
-                    <img src="./resources/icons/Noodlefly_Egg_icon.png" />
-                    <figcaption>Noodlefly Egg</figcaption>
-                    <content></content>
-                </figure>
-            </div>
-            <br>
-            <div class="indexgroup">
-                <h4 id="non-edible">Non-Edible</h4>
                 <figure>
                     <img src="./resources/icons/Bubble_Weed_icon.png" />
                     <figcaption>Bubble Grass / Bubble Weed</figcaption>
@@ -1325,6 +1318,20 @@
                     <figcaption>Grenade / Scavenger Bomb</figcaption>
                     <content></content>
                 </figure>
+            </div>
+            <br>
+            <div class="indexgroup">
+                <h4 id="non-consumable">Non-Consumable</h4>
+                <figure>
+                    <img src="./resources/icons/Colored_Popcorn_Plant_icon.png" />
+                    <figcaption>Popcorn Plant</figcaption>
+                    <content></content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Noodlefly_Egg_icon.png" />
+                    <figcaption>Noodlefly Egg</figcaption>
+                    <content></content>
+                </figure>
                 <figure>
                     <img src="./resources/icons/Spear_icon.png" />
                     <figcaption>Spear</figcaption>
@@ -1334,6 +1341,16 @@
                     <img src="./resources/icons/Explosive_Spear_icon.png" />
                     <figcaption>Explosive Spear</figcaption>
                     <content></content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Vulture_Mask_icon.png" />
+                    <figcaption>Vulture Mask</figcaption>
+                    <content></content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Cloak_icon.png" />
+                    <figcaption>Moon's Cloak</figcaption>
+                    <content>Found in MS_FARSIDE as Survivor, Monk, and Hunter, and is worn by Looks to the Moon automatically during Rivulet and Saint</content>
                 </figure>
             </div>
             <br>
@@ -1617,6 +1634,26 @@
             <div class="indexgroup">
                 <h4 id="mechanicalobjects">Mechanical Objects</h4>>
                 <figure>
+                    <img src="./resources/icons/Karma_Shrine_icon.png" />
+                    <figcaption>Karma Shrine</figcaption>
+                    <content>A Karma symbol that provides max karma when in front of, emitting particles</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Scavenger_Outpost_icon.png" />
+                    <figcaption>Scavenger Outpost</figcaption>
+                    <content>A painted Rain Deer skull on a pike with Pearls hanging from the antlers</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Trade_Outpost_icon.png" />
+                    <figcaption>Trade Outpost</figcaption>
+                    <content></content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Scavenger_Treasury_icon.png" />
+                    <figcaption>Scavenger Treasury</figcaption>
+                    <content>A random trove of Pearls, Lanterns, Grenades, Spears, and Explosive Spears that respawn every cycle</content>
+                </figure>
+                <figure>
                     <img src="./resources/icons/Coral_Stem_icon.png" />
                     <figcaption>Coral Stem</figcaption>
                     <content>A length of climbable rope attached to a wall at one end and freely floating on the other, consisting of bone colored segments with blue glowing lights that taper off in size, and a puff of mycelia at the tip of the end segment</content>
@@ -1672,44 +1709,24 @@
                     <content>A harmless and inactive variant of Corruption with several Neuron Flies attached to their tentacles</content>
                 </figure>
                 <figure>
-                    <img src="./resources/icons/MS_Artery_Push_icon.png" />
-                    <figcaption>MS Artery Push</figcaption>
-                    <content></content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Filter_icon.png" />
-                    <figcaption>Filter</figcaption>
-                    <content>A resizable circle that hides objects from appearing within its radius for selected Slugcats</content>
-                </figure>
-                <figure>
                     <img src="./resources/icons/Centipede_Attractor_icon.png" />
                     <figcaption>Centipede Attractor</figcaption>
                     <content>Attracts nearby Centipedes towards the area inside of the radius</content>
                 </figure>
                 <figure>
-                    <img src="./resources/icons/Echo_icon.png" />
-                    <figcaption>Ghost Spot / Echo</figcaption>
-                    <content>Defines where an Echo is placed</content>
+                    <img src="./resources/icons/Super_Jump_Instruction_icon.png" />
+                    <figcaption>Super Jump Instruction / Pounce Tutorial</figcaption>
+                    <content>Hologram illustrating how to perform a pounce maneuver</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Projected_Image_Position_icon.png" />
+                    <figcaption>Projected Image Position</figcaption>
+                    <content>Overseer Projected Holograms</content>
                 </figure>
                 <figure>
                     <img src="./resources/icons/No_Spear_Stick_Zone_icon.png" />
                     <figcaption>No Spear Stick Zone</figcaption>
                     <content>Prevents Spears from sticking into walls within a defined radius. Also stops Saint's tongue and Tube Worms from grappling onto surfaces after a short period</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Scavenger_Outpost_icon.png" />
-                    <figcaption>Scavenger Outpost</figcaption>
-                    <content>A painted Rain Deer skull on a pike with Pearls hanging from the antlers</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Trade_Outpost_icon.png" />
-                    <figcaption>Trade Outpost</figcaption>
-                    <content></content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Scavenger_Treasury_icon.png" />
-                    <figcaption>Scavenger Treasury</figcaption>
-                    <content>A random trove of Pearls, Lanterns, Grenades, Spears, and Explosive Spears that respawn every cycle</content>
                 </figure>
                 <figure>
                     <img src="./resources/icons/Scav_Trade_Instruction_icon.png" />
@@ -1747,24 +1764,114 @@
                     <content>A climbable length of rope, found in OE</content>
                 </figure>
                 <figure>
-                    <img src="./resources/icons/Vulture_Mask_icon.png" />
-                    <figcaption>Vulture Mask</figcaption>
+                    <img src="./resources/icons/Filter_icon.png" />
+                    <figcaption>Filter</figcaption>
+                    <content>A resizable circle that hides objects from appearing within its radius for selected Slugcats</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/MS_Artery_Push_icon.png" />
+                    <figcaption>MS Artery Push</figcaption>
                     <content></content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Cloak_icon.png" />
-                    <figcaption>Moon's Cloak</figcaption>
-                    <content>Found in MS_FARSIDE as Survivor, Monk, and Hunter, and is worn by Looks to the Moon automatically during Rivulet and Saint</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Karma_Shrine_icon.png" />
-                    <figcaption>Karma Shrine</figcaption>
-                    <content>A Karma symbol that provides max karma when in front of, emitting particles</content>
                 </figure>
             </div>
             <br>
             <div class="indexgroup">
                 <h4 id="decorativeobjects">Decorative Objects</h4>>
+                <figure>
+                    <img src="./resources/icons/Projected_Stars_icon.png" />
+                    <figcaption>Projected Stars</figcaption>
+                    <content>Array of blue holograms and geometry that are projected within Iterator Superstructures</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Deep_Processing_icon.png" />
+                    <figcaption>Deep Processing</figcaption>
+                    <content>Unknown</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Energy_Swirl_icon.png" />
+                    <figcaption>Energy Swirl</figcaption>
+                    <content>Visual effect seen inside of an active Rarefaction Cell Core</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Lightning_Machine_icon.png" />
+                    <figcaption>Lightning Machine</figcaption>
+                    <content>Harmless intermittent visual strikes of green lightning</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/SkyDandelion.png" />
+                    <figcaption>Sky Dandelion</figcaption>
+                    <content>A field of Sky Dandelion particles</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Void_Spawn_Egg_icon.png" />
+                    <figcaption>Void Spawn Egg</figcaption>
+                    <content></content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Lantern_on_Stick_icon.png" />
+                    <figcaption>Lantern On Stick</figcaption>
+                    <content>A Lantern on a pike, providing illumination, and heat as Saint</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Rainbow_icon.png" />
+                    <figcaption>Rainbow</figcaption>
+                    <content></content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Snow_Source_icon.png" />
+                    <figcaption>Snow Source</figcaption>
+                    <content></content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Death_Fall_Focus_icon.png" />
+                    <figcaption>Death Fall Focus</figcaption>
+                    <content></content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Cell_Distortion_icon.png" />
+                    <figcaption>Cell Distortion</figcaption>
+                    <content>Visual bubble distortion and fractalization</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Local_Blizzard_icon.png" />
+                    <figcaption>Local Blizzard</figcaption>
+                    <content></content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Hanging_Pearls_icon.png" />
+                    <figcaption>Hanging Pearls</figcaption>
+                    <content>A Collection of hanging strings with Pearls attached to them at various points</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/ShortcutShelter.png" />
+                    <figcaption>Shelter Label</figcaption>
+                    <content>Shortcut Label for a Shelter</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/hiddenclose.png" />
+                    <figcaption>Hidden Shortcut Label</figcaption>
+                    <content>Overrides the appearance of any present shortcut label</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/ShortcutAShelter.png" />
+                    <figcaption>Ancient Shelter Label</figcaption>
+                    <content>Shorcut Label for an Ancient Shelter</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Blinking_Flower_icon.png" />
+                    <figcaption>Blinking Flower</figcaption>
+                    <content>Flowers that close when approached, found in OE and UG</content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/Germinator_icon.png" />
+                    <figcaption>Germinator</figcaption>
+                    <content></content>
+                </figure>
+                <figure>
+                    <img src="./resources/icons/OE_sphere_icon.png" />
+                    <figcaption>OE Sphere</figcaption>
+                    <content>The large purple and brown bulbs with a glowing orange center, seen in many of the rooms of OE within the background</content>
+                </figure>
                 <figure>
                     <img src="./resources/icons/Super_Structure_Fuses_icon.png" />
                     <figcaption>Superstructure Fuses</figcaption>
@@ -1836,41 +1943,6 @@
                     <content></content>
                 </figure>
                 <figure>
-                    <img src="./resources/icons/SkyDandelion.png" />
-                    <figcaption>Sky Dandelion</figcaption>
-                    <content>A field of Sky Dandelion particles</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Void_Spawn_Egg_icon.png" />
-                    <figcaption>Void Spawn Egg</figcaption>
-                    <content></content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Super_Jump_Instruction_icon.png" />
-                    <figcaption>Super Jump Instruction / Pounce Tutorial</figcaption>
-                    <content>Hologram illustrating how to perform a pounce maneuver</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Projected_Image_Position_icon.png" />
-                    <figcaption>Projected Image Position</figcaption>
-                    <content>Overseer Projected Holograms</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Deep_Processing_icon.png" />
-                    <figcaption>Deep Processing</figcaption>
-                    <content>Unknown</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Energy_Swirl_icon.png" />
-                    <figcaption>Energy Swirl</figcaption>
-                    <content>Visual effect seen inside of an active Rarefaction Cell Core</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Lightning_Machine_icon.png" />
-                    <figcaption>Lightning Machine</figcaption>
-                    <content>Harmless intermittent visual strikes of green lightning</content>
-                </figure>
-                <figure>
                     <img src="./resources/icons/Fairy_Particle_Settings_icon.png" />
                     <figcaption>Fairy Particle Settings</figcaption>
                     <content></content>
@@ -1890,82 +1962,13 @@
                     <figcaption>Wall Steamer</figcaption>
                     <content></content>
                 </figure>
-                <figure>
-                    <img src="./resources/icons/Lantern_on_Stick_icon.png" />
-                    <figcaption>Lantern On Stick</figcaption>
-                    <content>A Lantern on a pike, providing illumination, and heat as Saint</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Rainbow_icon.png" />
-                    <figcaption>Rainbow</figcaption>
-                    <content></content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Projected_Stars_icon.png" />
-                    <figcaption>Projected Stars</figcaption>
-                    <content>Array of blue holograms and geometry that are projected within Iterator Superstructures</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Snow_Source_icon.png" />
-                    <figcaption>Snow Source</figcaption>
-                    <content></content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Death_Fall_Focus_icon.png" />
-                    <figcaption>Death Fall Focus</figcaption>
-                    <content></content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Cell_Distortion_icon.png" />
-                    <figcaption>Cell Distortion</figcaption>
-                    <content>Visual bubble distortion and fractalization</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Local_Blizzard_icon.png" />
-                    <figcaption>Local Blizzard</figcaption>
-                    <content></content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Hanging_Pearls_icon.png" />
-                    <figcaption>Hanging Pearls</figcaption>
-                    <content>A Collection of hanging strings with Pearls attached to them at various points</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/ShortcutShelter.png" />
-                    <figcaption>Shelter Label</figcaption>
-                    <content>Shortcut Label for a Shelter</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/hiddenclose.png" />
-                    <figcaption>Hidden Shortcut Label</figcaption>
-                    <content>Overrides the appearance of any present shortcut label</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/ShortcutAShelter.png" />
-                    <figcaption>Ancient Shelter Label</figcaption>
-                    <content>Shorcut Label for an Ancient Shelter</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Blinking_Flower_icon.png" />
-                    <figcaption>Blinking Flower</figcaption>
-                    <content>Flowers that close when approached, found in OE and UG</content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/Germinator_icon.png" />
-                    <figcaption>Germinator</figcaption>
-                    <content></content>
-                </figure>
-                <figure>
-                    <img src="./resources/icons/OE_sphere_icon.png" />
-                    <figcaption>OE Sphere</figcaption>
-                    <content>The large purple and brown bulbs with a glowing orange center, seen in many of the rooms of OE within the background</content>
-                </figure>
             </div>
         </div>
-    </div>
-    <div id="main-menu-footer">
+    </article>
+
+    <footer id="main-menu-footer">
         Code on <a href="https://github.com/rain-world-map/">GitHub</a> | <a href="https://henpemaz.github.io/Rain-World-Interactive-Map/">Original</a> by <a href="https://github.com/henpemaz/">Henpemaz</a> | <a href="https://github.com/Rain-World-Downpour-Map/rain-world-downpour-map.github.io/tree/Release">Front-End Code</a> | Ported to 1.9 by <a href="https://github.com/Dual-Iron/">Dual</a> | Favicon and embed by <a href="https://twitter.com/liszhuk/">lis</a> | <a href="https://store.steampowered.com/app/312520/Rain_World/">Rain World</a> is property of <a href="https://twitter.com/VideocultMedia">Videocult</a>
-    </div>
+    </footer>
 </body>
 
 </html>
