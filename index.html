@@ -142,11 +142,14 @@
             padding: 5%
         }
 
-        #indexcontents {
+        #container {
             width: 80%;
-            left: 15%;
-            display: block;
             position: relative;
+            left: 15%;
+        }
+
+        #indexcontents {
+            display: block;
             text-align: center;
             font-family: 'Segoe UI';
             font-weight: 500;
@@ -203,7 +206,8 @@
             }
 
             .indexgroup table {
-                border-radius: 8px;
+                width: 100%;
+                border-radius: 4px;
                 border: 2px solid #A9A4B200;
                 border-color: #A9A4B2;
                 align-content: center;
@@ -216,7 +220,8 @@
             }
 
             .indexgroup td {
-                border-radius: 8px;
+                padding: 5px;
+                border-radius: 5px;
                 border: 2px solid #A9A4B200;
                 border-color: #A9A4B2;
                 max-width: 200px;
@@ -250,9 +255,6 @@
             height: auto;
         }
 
-        #wikilink {
-        }
-
         #sidenav h2 {
             font-family: "Rodondo";
             font-size: 3rem;
@@ -261,9 +263,10 @@
         }
 
         #sidenav a {
+            margin: 3px 2px;
             text-decoration: none;
             display: block;
-            padding: 2px 1px 1px 16px;
+            padding: 2px 1px 2px 9px;
             border-radius: 8px;
             border: 2px solid #A9A4B200;
             border-color: #4B4653;
@@ -294,6 +297,30 @@
 </head>
 
 <body>
+    <aside id="sidenav" class="index-sidebar rw-ui">
+        <a href="https://rainworld.miraheze.org/wiki/Rain_World_Wiki" id="wikilink"><h2 style="margin-left: -13px">Wiki</h2></a>
+        <div id="sidetitle">Navigation</div>
+        <div id="sidecontent">
+            <a href="#indextop">Index</a>
+            <a href="#tilenodes">Tile Nodes</a>
+            <a href="#roomtags">Room Tags</a>
+            <a href="#slugcats">Slugcats</a>
+            <a href="#creatures">Creatures</a>
+                <a href="#lizards">Lizards</a>
+                <a href="#centipedes">Centipedes</a>
+                <a href="#rot">The Rot</a>
+                <a href="#spiders">Spiders</a>
+            <a href="#creatureattributes">Creature Attributes</a>
+            <a href="#placedobjects">Placed Objects</a>
+                <a href="#placedcreatures">Placed Creatures</a>
+                <a href="#consumable">Consumable</a>
+                <a href="#non-consumable">Non-Consumable</a>
+                <a href="#mechanicalobjects">Mechanical</a>
+                <a href="#decorativeobjects">Decorative</a>
+        </div>
+    </aside>
+
+    <div id="container">
     <section id="Slugcat-Selection">
         <form id="main-menu">
             <div class="rw-title">Rain World:<br>Downpour</div>
@@ -331,29 +358,6 @@
 
         </form>
     </section>
-
-    <aside id="sidenav" class="index-sidebar rw-ui">
-        <a href="https://rainworld.miraheze.org/wiki/Rain_World_Wiki" id="wikilink"><h2>Wiki</h2></a>
-        <div id="sidetitle">Navigation</div>
-        <div id="sidecontent">
-            <a href="#indextop">Index</a>
-            <a href="#tilenodes">Tile Nodes</a>
-            <a href="#roomtags">Room Tags</a>
-            <a href="#slugcats">Slugcats</a>
-            <a href="#creatures">Creatures</a>
-                <a href="#lizards">Lizards</a>
-                <a href="#centipedes">Centipedes</a>
-                <a href="#rot">The Rot</a>
-                <a href="#spiders">Spiders</a>
-            <a href="#creatureattributes">Creature Attributes</a>
-            <a href="#placedobjects">Placed Objects</a>
-                <a href="#placedcreatures">Placed Creatures</a>
-                <a href="#consumable">Consumable</a>
-                <a href="#non-consumable">Non-Consumable</a>
-                <a href="#mechanicalobjects">Mechanical</a>
-                <a href="#decorativeobjects">Decorative</a>
-        </div>
-    </aside>
 
     <article id="indexcontents">
         <h2 id="indextop">Index</h2>
@@ -3051,6 +3055,7 @@
             </div>
         </div>
     </article>
+    </div>                   
 
     <footer id="main-menu-footer">
         Code on <a href="https://github.com/rain-world-map/">GitHub</a> | <a href="https://henpemaz.github.io/Rain-World-Interactive-Map/">Original</a> by <a href="https://github.com/henpemaz/">Henpemaz</a> | <a href="https://github.com/Rain-World-Downpour-Map/rain-world-downpour-map.github.io/tree/Release">Front-End Code</a> | Ported to 1.9 by <a href="https://github.com/Dual-Iron/">Dual</a> | Favicon and embed by <a href="https://twitter.com/liszhuk/">lis</a> | <a href="https://store.steampowered.com/app/312520/Rain_World/">Rain World</a> is property of <a href="https://twitter.com/VideocultMedia">Videocult</a>
